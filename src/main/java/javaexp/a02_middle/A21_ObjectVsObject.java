@@ -9,10 +9,14 @@ public class A21_ObjectVsObject {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		// 구매할 객체 생성
 		Fruit f1 = new Fruit("사과", 3000);
+		// 마트 객체 생성
 		Mart m1 = new Mart("행복마트");
+		// 마트에 구매할 객체 할당.
 		m1.buyProduct(f1);
-
+		// 구매한 정보내역 출력.
+		m1.showInfo();
 	}
 
 }
@@ -22,18 +26,38 @@ class Fruit{
 	Fruit(String name, int price){
 		this.name = name;
 		this.price = price;
-		
+	}
+	void show() {
+		System.out.println("물건의 이름: "+name);
+		System.out.println("물건의 가격: "+price);
 	}
 }
 class Mart{
-	String mName; // 마트의 이름
+	String name; // 마트의 이름
 	Fruit fu;	// 마트에서 판매하는 과일의 객체
 	Mart(String name){
-		this.mName = mName;
+		this.name = name;
 	}
-	void buyProduct(Fruit fu) {
-		System.out.println("물건구매");
-		this.fu = fu;
-		
+	/*
+	 	Fruit f1 = new Fruit("사과", 3000);
+	 	m1.buyProduct(f1);
+	 */
+	void buyProduct(Fruit fu) { // Fruit f1 = new Fruit("사과", 3000);
+		System.out.println("물건구매"); 
+		this.fu = fu;	// 결국, 이 객체가 가지고 있느 필드에 객체가 할당된다
+	}
+	void showInfo() {
+		System.out.println("마트의 이름: "+name);
+		System.out.println("Fruit 객체의 할당 여부: "+ (fu!=null));
+		// 위에 buyProduct()를 통해서 객체가 할당된 여부에 따라서 해당 Fruit 객체를 사용처리..
+		// 만약에 heap영역에 객체가 생성되지 않는 상황에 해당 객체의 필드를 호출하면 nullpointerException
+		// 라는 runtime 에러가 발생하기 떄문에 사전에 조건문 확인 후, 처리한다.
+		// ex) 도서관에 책이 없는 상황에 그 책의 내용을 호출하면 ??
+		if (fu!=null) {
+			System.out.println("구매한 과일은 ");
+			fu.show();
+		}else {
+			System.out.println("마트에서 Fruit를 구매하지 않음");
+		}
 	}
 }
