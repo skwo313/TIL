@@ -14,11 +14,12 @@ public class A04_DataType {
 		System.out.println("실수형 데이터: "+ num02);
 		char ch01 = 'A'; //홀따옴표로 문자 한자를 할당할 수 있다
 		System.out.println("문자형 데이터: "+ ch01);
-		// char ==> char[](문자열) ==> String 문자열객체 사용..
+		// int ==> char ==> char[](문자열) ==> String 문자열객체 사용..
 		int code01 = 66;
 		char ch02 = (char)code01; // int형의 값을 유형변경으로 char로
 		// 할당하면 해당 코드값에 연결된 문자가 할당할 수 있다.
 		System.out.println(code01+"의 문자: "+ ch02);
+		// cf) 임시비밀번호 ==> 임의 비밀번호 생성
 		
 		String name = "홍길동";
 		int score01 = 90;

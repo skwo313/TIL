@@ -4,6 +4,8 @@ public class A13_ClassVsObject2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		// 생성자를 통해 필드값을 받아,
+		// 아래의 기능 메서드에 따라서 여러가지 형태로 데이터를 처리한다
 		Calculator c1 = new Calculator(20,30);
 		c1.plus();
 		c1.minus();
