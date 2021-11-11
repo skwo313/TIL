@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+1. 기준행열이 어떻게 되는 지 확인
+2. colspan, rowspan할 td확인
+3. colpan, rowspan를 통해서 삭제될 td를 확인
+-->
+
+	 <h2>1번</h2>
+	 <table align="center" border="1" width="50%" height="250px">
+	 	<tr><td rowspan="2">1</td><td colspan="2">2</td></tr>
+	 	<tr><td>3</td><td>4</td></tr>
+	 </table>
+	 <h2>2번</h2>
+	 <table align="center" border="1" width="50%" height="250px">
+	 	<tr><td>1</td><td rowspan="3">2</td><td>3</td></tr>
+	 	<tr><td>4</td><td>5</td></tr>
+	 	<tr><td>6</td><td>7</td></tr>
+	 </table>
+	 <h2>3번</h2>
+	 <table align="center" border="1" width="50%" height="250px">
+	 	<tr><td>1</td><td>2</td><td>3</td></tr>
+	 	<tr><td colspan="3">4</td></tr>
+	 	<tr><td>5</td><td>6</td><td>7</td></tr>
+	 </table>
+	 <style>
+	 	td{
+	 		width: 20%;
+	 	}		
+	 </style>
+	 <h2>4번</h2>
+	 <table align="center" border="1" width="50%" height="250px">
+	 	<tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+	 	<tr><td>8</td><td colspan="3" rowspan="3">17</td><td>14</td></tr>
+	 	<tr><td>7</td><td>16</td></tr>
+	 	<tr><td>6</td><td>15</td></tr>
+	 	<tr><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+	 </table>
+	 
+	 <table align="center" border="1" width="50%" height="250px">
+	 	<tr><th>번호</th><th>이름</th><th>국어</th><th>영어</th><th>수학</th><th>계</th></tr>
+	 	<tr><td>1</td><td>홍길동</td><td>70</td><td>80</td><td>90</td><td></td></tr>
+	 	<tr><td>2</td><td>김길동</td><td></td><td></td><td></td><td></td></tr>
+	 	<tr><td>3</td><td>신길동</td><td></td><td></td><td></td><td></td></tr>
+	 	<tr><td colspan="5">총계</td></tr>
+	 </table>
+</body>
+</html>

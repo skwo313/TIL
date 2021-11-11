@@ -9,6 +9,7 @@ public class A01_ValueObject {
 		1. java에서 객체의 속성값이 있는 객체를 입력과 호출을 할 수 있게 처리하는 것을 말한다.
 			주로 객체의 필드값을 read할 때, 사용되는 개념이나, 혼용해서 입력/수정/삭제/호출 등
 			여러가지 개념으로 활용될 때가 많다.
+			cf) DTO(data transfer object)
 		2. 기본적인 접근 제어 구조
 			1) 필드는 private로 설정
 				직접적인 외부 호출을 방지한다.
@@ -33,6 +34,7 @@ public class A01_ValueObject {
 		System.out.println("영화제목: "+s01.getMovieTit());
 		System.out.println("관람료: "+s01.getPrice());
 		System.out.println("관객수: "+s01.getPersonCnt());
+		
 		
 	}
 	

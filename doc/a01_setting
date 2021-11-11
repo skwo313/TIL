@@ -1,0 +1,19 @@
+# web application server 설정..
+1. html페이지 호출 단계
+	1) local에서 html페이지를 브라우저로 보기..
+		html태그의 내용 결과를 랜더링하여 보기..
+	2) web server로 front end 페이지 호출.
+		원격에서 접속하여 해당 페이지를 볼 수 있다.
+		- html/css/image/javascript까지 처리된 결과를 볼 수 있다.
+	3) web application server(was) front end + backend 페이지 호출
+		원격 서버에서 java코드가 컴파일되어 결과에 영향을 미치기에 compiler를 포함한 서버이다.
+		DB접속을 해서 그 결과를 처리할 때, 반드시 필요하다
+
+2. web application server 설정
+	1) was 서버를 설치..
+	2) was 서버의 port옵션 변경..
+	3) 현재 소스 프로젝트와 연결
+	4) test 
+		= head 부분 출력시 encoding방식 설정..
+		기본 html 소스 출력
+		jsp(자바코드포함) 소스 출력..

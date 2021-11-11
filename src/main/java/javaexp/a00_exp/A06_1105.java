@@ -186,7 +186,7 @@ public class A06_1105 {
 	 	Card[] cards = new Card[52];
 	 	// 모양을 반복해서 처리할 데이터
 		for(int inx=0;idx<shapes.length;idx++){
-				System.out.println(shapes[idx]);
+				System.out.print(shapes[idx]);
 			// 숫자를 반복해서 처리할 데이터
 			for(int jdx<numbers.length.jdx++){
 				System.out.print(shapes[idx]+numbers[jdx]+",");
