@@ -16,6 +16,7 @@
 <body>
 	<%
 	Player p1 = new Player("김광현", "투수", "sk와이번즈", 1);
+	Player p2 = new Player("석광우", "투수", "Lg트윈스", 2);
 	%>
 	<h1 align="center">선수 정보</h1>
 	<table align="center" border="2" width="75%">
@@ -32,6 +33,12 @@
 				<td><%=p1.getKind()%></td>
 				<td><%=p1.getTeam()%></td>
 				<td><%=p1.getScore()%>위</td>
+			</tr>
+			<tr>
+				<td><%=p2.getPname()%></td>
+				<td><%=p2.getKind()%></td>
+				<td><%=p2.getTeam()%></td>
+				<td><%=p2.getScore()%>위</td>
 			</tr>
 		</tbody>
 	</table>

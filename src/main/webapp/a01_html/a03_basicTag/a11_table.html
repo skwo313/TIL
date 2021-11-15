@@ -21,6 +21,10 @@
 			th : table header로 상단에 테이블의 head로 타이틀 컬럼을 처리할 때
 				사용된다
 			td : table data로 테이블의 실제 데이터를 처리할 때, 사용된다.
+			# 고급 속성
+			cellpadding : 전체 cell 단위로 내용물과 border와의 간격을 지정
+			cellspacing : cell 단위의 사이의 border의 간격을 지정
+			
 	3. 테이블의 속성
 		1) table 태그의 속성
 			border : 굵기 지정.
@@ -30,6 +34,11 @@
 		2) td의 속성
 			colspan="2" : 컬럼(열)의 병합의 갯수를 지정해주는 속성, 2개의 컬럼을 병합한 경우이다
 			rowspan="3" : 행단위 병합의 갯수를 지정해주는 속성, 3개의 행단위로 같은 컬럼이 병합처리된 경우이다
+		3) Css의 속성
+			border-collapse: collapse;
+			2중 라인의 border를 1라인으로 변경처리
+			border: 1px solid green;
+			라인의 굵기, 형태, 색상의 속성을 지정한다
 	 -->
 	 <table border="1">
 	 	<tr><td>1,1</td><td colspan="2">1,2</td></tr>
@@ -39,7 +48,7 @@
 	 	<tr><td>5,1</td><td>5,2</td></tr>
 	 </table>
 	 
-	 <table align="center" width="50%" height="200px" border="1">
+	 <table style="border-collapse:collapse;border:2px solid green;" align="center" width="50%" height="200px" border="1">
 	 	<thead>
 	 		<tr>
 	 			<th>번호</th>

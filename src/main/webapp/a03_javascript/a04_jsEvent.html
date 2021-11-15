@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+		<h2>마우스 올려 보세요</h2>
+		<!-- 
+		this.src='./media/banana.png'
+		this: 현재 마우스를 올린 img 객체..
+		this.src : img의 속성 src을 지칭
+		this.src='./media/banana.png': img의 속성을 변경
+		 -->
+		<hr>
+		<img src="./media/apple.png"
+			onmouseover="this.src='./media/banana.png'"
+			onmouseout="this.src='./media/apple.png'"
+		>
+		<h2 onclick="chColor(this)">클릭해보세요</h2>
+	</body>
+		<script>
+			function chColor(obj){
+				// 매개변수로 객체를 받음..
+				obj.style.backgroundColor="yellow";
+			}
+		</script>
+</html>
