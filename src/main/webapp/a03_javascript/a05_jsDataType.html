@@ -25,9 +25,19 @@
 				var callFun = function(){
 					alert('함수호출');
 				};
+				callFun(); // 상단에 선언되어야 한다.
+				callFun01(); 
 			5) 객체형
 				{}안에 key:value 형식으로 지정하되, (,)로 구분하고 있다.
+				// json 
 				var person = {name:"홍길동",age:25,loc:"서울신림동"};
+				var arry = [];
+				funtion Person(name,age,loc){
+					this.name = name;
+					this.age = age;
+					this.loc = loc;
+				}
+				Person p10 = new Person("홍길동" , 25, "서울");
 		*/
 		var name = '홍길동';
 		var loc = '서울 신림동';

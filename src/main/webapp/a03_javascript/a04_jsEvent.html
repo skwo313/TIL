@@ -17,6 +17,11 @@
 		this: 현재 마우스를 올린 img 객체..
 		this.src : img의 속성 src을 지칭
 		this.src='./media/banana.png': img의 속성을 변경
+		
+		
+		html의 모든 내용을 객체로 인식해서,처리
+		onmouseover : 마우스 커서를 해당 이미지에 올렸을 때
+		onmouseout : 마우스 커서를 해당 이미지에서 벗어 날 때
 		 -->
 		<hr>
 		<img src="./media/apple.png"
@@ -28,6 +33,8 @@
 		<script>
 			function chColor(obj){
 				// 매개변수로 객체를 받음..
+				// 클릭해서 this라는 이름으로 전달하면 h2의 모든 객체 메몰가
+				// 전달된다.
 				obj.style.backgroundColor="yellow";
 			}
 		</script>

@@ -49,6 +49,7 @@
 			// input의 id로 되어 있는 요소객체를 지칭, 메모리에 로딩
 			// var : variable의 약자로 자바스크립트는 초기에 데이터유형을 선언하지 않고,
 			//   모든 유형의 데이터 타입을 받을 수 있게 선언할 떄, 사용하는 keyword
+			// DOM은 화면에 있는 태그를 객체화하여 속성이나 메서드를 사용할 수 있게 한다.
 			var idObj = document.querySelector("[name=id]");
 			// var idObjValue = document.querySelector("[name=id]").value;
 			var passObj = document.querySelector("[name=pass]");
@@ -67,6 +68,8 @@
 			// 모든 입력 요소 객체를 계층구조로 포함하고 있는 form 요소객체를 선언
 			var formObj = document.querySelector("form");
 			// 해당 요소 객체의 기능 메서드를 통해서 지정한 서버의 자원(a05_show.jsp)를 호출
+			// 요소 객체를 다 포함하고 있는 form 객체를 선택해서
+			// 기능메서드 submit()를 통해서 요소의 값을 서버에 전달한다.
 			formObj.submit();
 		}
 	</script>

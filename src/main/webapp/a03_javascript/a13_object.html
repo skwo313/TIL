@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		
+		
+	<script type="text/javascript">
+		// # javascript도 객체지향언어이다.
+		// 1. json(javascript object notation)
+		//		var 객체명 = {속성:속성값,속성2:속성2값..}
+		// 		객체명.속성 : 재할당하거나 호출할 때, 추가할 때도 사용할 수 있다.
+		var person = {name:"홍길동", age:25};
+		var h2Arry = document.querySelectorAll("h2");
+		h2Arry[0].innerText = "이름: "+ person.name;
+		// 변경
+		person.age = 21;
+		h2Arry[1].innerText = "나이: "+person.age;
+		// 추가
+		person.loc = "서울";
+		h2Arry[2].innerText = "사는 곳: "+person.loc;
+		
+		
+		var book = {bname:"피노키오", price:8000, company:"웅진"};
+		var h3Arry = document.querySelectorAll("h3");
+		h3Arry[0].innerText = "이름: "+ book.bname;
+		h3Arry[1].innerText = "가격: "+ book.price;
+		h3Arry[2].innerText = "출판사: "+ book.company;
+		
+		
+	
+		
+	</script>
+	
+	</script>
+	
+	
+	</body>
+</html>

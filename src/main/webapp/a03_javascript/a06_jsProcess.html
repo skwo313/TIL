@@ -43,13 +43,13 @@
 			console.log('미성년입니다');
 		}
 		*/
-		for(var game=1;game<=50;game++){
-			if(game%3==0){
-				console.log("짝! ,")
-			}else{
-				console.log(game+",")
+		for(var cnt=1;cnt<=50;cnt++){
+			var unit = cnt % 10;
+			if(unit==3||unit==6||unit==9){
+				console.log("짝!, ");
+			}else {
+				console.log(cnt+",");
 			}
-			
 		}
 		
 		

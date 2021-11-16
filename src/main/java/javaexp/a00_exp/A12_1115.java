@@ -1,11 +1,19 @@
 package javaexp.a00_exp;
 
-public class A12_1113 {
+public class A12_1115 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		/*
-		1. 
+		1.
+		1) client가 요청(url 주소)
+			http://www.google.com/show.jsp
+		2) server는 해당 show.jsp를 확인하여 .java .class 과정을 거쳐
+			WAS에서 실행한다
+			response.getWriter().print("html 코드")를 통해서,
+			client에 최종 html 문자열을 client에 전달
+		3) client는 전달받은 html 문자열을 랜더링과 실행(js)을 하여, 화면에 출력한다
+		
 			웹 프로그램은 client와 server단으로 구분되어 network상 원격으로 웹 서비스를
 			제공하는 서버와의 관계 속에서 처리되는 프로그램이다.
 				1)  기본 처리 프로세스
@@ -18,11 +26,29 @@ public class A12_1113 {
 				- 해당 페이지에서 전달 되는 html 문자열을 브라우저로 가져와서
 					html 문자열에 있는 태그들을 랜더링(cf h1경우 크기가 큰 문자) 하여
 					화면에 출력한다.
+				2) form 요청처리
+				기본화면애 
+					<form action="send.jsp">
+						<input name="data" value="apple">
+						<input type="submit">
+					</form>
+				submit 버튼을 클릭하는 순간
+					http://192.168.23.0:7080/send.jsp?data=apple
+					로 변경이 되어 해당 자원을 호출하면서 데이터도 요청key로는 data
+					요청값으로는 apple을 넘긴다.
+					서버에서는 넘겨온 데이터를 아래 객체로 받아서, 처리한다.
+					request.getParameter("data"); // 할당된 데이터 "apple"
 		
 		2. 
-			html/css: 페이지 내의 레이아웃 및 요소를 정의하고 그 요소들을 꾸며주는 역할
-			javascript : 웹 페이지의 동적인 처리를 담당
-			jsp/java : java코드와 html코드를 혼합하여 최종 html코드를 만들어서
+			html/css: 기본 정적인 태그와 확장형태인 css를 통해서 화면을 구성하고, 웹화면을
+				기본적인 구성요소들로 표현하게 한다. 주로, client(브라우저)을 통해서 랜더링된다
+			javascript : 받은 정적인 태그들을 프로그래밍 요소를 더하여, DOM객체로 인식하여,
+				속성과 속성값을 이벤트를 통해서 할당하거나 변경함으로 화면에 동적인 처리를 해준다.
+			jsp/java : 클라이언트에서 호출되어 온 페이지를 서버단의 로직에 의해서 데이터를 
+				보여주거나, 요청값/세션 등을 처리하여 최종 결과를 다시 클라이언트단(브라우저)에
+				전송하는 역할을 한다.
+			
+			java코드와 html코드를 혼합하여 최종 html코드를 만들어서
 					client(브라우저를 가지고 요청한 사용자)에 WAS를 통해서 전달 처리하는 역할
 					
 		3. 
@@ -95,6 +121,15 @@ public class A12_1113 {
 			}
 		</script>
 		
+		7. 
+		for(var cnt=1;cnt<=50;cnt++){
+			var unit = cnt % 10;
+			if(unit==3||unit==6||unit==9){
+				console.log("짝!, ");
+			}else {
+				console.log(cnt+",");
+			}
+		}
 		 */
 	}
 

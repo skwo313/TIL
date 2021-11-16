@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+		<table align="center" width="50%" border>
+			<col width="33%">
+			<col width="33%">
+			<col width="33%">
+			<tr><th>팀명</th><th>이름</th><th>기록</th></tr>
+			<tr><td></td><td></td><td></td></tr>
+			<tr><td></td><td></td><td></td></tr>
+			<tr><td></td><td></td><td></td></tr>
+		</table>
+	
+	<script type="text/javascript">
+		var player1 = {team:"kt" , name:"강백호", win:"2승"};
+		var player2 = {team:"두산" , name:"페르난데스", win:"2승"};
+		var player3 = {team:"두산" , name:"강승호", win:"2승"};
+		var baseball = document.querySelectorAll("td");
+		baseball[0].innerText = player1.team; 
+		baseball[1].innerText = player1.name;
+		baseball[2].innerText = player1.win;
+		baseball[3].innerText = player2.team; 
+		baseball[4].innerText = player2.name;
+		baseball[5].innerText = player2.win;
+		baseball[6].innerText = player3.team; 
+		baseball[7].innerText = player3.name;
+		baseball[8].innerText = player3.win;
+		
+		function color1(obj){
+			obj.style.background = "red";
+			obj.align = "center";
+		}
+		function color2(obj){
+			obj.style.background = "orange";
+			obj.align = "center";
+		}
+		function color3(obj){
+			obj.style.background = "yellow";
+			obj.align = "center";
+		}
+		function color4(obj){
+			obj.style.background = "green";
+			obj.align = "center";
+		}
+		function color5(obj){
+			obj.style.background = "blue";
+			obj.align = "center";
+		}
+		function color6(obj){
+			obj.style.background = "indigo";
+			obj.align = "center";
+		}
+		function color7(obj){
+			obj.style.background = "purple";
+			obj.align = "center";
+		}
+		
+	</script>
+		<h3 onclick="color1(this)">Red</h3>
+		<h3 onclick="color2(this)">Orange</h3>
+		<h3 onclick="color3(this)">Yellow</h3>
+		<h3 onclick="color4(this)">Green</h3>
+		<h3 onclick="color5(this)">Blue</h3>
+		<h3 onclick="color6(this)">Indigo</h3>
+		<h3 onclick="color7(this)">Purple</h3>
+	</body>
+</html>
