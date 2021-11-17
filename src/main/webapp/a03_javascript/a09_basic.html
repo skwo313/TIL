@@ -7,6 +7,7 @@
 		
 		</style>
 		<script>
+		
 
 		</script>
 	</head>
@@ -18,6 +19,7 @@
 		<script type="text/javascript">
 			// # 문자열
 			//  1) "문자열1", '문자열2', `문자열3`
+			// ecma6 버전이후 처리가능
 			var str1 = `문자열`;
 			var str2 = `문자열
 				줄바꿈도 그대로 적용`;
@@ -29,7 +31,8 @@
 			var num01S = '25';
 			var num02S = '5';
 			var h2Arr = document.querySelectorAll("h2");
-			// + 연산을 위해서 Number(), parseInt()가 필요하다.
+			// + 연산을 위해서 Number(), parseInt()가 필요하다.(명시적 형변환)
+			//	매개변수가 숫자형 문자열("25")이어야 가능하다. 만약에 숫자형이 아니면 NaN(not a number)에러 메시지가 나온다
 			// + 이외에는 자동형변환을 해준다.
 			h2Arr[0].innerText = num01S+" + "+num02S + " = "+ (Number(num01S)+Number(num02S));
 			h2Arr[1].innerText = num01S+" - "+num02S + " = "+ (num01S-num02S);

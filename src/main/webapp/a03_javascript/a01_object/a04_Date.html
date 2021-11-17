@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+		<h2 align="center">오늘</h2>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+		<h3 align="center"></h3>
+	</body>
+		<script>
+		/*
+		# 날짜 처리 객체 Date
+		1. 1/1000초부터 초, 분, 일, 월, 년의 날짜와 시간을 처리해주는 내장 객체이다.
+		2. 호출 기능 메서드.
+			getFullYear() : 연도
+			getMonth() : 월 index(0~11)
+			getDate() : 날짜
+			getHours() : 시간
+			getMinutes() : 분
+			getSeconds() : 초
+			getDay() : 요일 index(0~6)
+			toLocaleString : 현재 GMT 상 위치에 언어로 표현
+			변경 처리 메서드 setXXX(변경할 데이터)
+		*/
+		
+			var date = new Date();
+			date.setDate(date.getDate()+20); // 현재날짜에서 20일 후 날짜 처리
+			var h3Arry = document.querySelectorAll("h3");
+			h3Arry[0].innerText = date;
+			h3Arry[1].innerText = date.toLocaleString();
+			h3Arry[2].innerText = date.getFullYear()+"년";
+			h3Arry[3].innerText = date.getMonth()+1+"월";
+			h3Arry[4].innerText = date.getDate()+"일";
+			h3Arry[5].innerText = date.getHours()+"시";
+			h3Arry[6].innerText = date.getMinutes()+"분";
+			h3Arry[7].innerText = date.getSeconds()+"초";
+			h3Arry[8].innerText = date.getDay();
+			
+			
+		
+			
+		</script>
+		
+</html>

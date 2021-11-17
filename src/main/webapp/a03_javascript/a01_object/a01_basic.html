@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+	
+	</body>
+		<script>
+		/*
+		# 객체
+		1. 배열[]
+			배열의 index를 기준으로 데이터를 접근 한다..
+			var 배열명 = [데이터1. 데이터2, 데이터3];
+			배열명[index번호], 배열명['index번호']
+		*/
+		var arry = ["홍길동", "김길동", "신길동"];
+		console.log("index 0:"+arry[0]);
+		console.log("index 1:"+arry['1']);
+		console.log("index 2:"+arry["2"]);
+		// ex)
+		var music = ["노래1", "노래2", "노래3"];
+		var fruitPrice = [3000, 4000, 5000];
+		console.log(music);
+		console.log("좋아하는노래 0 :"+music[0]);
+		console.log("좋아하는노래 1 :"+music['1']);
+		console.log("좋아하는노래 2 :"+music["2"]);
+		console.log("과일가격 0 :"+fruitPrice[0]);
+		console.log("과일가격 1 :"+fruitPrice['1']);
+		console.log("과일가격 2 :"+fruitPrice["2"]);
+		/*
+		2. 객체: {}
+			속성인 키와 할당된 값 활용
+			var 객체 = {속성1:속성1값, 속성2:속성2값,...};
+			객체.속성1 = 속성값; // 속성값 변경
+			객체['속성1']
+		*/
+		var person = {name:"홍길동", age:25,loc:"서울"};
+		console.log("이름: "+person.name);
+		console.log("나이: "+person.age);
+		console.log("사는 곳: "+person.loc);
+		// ex)
+		var book = {title:"알뜰신잡", price:8000, publisher:"00서적"};
+		console.log("도서명: "+book.title);
+		console.log("가격: "+book.price);
+		console.log("출판사: "+book.publisher);
+		</script>
+</html>

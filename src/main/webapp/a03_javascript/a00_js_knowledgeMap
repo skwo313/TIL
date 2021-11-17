@@ -13,16 +13,19 @@
 2. 기본 문법
 	변수 선언
 	데이터 유형 (5가지) : typeof(변수명)
+		문자열(String), 숫자(number), boolean, 함수(function), 객체(object) - 배열 
 	형변환 : 자동형변환(연산자), 
 		"2" * "3" ==> 6
 		"2" + "3" ==> "23" 
 		+ 연산자만 기본적으로 연결처리해주고,
-		연산을 하기위해, 형변환 함수(parseInt(), parseDouble(),
-			Number()) 를 처리해주어야 한다. 
+		연산을 하기위해, 형변환 함수(parseInt(), parseDouble(), Number()) 를 처리해주어야 한다. 
 	연산자- 대입/비교/논리
-	삼항연산자
+	삼항연산자 - (비교/논리)?true일때처리:false일 떄 처리
 	# undefined 자료형
+	- 선언이 되지 않는 변수호출시는 에러 발생
+	- 선언은 되었으나 데이터를 할당하지 않는 경우, undefined 메시지 출력
 	NaN(not a number) : 숫자형이 아닌데 연산처리할 때, 발생하는 에러..
+		parseInt("이십오");
 	
 3. 조건문
 	if else, switch 자바와 동일
@@ -43,24 +46,50 @@
 7. 생성자 함수(객체)
 	함수형으로 객체의 구조를 선언하고, 호출 처리하는 형태
 	function Person(name, age, loc){
+		// 자바스크립트의 객체에 필드/메서드를 선언하고, 할당할 때 this.을 활용한다.
 		this.name = name;
 		this.age = age;
 		this.loc = loc;
+		this.show=function(){
+			console.log("이름: "+this.name);
+			console.log("나이: "+this.age);
+			console.log("사는 곳: "+this.loc);
 	}
 	var p01 = new Person("홍길동", 25, "서울");
 	p01.name;
+	p01.show();
 	
 8. 내장 객체
 	Math.floor()
 	Math.ceil()
 	Math.round()
 	Math.random()
+	
+	Data (날짜처리 객체)
+	String (문자처리 객체)
+	
 9. 브라우저 객체 모델(BOM) : 윈도우 창
 	window.open("","",""); 브라우저 창이 새롭게 로딩되어 처리
 10. ***문서 객체 모델(DOM) : 회면 출력
 	태그를 객체화하여 속성을 변경하여 여러가지 동적인 처리
+	<h1 align="center" style="color:green;">안녕하세요</h1>
+	<h1 align="center" style="color:green;">반갑습니다</h1>
+	
 	var obj = document.querySelector("선택자");
+	ex) var h1Obj = document.querySelector("h1");
+		h1Obj.innerText = "좋은 날 시작입니다";
+		h1Obj.align = "right";
+		h1Obj.style.color = "blue";
+		// 자바스크립트 프로그램으로 속성을 지정하는 것은 특정이벤트(click, 키입력 등)dmf
+		통해서 속성을 동적으로 변경되게 처리하기 위함이다.
+	
+	
 	var obj = document.querySelectorAll("선택자");
+	같은 태그이름으로 화면에 여러객체가 있는 경우 활용. 태그, 클래스
+	ex) var h1Arry = document.querySelectorAll("h1");
+	h1Arry[0].innerText="첫번째 h1"
+	h1Arry[1].innerText="두번째 h1"
+	
 	# 선택자(css에서 사용되는 선택자)
 	1. 태그명 : document.querySelector("h1");
 	2. 아이디명 : 화면단위 유일한 식별자를 속성을 지정했을 때,

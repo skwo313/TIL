@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body>
+	
+	</body>
+	<script>
+	/*
+	# 속성과 메서드
+	1. 배열 내부에 있는 값을 요소라고 하고, 객체 내부에 있는 값을 속성이라고 한다.
+	2. 속성을 일반적으로 객체의 기본 데이터형의 값을 할당할 수 있다.
+	3. 객체에 1개 이상의 속성과 속성값을 지정할 수 있다.
+		var 객체 = {}; // 객체의 초기화
+		객체.속성 = 속성값; // 객체의 속성값 할당.
+	4. 메서드 : 객체의 속성 중 함수 자료형인 속성을 특별히 메서드라고 부른다.
+		var 객체 = {메서드:function(){ 메서드의 수행 내용 }};
+		객체.메서드();
+		this. : 메서드에서 현재 객체의 속성을 호출할 때, 접두어로 활용된다.
+	*/
+	var prod = {name:"사과",price:3000,
+			buy:function(cnt){
+				// this: 현재 객체의 속성을 접근할 때, 반드시 접두어로 사용해야함.
+				console.log("과일명: "+this.name);
+				console.log("가격: "+this.price);
+				console.log("총비용: "+(this.price*cnt) );
+				}	};
+	prod.buy(5);
+	// ex)
+	var calculator = {num1:5 , num2:9,
+						plus:function(){
+							console.log(this.num1+" + "+this.num2+" = "+(this.num1 + this.num2));	
+						}
+	};
+	calculator.plus();
+	</script>
+</html>

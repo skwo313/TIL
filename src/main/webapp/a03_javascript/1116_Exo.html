@@ -64,7 +64,6 @@
 			obj.style.background = "purple";
 			obj.align = "center";
 		}
-		
 	</script>
 		<h3 onclick="color1(this)">Red</h3>
 		<h3 onclick="color2(this)">Orange</h3>
@@ -73,5 +72,19 @@
 		<h3 onclick="color5(this)">Blue</h3>
 		<h3 onclick="color6(this)">Indigo</h3>
 		<h3 onclick="color7(this)">Purple</h3>
+		
+		<table align="center" width="50%" border>
+			<tr><th>차이름</th><td></td></tr>
+			<tr><th>제조사</th><td></td></tr>
+			<tr><th>가격</th><td></td></tr>
+		</table>
+	<script type="text/javascript">
+		var carObj = {cname:"타이칸", company:"포르쉐", price:"3억"};
+		var tableArry = document.querySelectorAll("td");
+		tableArry[0].innerText = carObj.cname;
+		tableArry[1].innerText = carObj.company;
+		tableArry[2].innerText = carObj.price;
+	</script>	
+		
 	</body>
 </html>
