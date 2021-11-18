@@ -11,16 +11,20 @@
 1.
 1) 객체 
 var 객체명 = {속성:속성값, 속성2:속성값, ..}
-객체.속성1 = 속성값; // 속성값 변경
+객체.속성1 = 속성값; // 속성값 추가 및 변경
+객체명["속성"] = 속성값; // 속성값 추가 
 
 2) 배열
 var 배열명 = [데이터1, 데이터2, 데이터3]
+배열명[3] = 4000; // 배열의 데이터를 추가하여 할당한다
 	배열은 index를 기준으로 데이터를 접근 한다
 	배열명[index 번호]
 
 2. 
 <script>
 var movie = {mTitle:"괴물", time:"14:30~17:00", price:12000}
+// prop나 idx는 사용자가 임의로 사용해도 되나 객체인지 배열인지
+// 구분할 수 있는 변수를 사용하는 것이 가독성을 높일 수 있다
 for(var prop in movie){
 	console.log(prop+": "+movie[prop])
 }
@@ -28,11 +32,19 @@ for(var prop in movie){
 
 3.
 <script>
-	var trainTicket = {startpoint:"서울", arrival:"대구",
+	// cf) car arry = [300, "하이맨", function(){}, {name:홍길동}];
+	// 	js는 동적 배열을 지원하고 그 개념 중, 데이터 유형도 여러유형이 할당 할 수 있다 
+	var trainTicket = {startpoint:"서울", arrival:"대구", price: 20000,
+					choice:funtion(startpoint,arrival,price){
+						this.startpoint = startpoint;
+						this.arrival = arrival;
+						this.price = price;
+					}, // 필드로 출발역과 도착역, 금액을 변경해서 처리할 때
 					buy:function(cnt, price){
-						// var price = 20000;
 						console.log(this.startpoint+"에서 "+this.arrival+"로 가는 기차 티켓 "+ cnt+"장 총"+
-								(price*cnt)+"원 입니다");
+								(this.price*cnt)+"원 입니다");
+								// + 연산일 때는 앞 문자열에 의해 문자열로 자동형변환이
+								// 일어나기에 ()괄호를 이용해서 형변환을 피하고 연산부터 처리되게 한다.
 					}			
 	};
 	
@@ -46,13 +58,11 @@ for(var prop in movie){
  </table>
  
 <script>
-	var ranking = [1, "kt"];
+	var ranking = ["kt", "삼성","LG","두산","키움"];
 	var addHtml = "";
-	addHtml += "<tr>"
 	for(var idx in ranking){
-		addHtml += "<th>"+ranking[idx]+"</th>"
+		addHtml += "<tr><th>"+(Number(idx)+1)+"</th><td>+ranking[idx]+</td></tr>"
 	}
-	addHtml += "</tr>"
 	var table = document.querySelector("#tab01");
 	table.innerHTML += addHtml;
 </script>

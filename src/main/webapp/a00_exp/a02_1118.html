@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		
+		</style>
+		
+	</head>
+	<body>
+		<!-- 
+		1. 
+			1) setTimeout()
+				지정한 시간이 지난 후에 한번만 이벤트를 발생시킨다
+				실행 중 다른 setTimeout로 인해 함수가 호출되도 기존에 실행된 함수에
+				영향을 주지 않는다.
+			
+			2) setInterval()
+				기본 동작이 할당한 시간만큼 반복적으로 일어난다 		 
+				실행 중 다른 setInterval로 인해 함수가 호출되면 기존에 실행되던 함수는
+				종료된다.
+				
+		2. 3.
+			[20]+[5]=<input type="text" name="problem">
+			<input onclick="test(this)" type="button" value="입력">
+			
+			<script>
+				function test(obj){
+					var problemObj = document.querySelector("[name=problem]");
+					obj.value = "입력중..";
+					var set = setTimeout( function(){
+						if (problemObj.value =="")	{
+							alert("입력 실패");
+						} else if (problemObj.value ==25){
+							alert("정답");
+						} else{
+							alert("오답");
+						}
+						obj.value = "입력";
+						clearTimeout(set);
+					}
+					,5000)
+				}
+			</script>
+			
+		 4. 
+		 	기본형식
+			 	var person = ["", "", ""]
+				person.forEach( function(price, idx, arry){
+					// forEach는 다음 세 인수를 매개변수를 통해 호출한다
+							 요소 값, 요소 인덱스, 순회 중인 배열
+				)};	
+		
+		 5. 
+		 	<table id="tab" align="center" width="60%" border="1">
+				<tr><th>순위</th><th>노래제목</th></tr>
+			</table>
+		 	
+		 	<script>
+				var musicT = ["회전목마","쉬어","Wake up"];
+				var tableArry = document.querySelector("#tab");
+				var addHtml = "";
+				musicT.forEach( function(title, idx){
+					addHtml += "<tr><td>"+(idx+1)+"</td><td>"+title+"</td></tr>";
+				});
+				tableArry.innerHTML += addHtml; 
+			</script>
+			
+			
+		 6. 
+		 	<h2 align="center"></h2>
+		 	<script>
+				var date = new Date();
+				var day = prompt("기념일이 몇일 후인지 입력하시오","ex) 100일 => 100");
+				console.log(day);
+				var h2Arry = document.querySelector("h2");
+				date.setDate(date.getDate()+Number(day));
+				h2Arry.innerText = day+"일 후 "+date.toLocaleString();
+			</script>
+			
+		7.
+			<input onclick="openWindow()" type="button" value="버튼1"> 	
+		 	<input onclick="openWindow()" type="button" value="버튼2"> 
+		 	
+		 	<script>
+			function openWindow(){
+				var win = window.open("","","width=300,height=300");
+				win.document.write("<h2>Window 열림</h2>");
+			}
+			</script>	
+			
+		8.		
+			이벤트는 자바스크립트에서는 이벤트 대상, 이벤트 종류, 이벤트를 통해서 처리할 내용,
+			이벤트와 이벤트 핸들러의 연결로 구성된다.	
+				이벤트: 일반적으로 프로그래밍 언어에서 이벤트라고 하면 사용자의 동작 
+					혹은 프로그램에서 발생하는 특정한 상황을 의미한다. 
+					이벤트가 발생하면 보통 사전에 정의된 특정 코드가 실행되고 
+					그에 따라 기능이 동작하거나 화면이 변경되는 등의 변화가 발생한다 
+				이벤트 핸들러 : 이벤트발생을 감지하고 처리할 코드를 수행하는 역할을 담당한다. 
+					HTML 태그의 속성으로 지정하거나 자바스크립트에서 DOM엘리먼트의 속성에 콜백 함수를 정의하는
+					형식으로 사용한다.
+		 -->
+		 	
+	</body>
+	<script>
+	</script>
+</html>

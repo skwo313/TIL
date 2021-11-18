@@ -25,14 +25,22 @@
 		/*
 		# 객체와 반복문
 		객체는 for in 구문을 통해서 속성을 접근하여, 속성값을 활용할 수 있다.
+		특정하게 배열의 갯수나 속성의 갯수를 식별하지 않더라도, 해당 배열의 
+		크기나 속성의 갯수만큼 반복하여 해당 배열의 index와 속성을 표현하고,
+		값을 확인할 수 있다.
 		1. 배열
 			for(idx in 배열명){
-				idx : index 번호
+				idx : index 번호, 일반적인 index번호와 달리 데이터 유형이 문자열이다.
+							+ 연산을 통해서 번호를 1부터 카운트 하는 처리를 할려면 
+							Number()나 parseInt() 내장 함수로 형변환을 하여야 한다.
+							cf) 배열명['인덱스번호']
 				배열명[idx] : 배열의 값
 			}
 		3. 객체
 			for(var prop in 객체명){
-				prop : 객체의 속성
+				prop : 객체의 속성을 문자열로 가져온다
+				cf) 위 배열의 idx나 prop는 변수명을 임의로 정해도 무방하다
+					cf) 객체명['속성명'] ==> 속성명
 				객체명[prop] : 객체의 속성값
 			}
 		*/
@@ -48,7 +56,13 @@
 			console.log(num++ +": "+score[idx]);
 		}
 		*/
+		
 		var kors = [70,84,45,51,48];
+		// DOM을 쓸 떄는 해당 태그가 script 상단에 반드시 
+		// 선언되어 있어야 한다.
+		// <table align="center" id="tab01">
+		// 기본적으로 태그, id, class가 지원되고
+		// ("태그명") ("#아이디명") (".클래스명")으로 선택할 수 있다
 		var tab01 = document.querySelector("#tab01");
 		var addHtml = "";
 		for(var idx in kors){

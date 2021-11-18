@@ -22,9 +22,11 @@
 			배열명[index번호], 배열명['index번호']
 		*/
 		var arry = ["홍길동", "김길동", "신길동"];
-		console.log("index 0:"+arry[0]);
+		arry[3] = "마길동";
+ 		console.log("index 0:"+arry[0]);
 		console.log("index 1:"+arry['1']);
 		console.log("index 2:"+arry["2"]);
+		console.log("index 3:"+arry["3"]);
 		// ex)
 		var music = ["노래1", "노래2", "노래3"];
 		var fruitPrice = [3000, 4000, 5000];
@@ -40,12 +42,16 @@
 			속성인 키와 할당된 값 활용
 			var 객체 = {속성1:속성1값, 속성2:속성2값,...};
 			객체.속성1 = 속성값; // 속성값 변경
-			객체['속성1']
+			객체.속성3 = 속성값;	// 속성을 추가하고 속성값을 저장
+			객체['속성1'] : 속성을 문자열로 지정하여 호출하거나 추가할 수 있다
 		*/
 		var person = {name:"홍길동", age:25,loc:"서울"};
+		person.gender = "남자"; // 속성 추가
+		person["favFood"] = "짜장면";		// 속성추가
+		// **외부에서 속성을 입력받아서 속성을 추가할 때, 이 형식을 많이 활용한다
 		console.log("이름: "+person.name);
 		console.log("나이: "+person.age);
-		console.log("사는 곳: "+person.loc);
+		console.log("사는 곳: "+person['loc']);
 		// ex)
 		var book = {title:"알뜰신잡", price:8000, publisher:"00서적"};
 		console.log("도서명: "+book.title);

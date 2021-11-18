@@ -1,3 +1,13 @@
 # 겪은 에러 내용 정리
 1. jsp파일에서 동작은 잘 되나 에러가 날 경우 잘라내기 붙히기 반복.
 	- 컴파일 과정이나 변환 중에 오류 났을 가능성
+	
+2. var asdf = document querySelector('')
+	asdf.innerText = ;
+	var asdf = document querySelectorAll('')
+	asdf[0].innerText = ; 		// 객체로 들어오기 떄문에 [] 값을 작성해야 한다
+	
+3. prompt로 들어온 값은 문자열로 보여진다 
+	Number로 형변환 했더니 잘 작동한다
+	
+4. 함수 이름으로 window를 쓰면 안됨 이미 정해져 있음
