@@ -71,6 +71,26 @@
 		 6. 
 		 	<h2 align="center"></h2>
 		 	<script>
+		 		function calcuData(){
+		 		// 입력된 데이터를 바로 가져온다. parseInt(),Number()를 통해서 형변환처리
+		 		var dcnt = parseInt( document.querySelector("[name=dcnt]").value);
+		 		// Data 객체는 기본적으로 현재 날짜를 가져온다
+		 		var today = new Date();
+		 		// 날짜 변경 ..
+		 		today.setDate( today.getDate()+dcnt);
+		 		// 출력할 DOM 객체 선언
+		 		var h2Obj = document.querySelector("h2");
+		 		// tolocalString() : 날짜와 시간정보를 해당 지역에 맞게 출력
+		 		// tolocalDateString() : 날짜정보를 해당 지역에 맞게 출력
+		 		// tolocalTimeString() : 시간정보를 해당 지역에 맞게 출력
+		 		// h2Obj.innerText = today.tolocalDateString();
+		 		var showDate = today.getFullYear()+"년";
+		 		showDate+=(today.getMonth()+1)+"월";
+		 		showDate+=(today.getDate()+1)+"일";
+		 		h2Obj.innerText = showDate;
+		 		}
+		 		
+		 		//
 				var date = new Date();
 				var day = prompt("기념일이 몇일 후인지 입력하시오","ex) 100일 => 100");
 				console.log(day);

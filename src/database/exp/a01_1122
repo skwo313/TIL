@@ -1,0 +1,54 @@
+/*
+사원정보 명칭 : empno(사원번호), ename(사원명), job(직책), mgr(관리자번호)
+hiredate(입사일), sal(급여), comm(보너스), deptno(부서번호)
+
+1. 기본적인 sql의 질의어 구조를 예제를 통해 기술하세요
+	select * || 컬럼명, 컬럼명2
+	from 테이블명 
+	where 조건
+
+2. 사원번호와 이름을 함께 출력하고, 연봉의 1/12를 출력하세요.
+*/
+SELECT empno, ename, sal/12 "연봉의 1/12"
+FROM emp;
+/*
+3. 부서테이블 dept이용하여 alias에 공백을 넣어 출력하세요..
+*/
+SELECT DEPTNO "부서 번호" , DNAME AS "부서 이름", LOC "지 역"
+FROM dept;
+/*
+4. 아래의 내용을 컬럼으로 출력하세요
+   1) @@님의 사원번호는 @@이고, 올해 연말보너스는 연봉의 20%인 @@원입니다.
+   */
+	SELECT ename||'님의 사원번호는 '||empno||'이고, 올해 연말보너스는 연봉의 20%인 '||sal*0.2||'만원 입니다.' "show"
+	FROM emp;
+	/*
+   2) @@님의 이번달 보너스는 연봉의 (deptno번호의 %) 기준으로 @@@ 원 지급합니다.
+   */
+	SELECT ename||'님의 이번달 보너스는 연봉의 '||deptno||'% 기준으로'||(sal*(deptno/100))||'만원 지급합니다' "show"
+	FROM emp;
+	/*
+   3) @@님의 입사일은 @@이고, 현재 연봉의 1/13인 월급여 @@만원
+	*/
+	SELECT ename||'님의 입사일은 '||hiredate||'이고, 현재 연봉의 1/13인 월급여'||sal*(1/13)||'만원' "show"
+	FROM emp;
+	/*
+5. 급여가 2000이상 4000이하인 사원번호, 직책명, 급여를 출력하세요
+	*/
+	SELECT empno, job, sal
+	FROM emp
+	WHERE sal >= 2000 
+	AND sal <=4000;
+	/*
+6. 직책이 'SALESMAN'인 사원의 사원명, 직책명, 부서번호를 출력하세요
+	*/
+	SELECT ename, job, deptno
+	FROM EMP e 
+	WHERE job='SALESMAN';
+	/*
+7. 부서번호가 10인 사원의 이름과 급여의 80%를 출력하세요
+*/
+	SELECT ename, sal*0.8 "급여의 80%"															
+	FROM EMP e 
+	WHERE DEPTNO=10;
+	
