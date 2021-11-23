@@ -6,6 +6,8 @@ hiredate(입사일), sal(급여), comm(보너스), deptno(부서번호)
 	select * || 컬럼명, 컬럼명2
 	from 테이블명 
 	where 조건
+	group by 그룹명
+	having 그룹함수의 조건
 
 2. 사원번호와 이름을 함께 출력하고, 연봉의 1/12를 출력하세요.
 */
@@ -30,8 +32,9 @@ FROM dept;
 	/*
    3) @@님의 입사일은 @@이고, 현재 연봉의 1/13인 월급여 @@만원
 	*/
-	SELECT ename||'님의 입사일은 '||hiredate||'이고, 현재 연봉의 1/13인 월급여'||sal*(1/13)||'만원' "show"
+	SELECT ename||'님의 입사일은 '||hiredate||'이고, 현재 연봉의 1/13인 월급여'||CEIL(sal*(1/13))||'만원' "show"
 	FROM emp;
+	-- 함수처리 : 소숫점이하, floor(), ceil(), round()
 	/*
 5. 급여가 2000이상 4000이하인 사원번호, 직책명, 급여를 출력하세요
 	*/
@@ -45,10 +48,15 @@ FROM dept;
 	SELECT ename, job, deptno
 	FROM EMP e 
 	WHERE job='SALESMAN';
+	--	Database에서는 = 가 비교연산자로 사용된다. 동일할 값일 때,
+	--	테이블명이나 컬럼명은 대소문자 구분없이 사용할 수 있으나,
+	--	데이터는 반드시 구분하여 사용하여야 한다
 	/*
 7. 부서번호가 10인 사원의 이름과 급여의 80%를 출력하세요
 */
-	SELECT ename, sal*0.8 "급여의 80%"															
+	SELECT ename, floor(sal*0.8) "급여의 80%"															
 	FROM EMP e 
 	WHERE DEPTNO=10;
+	-- 데이터 유형이 숫자인 경우는 그대로 사용하고, 문자열인 경우에는 
+	--	''를 이용한다
 	

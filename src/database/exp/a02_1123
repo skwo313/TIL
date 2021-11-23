@@ -1,0 +1,63 @@
+/*
+1. 정렬처리의 기본형식을 기술하세요.	
+	order by 컬럼명 ASC -- 오름차순 
+	order by 컬럼명 DESC -- 내림차순 
+2. 데이터베이스에서 조건문에서 사용되는 비교연산자 종류를 기술하세요.
+	1. ( = , > , <, >= , <= )
+	2. != " 같지 않을 때 조건문에서 검색해준다.
+	3. not(조건문) : 해당 조건문이 아닐 떄, 검색해준다.
+	4. 컬럼명 is not null : null이 아닌 데이터를 검색해준다.
+	5. LIKE '%%' | _(단일문자)
+3. 부서번호가 10이 아니고, 직책이 SALESMAN인 정보를 기술하세요.
+*/
+	SELECT * 
+	FROM emp 
+	WHERE job = 'SALESMAN';
+	
+/*
+4. 부서번호가 10이고 급여가 1000에서 4000사이인 사원정보를 출력하세요.
+*/
+	SELECT *
+	FROM emp 
+	WHERE deptno=10 AND sal BETWEEN 1000 AND 4000;
+/*
+5. null값이 무엇인지 database에서 사용되는 개념을 기술하고,
+	조건문이나 데이터 처리에서 활용되는 키워드를 기술하세요.
+	
+	NULL 값은 아직 정의되지 않은 값
+	NULL 은 0 또는 공백이 아니다 (0은 숫자이고, 공백은 하나의 문자이다.)
+	테이블을 생성할 때 NOT NULL 또는 PRIMARY KEY로 정의되지 않은 모든 데이터 유형은 NULL 값을 포함할 수 있다.
+	NULL 값을 포함하는 연산의 경우 결과 값도 NULL 값이다.
+		ex) nvl(데이터, null일 때 초기값) 
+			숫자형 nvl(comm, 0) : 기본 데이터를 숫자 0으로 설정
+			문자열형 nvl(ename, '') : 기본 데이터를 문자 ''로 설정
+
+6. null인 데이터를 연산식을 처리할 때, 함수를 이용한다
+	null인 데이터의 연산식에서 문제와 효과적으로 처리할 수 있는 함수를 예제를 통해 기술하세요.
+	*/
+	SELECT *
+	FROM EMP e
+	WHERE nvl(comm,0)=0;
+	/*
+	
+7. in구문을 이용해서 사원명이 ALLEN, CLARK, FORD인 경우를 검색하세요.
+	*/
+	SELECT *
+	FROM EMP e 
+	WHERE ename IN ('ALLEN','CLARK','FORD');
+	/*
+8. SUBQUERY IN 구문을 활용하여 부서번호가 30인 관리자번호의 정보를 출력하세요.
+	*/
+	SELECT *
+	FROM EMP e 
+	WHERE DEPTNO IN(
+		SELECT deptno
+		FROM EMP e 
+		WHERE deptno=30
+	);
+	/*
+9. 사원명이 ER로 끝나거나 직책명이 MAN으로 끝나는 사원정보를 출력하세요.
+*/
+	SELECT *
+	FROM EMP e 
+	WHERE job LIKE '%MAN' OR ename LIKE '%ER';

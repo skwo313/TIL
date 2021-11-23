@@ -11,3 +11,13 @@
 	Number로 형변환 했더니 잘 작동한다
 	
 4. 함수 이름으로 window를 쓰면 안됨 이미 정해져 있음
+
+5. SQL Error [911] [22019]: ORA-00911: invalid character
+
+	SELECT *
+	FROM emp 
+	WHERE job IN (
+		SELECT job 
+		FROM emp 
+		WHERE sal BETWEEN 1000 AND 3000; (x) in안에는 ;를 빼야한다.
+	); 
