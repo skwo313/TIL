@@ -1,0 +1,45 @@
+/*
+1. 날짜형데이터의 기본연산구조(시분초일월년)를 sysdate를 기준으로 기술하세요.
+	초: sysdate + (1/60/60/24) --1초 후 
+	분: sysdate + (1/60/24) --1분 후 
+	시: sysdate + (1/24) --1시간 후 
+	일: sysdate + (1) --1일 후 
+	월: add_months(sysdate, 1) --1달 후 
+	년: add_months(sysdate, 12) --1년 후 
+2. dual 테이블을 이용해서 현재시간으로부터 9시간전, 200분 후, 100시간 전을 
+	만드는 sql을 작성하세요.
+*/
+	SELECT SYSDATE "현재시간",
+		SYSDATE - (9/24) "9시간 전",
+		SYSDATE + (200/60/24) "200분 후",
+		SYSDATE - (100/24) "100시간 전"
+	FROM dual;
+/*
+3. 사원테이블을 통해서 입사후, 150일 후, 입사전 120시간 전을 출력하세요.
+*/
+	SELECT 
+		hiredate+150 "입사 150일 후", 
+		hiredate-(120/24) "입사 120시간 전" 
+	FROM emp;
+/*
+4. 날짜 함수의 주요 기능을 기술하세요.
+	sysdate: oracle 서버 시스템의 날짜를 년월일시분월초까지 나타낸다.
+	months_between(): 지정 날짜 사이의 개월을 계산하여 표현한다.
+	add_month() : 지정 날짜에 개월을 더한 날짜를 표현한다.
+	
+5. 사원테이블에 hiredate를 활용하여, 현재 오늘 기준,
+	@@년 @@개월 쨰 근무중이라고 표기하세요.
+*/
+	SELECT floor((MONTHS_BETWEEN(SYSDATE, HIREDATE))/12)||'년 '||
+		mod(floor(MONTHS_BETWEEN(SYSDATE, HIREDATE)),12)||'개월 째 근무 중' "근무기간"
+	FROM emp;
+/*
+6. 사원테이블에서 입사 후, 대리승진연한(5년4개월),
+	과장승진연한(8년6개월), 차장승진연한(12년5개월)에 해당하는 날짜를 출력하세요.
+*/
+	SELECT ename,
+		ADD_MONTHS(hiredate, 64) "대리승진연한",
+		ADD_MONTHS(hiredate, 102) "과장승진연한",
+		ADD_MONTHS(hiredate, 149) "차장승진연한"
+	FROM emp;
+		
