@@ -77,17 +77,18 @@ INSERT INTO person values('홍길동', '서울');
 SELECT name, loc, length(name), length(loc) FROM person;
 
 CREATE TABLE records(
-	num01 number(3),
-	num02 number(4,1)
+	num01 number(4),
+	num02 number(5,1)
 );
 INSERT INTO records values(343,135.5);
+SELECT * FROM records; 
 -- ex)
-CREATE TABLE studrecord26(
+CREATE TABLE studrecords(
 	sname varchar2(20),
 	skors number(5,1)
 );
-SELECT INTO studrecord26 values('홍길동', 85.9);
-SELECT * FROM studrecord26;
+INSERT INTO studrecords values('홍길동', 85.9);
+SELECT * FROM studrecords;
 
 CREATE TABLE member10(
 	id varchar2(10),

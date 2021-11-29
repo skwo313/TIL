@@ -23,7 +23,6 @@
 */	
 	SELECT	ename, to_char(hiredate, 'MM'), 
 		decode(to_char(hiredate, 'MM') , '01', '31일',
-											'02', '29일',
 											'03', '31일',
 											'04', '30일',
 											'05', '31일',
@@ -33,7 +32,8 @@
 											'09', '30일',
 											'10', '31일',
 											'11', '30일',
-											'12', '31일'
+											'12', '31일',
+											'29일'
 				) show
 	FROM emp;
 	SELECT to_char(LAST_DAY(hiredate), 'MMDD')
