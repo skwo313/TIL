@@ -10,8 +10,8 @@
 			when 데이터1 then 처리할 데이터
 			when 데이터2 then 처리할 데이터
 			else 그외 데이터
-		end
-
+		END
+		
 2. decode문과 case문의 차이를 기술하세요
 	- decode의 확장된 함수 형식을 표현식 또는 컬럼 값 '=' 비교를 통해
 		조건의 일치하는 경우에만 다른 값으로 대치하지만, case는
@@ -22,19 +22,12 @@
 	2월은 29일,30일 나오는 월, 그 외는 다 31일 (decode활용) 
 */	
 	SELECT	ename, to_char(hiredate, 'MM'), 
-		decode(to_char(hiredate, 'MM') , '01', '31일',
-											'03', '31일',
+		decode(to_char(hiredate, 'MM') , '02', '29일',
 											'04', '30일',
-											'05', '31일',
 											'06', '30일',
-											'07', '31일',
-											'08', '31일',
 											'09', '30일',
-											'10', '31일',
 											'11', '30일',
-											'12', '31일',
-											'29일'
-				) show
+											'31일') show
 	FROM emp;
 	SELECT to_char(LAST_DAY(hiredate), 'MMDD')
 	FROM emp;
@@ -83,10 +76,10 @@
 /*
 9. 사원번호의 홀/짝수별 사원의 수와 최고연봉을 출력하세요.
 */
-	SELECT MOD(empno,2), count(MOD(empno,2)), max(sal)
+	SELECT decode(MOD(empno,2),0,'짝수','홀수'), count(MOD(empno,2)), max(sal)
 	FROM emp 
-	GROUP BY MOD(empno,2)
-	ORDER BY MOD(empno,2);
+	GROUP BY decode(MOD(empno,2),0,'짝수','홀수')
+	ORDER BY decode(MOD(empno,2),0,'짝수','홀수');
 /*
 10. 1) 입사월별 최고연봉자가 1000이상인 경우만 출력하세요
 */
@@ -105,7 +98,9 @@
 /*
 11. char, varchar2의 근복적인 차이점을 예제를 통해서 기술하세요
 	char은 학번, 사번, 주민번호 등과 같이 자리 수가 정해진 코드성 데이터이고
-	varchar2는 가변형 데이터이다
+	varchar2는 해당 크기게 가변적으로 문자열 데이터를 저장한다. 최대 크기가 설정이되면
+		입력되는 데이터 크기에 따라 가변적으로 문자열 데이터를 저장할 수 있다.
+		
 		create table person0011( 
 			civilnum char(15)
 		);
@@ -119,7 +114,7 @@
 		tname varchar2(10),
 		win number(3),
 		draw number(3),
-		loose number(3),
+		lose number(3),
 		winrate number(3,1),
 		days date
 	);
