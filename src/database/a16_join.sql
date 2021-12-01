@@ -17,11 +17,15 @@ SELECT *
 FROM dept 
 WHERE deptno IN (10,20);
 -- 2. 조인이 필요한 경우
---		연봉이 3000이상인 사원의 정보와 부서정보를 한꺼번에 확인할 때,
+	-- 연봉이 3000이상인 사원의 정보와 부서정보를 한꺼번에 확인할 때,
+	-- alias이름을 이용해서 테이블, 컬럼명을 선언하는 것이 원칙이나
+	-- 두 테이블에 공통 컬럼이 아닐 때는 생략해도 무방하다.
+	-- 동일한 이름의 공통된 컬럼을 테이블명.컬럼명으로 지정하여 처리할 수 있다.
 SELECT empno, ename, sal, e.deptno, dname, loc 
 FROM emp e, dept d
 WHERE e.deptno = d.deptno 
 AND sal >= 3000;
+
 -- SELECT 선택 컬럼 : 중복된 컬럼만 alias 이름을 지정해도 된다. e.deptno
 -- from 테이블명 별칭, 테이블명 별칭 : 조인할 테이블을 별칭과 함께 나열한다.
 -- where 별칭.컬럼명 = 별칭,컬럼 : 두개 테이블에서 공통으로 연결한 컬럼명을
@@ -38,7 +42,7 @@ FROM dept
 WHERE deptno = 10;
 --	join관계를 통해서 연봉 4000이상인 사원과 연결되어있는 부서정보와 함꼐 출력.
 SELECT e.*, d.*	-- 사원의 모든 컬럼, 부서테이블의 모든 컬럼
-FROM EMP e , DEPT d -- 두개 테이블으리 사용하되 alias 이름으로 e,d를 지정..
+FROM EMP e , DEPT d -- 두개 테이블을 사용하되 alias 이름으로 e,d를 지정..
 WHERE e.DEPTNO = d.DEPTNO -- 연관관계에 있는 컬럼인 deptno를 조인 처리..
 	AND sal >= 4000;	-- 조건이 4000이상을 설정..
 	
