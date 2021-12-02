@@ -4,6 +4,10 @@
 	서브쿼리를 포함하고 있는 쿼리를 외부쿼리(outer query)라고 부르며, 
 	서브쿼리는 내부쿼리(inner query)라고도 부릅니다.
 	서브쿼리는 반드시 괄호(())로 감싸져 있어야만 합니다.
+	1. where 조건문에서 사용되는 경우,
+	2. inline view로 테이블을 지정할 때, 사용되는 경우
+	3. select (select max(@@) from @@ sss), ..
+	4. insert, update, delete문 여러가지 형태로 subquery를 사요한다.
 
 2. inline view란 무엇인가? 기본 예제를 통해 기술하세요
 	사용자 정의 QUERY를 가상의 테이블(뷰)로 만들어
@@ -32,6 +36,12 @@
 		FROM emp
 	) a, emp b
 	WHERE a.asal = b.sal;
+
+	SELECT *
+	FROM emp
+	WHERE sal = (
+		SELECT min(sal)
+		FROM emp);
 	/*
 4. 연봉이 2000~4000인 사원의 부서번호, 사원명, 사원번호
 	이름의 subquery 테이블(inline view)과 부서테이블과 join하여 출력하세요
@@ -52,8 +62,12 @@
 		 SELECT deptno, min(sal) asal 
 		 FROM emp 
 		 GROUP BY deptno
-	) a, dept d 
-	WHERE a.deptno = d.deptno;
+	) a, emp e, dept d 
+	WHERE a.deptno = d.deptno
+	AND a.asal = e.sal 
+	AND e.deptno = d.deptno;
+
+	
 /*
 6. 복사테이블을 만드는 형식 2가지를 기술하세요
 	1. 데이터와 구조까지 복사
@@ -79,7 +93,9 @@
 -- 2. 테이블 전체입력 : insert into 테이블 values(데이터1, 데이터2..)
 */
 	INSERT INTO emp99 values(1000,'홍길동','사원',9999,sysdate,1500,100,20);
+	-- 전체 데이터 입력
 	INSERT INTO emp99(ename, sal) values('마길동', 2000);
+	-- 일부컬럼에 데이터 입력, 입력되지 않는 컬럼은 null로 처리된다.
 	SELECT * FROM emp99;
 	
 /*
@@ -111,6 +127,6 @@
 */
 	SELECT * FROM emp99;
 	INSERT INTO emp99(ename, hiredate) VALUES('석광우', to_date('2021/01/01', 'YYYY/MM/DD'));
-	UPDATE emp99 
+	UPDATE emp99
 		SET hiredate = to_date('2021/03/13', 'YYYY/MM/DD')
 	WHERE ename = '석광우';
