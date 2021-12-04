@@ -89,6 +89,41 @@
 	
 /*
 9. 제약조건의 추가 삭제의 기본형식을 기술하세요.
+	alter table 테이블명 add unique (컬럼명)
+	alter table 테이블명 add constraint 제약조건명 unique (컬럼명)
+	alter table 테이블명 add foreign key (컬럼명)
+		reference 참조테이블( 컬럼명 )
+	alter table 테이블명 add constraint 제약조건명 foreign key
+			(컬럼명) reference 참조테이블(컬럼명)  
+
 10. emp24, dept24 복사테이블을 만들고 foreign key 제약조건을 추가하세요.
+*/	
+	CREATE TABLE emp24 
+	AS SELECT * FROM emp;
+	CREATE TABLE dept24
+	AS SELECT * FROM dept;
+	ALTER TABLE emp24
+	ADD PRIMARY KEY(deptno);
+	ALTER TABLE dept24
+	ADD FOREIGN KEY(deptno)
+		REFERENCES emp24(deptno) ON DELETE cascade;
+	delete
+	FROM emp24
+	WHERE deptno=10;
+	SELECT * 
+	FROM emp24 e, dept24 d
+	WHERE e.deptno = d.deptno;
+/*
+
+
 11. user01/8888계정을 생성하여, 접속하여 테이블을 만들 수 있게 권한을 설정하세요
+SQL> conn system/1111
+Connected.
+SQL> grant dba to user01;
+SQL> grant create table to user01;
+SQL> conn user01/8888;
+Connected.
 */
+
+
+

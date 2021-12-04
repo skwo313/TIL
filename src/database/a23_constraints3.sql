@@ -7,7 +7,7 @@
 	ex) emp테이블의 deptno입력은 반드시 dept테이블에 depno가 입력되어 있을 때,
 	가능하다.
 2. 기본 형식
-	컬럼명 데이텅형 constraint 테이블명_컬럼명_fk references 테이블명(컬럼명)
+	컬럼명 데이터형 constraint 테이블명_컬럼명_fk references 테이블명(컬럼명)
 
 */
 -- 교수테이블 생성..

@@ -77,6 +77,8 @@ SELECT * FROM emp11;
 SELECT * FROM dept11;
 DELETE FROM dept11
 WHERE deptno = 10;
+DELETE FROM emp11
+WHERE deptno = 20;
 
 CREATE TABLE emp12
 AS SELECT * FROM emp;
