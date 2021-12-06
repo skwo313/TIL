@@ -16,6 +16,8 @@
 	
 	6) create session : 데이터베이스에 접속할 수
 		있는 권한
+		
+	ex) dba 권한으로 위의 내용을 포함하는 권한으로 설정하여 처리할 수 있다
 	7) create table/view/sequence/procedure
 */
 /*
