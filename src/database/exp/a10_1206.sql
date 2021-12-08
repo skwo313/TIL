@@ -7,6 +7,7 @@
 	NOCYCLE : 데이터를 전개하면서 이미 나타났던 동일한 데이터가 전개 중에 다시 나타난다면 이것을 사이클 (Cycle) 이 형성되었다 라고 말한다. 사이클이 발생한 데이터는 런타임 오류가 발생한다. 그렇지만 NOCYCLE 을 추가하면 사이클이 발생한 이후의 데이터는 전개하지 않는다.
 	ORDER SIBLINGS BY : 형제 노드 (동일한 LEVEL) 사이에서 정렬을 수행한다.
 	WHERE : 모든 전개를 수행한 후에 지정된 조건을 만족하는 데이터만 추출한다.(조건문)
+	
 [1단계:개념] 2. 계층형 sql의 데이터 구조를 emp의 empno와 mgr을 기준으로 기술하세요
 	계층형 sql이란 한 테이블에 담겨 있는 여러 레코드들이 서로 상하 관계(부모, 자식) 관계를 이루며 존재할 때,
 	  이 관계에 따라 레코드를 상/하위 한 구조로 가져올 때 사용되는 SQL을 의미한다. 
@@ -44,10 +45,10 @@ INSERT INTO board VALUES (2,1,'문제 1번','유진선',sysdate,4);
 INSERT INTO board VALUES (3,1,'문제 2번','유진선',sysdate,4);
 INSERT INTO board VALUES (4,2,'문제 1번 풀이','유진선',sysdate,4);
 
-SELECT LEVEL, b.
+SELECT LEVEL, b.*
 FROM board b 
-START WITH rbno=0
-CONNECT BY PRIOR bno = rbno 
+START WITH rbno=0	-- 최상위 root node를 선언..
+CONNECT BY PRIOR bno = rbno -- 하위컬럼 = 상위컬럼 연관관계 설정.
 ORDER BY LEVEL;
 /*
 [2단계:확인] 5. sequence를 사용하는 이유를 기술하세요.
@@ -81,7 +82,15 @@ ORDER BY LEVEL;
 				CYCLE;
 			SELECT seq_05.nextval, 'Q'||to_char(sysdate, 'YYMM')||seq_05.nextval 
 			FROM dual;
-				
+			CREATE TABLE product002(
+				pno char(9) PRIMARY KEY,
+				name varchar2(50),
+				price number
+			);
+			INSERT into product002 values(
+				'Q'||to_char(sysdate, 'YYMM')||seq_05.nextval, '딸기', 12000
+			);
+			SELECT * FROM product002; 
 /*
 [1단계:확인] 8. exerd의 환경 설정을 처리하세요(ppt)
 */

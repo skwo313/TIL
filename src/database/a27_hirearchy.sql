@@ -42,7 +42,7 @@
 		위 emp 같은 경우 mgr과 empno를 말한다.
 	select level
 	from 테이블명
-	start with mgr = null : 최상위 root 계층의 조건을 설정..
+	start with mgr = null : 최상위 rootx 계층의 조건을 설정..
 	connect by prior mgr = empno : 상/하위 계층을 연결하는 조건을 처리..
 6. 계층형 sql의 구조 테이블 만들어 보기 및 활용하기
 */
