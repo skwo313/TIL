@@ -12,6 +12,11 @@
 		
 	} 
 </script>
+<style type="text/css">
+	table td{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<form>
@@ -57,16 +62,81 @@
     %>
         <h3>총합<%=( (price1*cnt1)+(price2*cnt2)+(price3*cnt3) )%></h3>
     <%}%>
-    <h3>국어점수: ${kors}</h3>
-    <h3>영어점수: ${eng}</h3>
-    <h3>수학점수: ${math}</h3>
+    <%-- ${모델명} : controller에서 선언한 모델 데이터 --%>
+    <h3>국어: ${kor}</h3>
+    <h3>영어: ${eng}</h3>
+    <h3>수학: ${math}</h3>
+    <h3>총합: ${tot}</h3>
+    <h3>평균: ${avg}</h3>
+    <form>
+    	<table align="center" border>
+    		<tr><th>국어</th><th>영어</th><th>수학</th></tr>
+    		<tr>
+	    		<td>
+	    			<input type="text" name="kor" value="" size="3">
+	    		</td>
+	    		<td>
+	    			<input type="text" name="eng" value="" size="3">
+	    		</td>
+	    		<td>
+	    			<input type="text" name="math" value="" size="3">
+	    		</td>
+    		</tr>
+    		<tr>
+    			<td colspan="3">
+    				<input type="submit" value="입력">
+    			</td>
+    		</tr>
+    		<tr>
+    			<td colspan="3">총합:${tot} </td>
+    		</tr>
+    		<tr>
+    			<td colspan="3">평균:${avg} </td>
+    		</tr>
+    	</table>
+    </form>
     
-    <%
-    int korI = Integer.parseInt(request.getParameter("kors"));
-    int engI = Integer.parseInt(request.getParameter("eng"));
-    int mathI = Integer.parseInt(request.getParameter("math"));
-    %>
-    <h3>총합: <%=(korI+engI+mathI)%></h3>
+    <h2 align="center">수학문제</h2>
+    <form>
+    <table align="center" border>
+    	<tr><th>번호</th><th>문제</th><th>정답</th></tr>
+    	<tr><td>1</td>
+    		<%
+    			int num01=(int)(Math.random()*8+2);
+    			int num02=(int)(Math.random()*9+1);
+    		%>
+    		<td>
+    			<input type="text" name="num01" value="<%=num01 %>" size="1"/>
+    			<input type="text" name="cal" value=" + " size="1"/>
+    			<input type="text" name="num02" value="<%=num02 %>" size="1"/>
+    		</td>
+    		<td>
+    			<input type="text" name="result" value="" size="1"/>
+    		</td>
+    	</tr>
+    	<tr><td colspan="3"><input type="submit" value="점수확인"/></td></tr>
+    	<%
+    		String num01S = request.getParameter("num01");
+    		String num02S = request.getParameter("num02");
+    		String resultS = request.getParameter("result");
+    		int point = 0;
+    		int num01R = 0;
+    		int num02R = 0;
+    		int result = 0;
+    		if(num01S!=null) num01R = Integer.parseInt(num01S);
+    		if(num02S!=null) num02R = Integer.parseInt(num02S);
+    		if(resultS!=null) result = Integer.parseInt(resultS);
+    		int corNum = num01R + num02R;
+    		if(corNum==result){ // +연산결과가 정답일 때 처리될 내용
+				point+=25;    			
+    		}
+    		if(resultS!=null){ // 입력을 했을 때, 결과 점수를 출력
+    	%>
+    	<tr><td colspan="3">결과점수: <%=point %></td></tr>
+    		<%} %>
+    </table>
+    </form>
+    
 </body>
 </html>
 <%-- 

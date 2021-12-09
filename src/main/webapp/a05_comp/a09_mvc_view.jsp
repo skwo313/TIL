@@ -27,6 +27,7 @@
 	3) view : a09_mvc_view.jsp
  --%>
  	<h2>view단 호출!</h2>
- 	<h3>controller에서 온 모델:${kors}+${eng}+${math}</h3>
+ 	<h3>controller에서 온 모델:${show}</h3>
+ 	<h3>controller에서 온 모델:${modelData}</h3>
 </body>
 </html>
