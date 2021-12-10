@@ -7,14 +7,26 @@
 			
 		</style>
 		<script>
-			window.onload = function(){
-				var h2Obj = document.querySelector("h2");
-				h2Obj.innerText = "시작";
-			}
 		</script>
 	</head>
 	<body>
-		<h2></h2>
-		
+		<!-- 
+		# hyper link의 속성 target
+		1. a href="" target="속성값"로 속성을 지정할 수 있다.
+		2. 속성 유형
+			_blank : 링크된 문서를 새로운 윈도우나 탭에서 오픈함
+			_self : 링크된 문서를 링크가 위치한 현재 프레임에서 오픈함. 기본값으로 생략 가능
+			_parent : 링크된 문서를 현재 프레임의 부모 프레임에서 오픈함
+				ex) frame 내부에 link가 되어있을 때, 클릭하면 frame을 포함한 전체페이지가 변경
+			_top : 링크된 문서를 현재 윈도우 전체에서 오픈함
+			프레임이름 : 링크된 문서를 명시된 프레임에서 오픈함
+		 -->
+		<a href="/javaexp/a01_html/a04_form/a07_inputFormExp.html" target="frame01">[메뉴1]</a>
+		<a href="/javaexp/a01_html/a04_form/a03_form.html" target="frame01">[메뉴2]</a>
+		<a href="/javaexp/a01_html/a04_form/a06_inputForm.html" target="frame01">[메뉴3]</a>
+		<a href="/javaexp/a01_html/a04_form/a08_join.html" target="frame01">[메뉴4]</a><br>
+		<iframe name="frame01" width="400" height="400"></iframe><br>
+		<a href="/javaexp/a02_jsp/a03_importObject.jsp" target="frame02">[메뉴5]</a><br>
+		<iframe name="frame02" width="400" height="400">메뉴5</iframe>
 	</body>
 </html>

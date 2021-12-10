@@ -1,5 +1,5 @@
 package javaexp.a04_vo;
-
+// javaexp.a04_vo.Product
 public class Product {
 	private String product;
 	private int price;
