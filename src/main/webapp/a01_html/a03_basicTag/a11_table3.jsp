@@ -76,7 +76,7 @@
 		for (int number:numbers) {
 		%>
 		<tr>
-			<td><%=numbers%></td>
+			<td><%=number%></td>
 		</tr>
 		<%
 		}
@@ -144,6 +144,46 @@
 		}
 		%>
 	</table>
-
+<%--
+# 배열에서 객체 list로 변경..
+	1) 배열데이터
+		String []names = {"오렌지","수박","키위"};
+		int []prices = {3000, 12000, 4000};
+		int []cnts = {5, 3, 2};
+		index로 단위데이터를 가져온다.
+			names[0], prices[0]. cnts[0]
+	2) 객체list 데이터
+		ArrayList<product> plist = new ArrayList<product>();
+		plist.add(new Product("오렌지", 3000, 5) );
+		plist.add(new Product("수박", 12000, 3) );
+		plist.add(new Product("키위", 4000, 2) );
+			plist.get(0) ==> Product("오렌지",3000,5);
+			plist.get(1) ==> Product("수박", 12000, 3);
+			plist.get(2) ==> Product("키위", 4000, 2);
+		
+		<%for(Product p : plist){%>
+			<tr>
+				<td><%=p.getName()%></td>
+				<td><%=p.getPrice()%></td>
+				<td><%=p.getCnt()%></td></tr>
+	
+		class Product{
+			private String name;
+			private int price;
+			private int cnt;
+			// 생성자로 데이터 할당
+			Product(String name, int price, int cnt){
+				this.name = name;
+				this.price = price;
+				this.cnt = cnt;
+			}
+			// 기능 메서드 get/set을 통해 메서드를 통해서만 데이터 접근 가능
+			public void setName(String name){
+				this.name = name;
+			}
+			public void getName(String name){
+				return name;
+			}
+ --%>
 </body>
 </html>
