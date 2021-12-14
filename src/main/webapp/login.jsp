@@ -7,14 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="fb_login_process.php" name="login">
-		<fieldset>
+	<form action="" name="" width="40%">
+		<fieldset >
 			<legend>
 				<p>로그인</p>
 			</legend>
-			<table
-				style="background-color: white; font-bold:; text-align: left; width: 30%; height: 60px;"
-				border="0" cellpadding="0" cellspacing="0">
+			<tablestyle="background-color: white; font-bold:; text-align: left; width: 300px; height: 60px;"
+			border="0" cellpadding="0" cellspacing="0">
 				<tbody>
 					<tr>
 						<td
