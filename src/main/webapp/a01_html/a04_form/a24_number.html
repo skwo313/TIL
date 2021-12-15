@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[숫자 입력]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "홈 제어 시스템 - 온도조절";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<form>
+			지속시간 (0.0~10.0시간):
+			<input type="number" min="0.0" max="10.0" step="0.5"><br>
+			온도설정 : 10&deg;
+			<input type="range" min="10" max="30" list="temparatures">30&deg;
+				<datalist id="temparatures">
+					<option value="12" label="Low">
+					<option value="20" label="Medium">
+					<option value="28" label="High">
+				</datalist>
+		</form>
+		<!-- ex) -->
+		<form>
+			<h3>커피주문</h3>
+			가격: <input type="number" min="4500" max="7200" step="500" list="price"><br>
+				<datalist id="price">
+					<option value="4500">
+					<option value="5000">
+					<option value="6500">
+					<option value="7200">
+				</datalist>
+			
+			<!--
+			<select name="price">
+				 	<option>4500</option>
+				 	<option>5000</option>
+				 	<option>6500</option>
+				 	<option>7200</option>
+				 </select><br>
+			--> 
+			주문수량: <input type="number" min="1" max="10" step="1"><br>
+			크기: <input type="range" min="1" max="3" list="size"><br>
+					<datalist id="size">
+						<option value="1" label="small">
+						<option value="2" label="medium">
+						<option value="3" label="large">
+					</datalist>
+		</form>
+		
+	</body>
+</html>
