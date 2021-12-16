@@ -12,7 +12,9 @@
 			h2, li{color:brown;}
 			.warning{ color:red;} /* 클래스 선언 */
 			body.main{ background-color:aliceblue; } /* 태그가 body이고 속성으로 클래스가 선언된 경우*/
+			#list{background:mistyrose;}
 			div#etc{ background:pink; }
+			/* 특정한 태그에 소성으로 클래스이거나 아이디일 때, 활용하는 패턴 */
 		</style>
 		<script>
 			window.onload = function(){
@@ -26,7 +28,7 @@
 		<hr>
 		<div>
 			<div>2학기 <strong>학습내용</strong></div>
-			<ul>
+			<ul id="list">
 				<li>HTML5</li>
 				<li><strong>CSS</strong></li>
 				<li>javascript</li>

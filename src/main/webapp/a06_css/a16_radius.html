@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[둥근 모서리 태그]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			p{ background:#90d000; padding:20px; width:300px;}
+			#round1{border-radius:50px;}
+			#round2{border-radius:0 20px 40px 60px;}
+			#round3{border-radius:0 20px 40px;}
+			#round4{border-radius:0 20px;}
+			#round5{border-radius:50px; border-style:dotted;}
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "radius 옵션 설정";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<hr>
+		<p id="round1">모서리 반지름이 50px인 경우</p>
+		<p id="round2">모서리 반지름이 0,20,40,60px인 경우</p>
+		<p id="round3">모서리 반지름이 0,20,40,20px인 경우</p>
+		<p id="round4">모서리 반지름이 0,20,0,20px인 경우</p>
+		<p id="round5">모서리 반지름이 50px인 점선인 경우</p>
+	</body>
+</html>
