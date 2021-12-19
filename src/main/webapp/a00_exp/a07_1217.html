@@ -7,53 +7,47 @@
         <script>
         </script>
         <style>
-        	#menu{
-        		width:100%;
-        		height:30px;
-        		border-bottom:1px solid gray;
+       		table{
+       			border-collapse: collapse;
+       			
+       		}
+       		td,th{
+       			text-align: center;
+       			border: 1px solid green;
+       		}
+       		table .num{
+       			text-align: right;
+       		}
+       		thead{
+       			background:gray; 
+       			color:yellow;
+       		}
+        	tbody tr:nth-child(odd){
+        		background:aqua;
         	}
-        	#menu ul li{
-        		list-style:none;
-        		padding:0;
-        		margin:5px;
-        		font-size:10px;
-        		float: right;
-        	}
-        	img{
-        		height:20px;
-        		width:70px;
-        	}
-        	.menu{
-        		display:inline-block;
-        		list-style:none;
-        	}
-        	a{
-        		text-decoration:none;
-        	}
-        	a:hover{
-        		text-decoration:underline;
+        	tbody tr:hover{
+        		background:olive;
+        		color:white;
         	}
         </style>
     <body>
-    	<nav id="menu">
-	    	<ul>
-	    		<li><a href="http://www.naver.com"><img src="media/mango.png" alt="logo"></a></li>
-	    		<li><a href="http://www.naver.com">DESIGN LINE</a></li>
-	    		<li><a href="http://www.naver.com">COMPUSORY LINE</a></li>
-	    		<li><a href="http://www.naver.com">ARCHIVE</a></li>
-	    		<li><a href="http://www.naver.com">FLAGSHIP STORE</a></li>
-	    		<li><a href="http://www.naver.com">BRAND STORY</a></li>
-	    		<li><a href="http://www.naver.com">COMMUNITY</a></li>
-	    		<li><a href="http://www.naver.com">LOGIN</a></li>
-	    		<li><a href="http://www.naver.com">JOIN US</a></li>
-	    		<li><a href="http://www.naver.com">CART</a></li>
-	    		<li><a href="http://www.naver.com">SEARCH</a></li>
-	    	</ul>
-    	</nav>
+    	<table>
+    		<thead>
+    			<tr><th>번호</th><th>게시판 제목</th><th>작성자이름</th></tr>
+    		</thead>
+    		<tbody>
+    			<tr><td class="num">1</td><td>질문</td><td>홍길동</td></tr>
+    			<tr><td class="num">2</td><td>질문</td><td>마길동</td></tr>
+    			<tr><td class="num">3</td><td>질문</td><td>신길동</td></tr>
+    			<tr><td class="num">4</td><td>질문4</td><td>김길동</td></tr>
+    			<tr><td class="num">5</td><td>질문5</td><td>이길동</td></tr>
+    			<tr><td class="num">6</td><td>질문6</td><td>박길동</td></tr>
+    		</tbody>
+    	</table>
     </body>
 </html>
 <!-- 
-8. 쇼핑몰의 메뉴바를 border-radius와 ul, li css옵션을 사용하여, 만들어 보세요.
+[1단계:확인] 9. css의 속성이 적용된 게시판 테이블을 만드세요(1 line, 문자-중앙정렬, 숫자-오른쪽정렬, hover, 홀수행 색상)
 2021-12-17
 [1단계:개념] 1. 화면배치에 관련된 속성을 기술하고, 위치를 설정하는 옵션을 기본예제와 함께 기술하세요
 			display:inline -
@@ -117,6 +111,61 @@
 [1단계:개념] 7. ul/ol의 css에서 활용하는 속성들의 특징을 기술하세요.
 				list-style: url('media/apple.png')
 [1단계:확인] 8. 쇼핑몰의 메뉴바를 border-radius와 ul, li css옵션을 사용하여, 만들어 보세요.
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>오늘도 감사한 날! 화이팅!</title>
+
+        <script>
+        </script>
+        <style>
+        	#menu{
+        		width:100%;
+        		height:30px;
+        		border-bottom:1px solid gray;
+        	}
+        	#menu ul li{
+        		list-style:none;
+        		padding:0;
+        		margin:5px;
+        		font-size:10px;
+        		float: right;
+        	}
+        	img{
+        		height:20px;
+        		width:70px;
+        	}
+        	.menu{
+        		display:inline-block;
+        		list-style:none;
+        	}
+        	a{
+        		text-decoration:none;
+        	}
+        	a:hover{
+        		text-decoration:underline;
+        	}
+        </style>
+    <body>
+    	<nav id="menu">
+	    	<ul>
+	    		<li><a href="http://www.naver.com"><img src="media/mango.png" alt="logo"></a></li>
+	    		<li><a href="http://www.naver.com">DESIGN LINE</a></li>
+	    		<li><a href="http://www.naver.com">COMPUSORY LINE</a></li>
+	    		<li><a href="http://www.naver.com">ARCHIVE</a></li>
+	    		<li><a href="http://www.naver.com">FLAGSHIP STORE</a></li>
+	    		<li><a href="http://www.naver.com">BRAND STORY</a></li>
+	    		<li><a href="http://www.naver.com">COMMUNITY</a></li>
+	    		<li><a href="http://www.naver.com">LOGIN</a></li>
+	    		<li><a href="http://www.naver.com">JOIN US</a></li>
+	    		<li><a href="http://www.naver.com">CART</a></li>
+	    		<li><a href="http://www.naver.com">SEARCH</a></li>
+	    	</ul>
+    	</nav>
+    </body>
+</html>
+
 [1단계:확인] 9. css의 속성이 적용된 게시판 테이블을 만드세요(1 line, 문자-중앙정렬, 숫자-오른쪽정렬, hover, 홀수행 색상)
 
  -->
