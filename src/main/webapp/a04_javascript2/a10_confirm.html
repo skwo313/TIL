@@ -11,6 +11,12 @@
 				var h2Obj = document.querySelector("h2");
 				h2Obj.innerText = "confirm 처리";
 				var isUpdate = confirm("수정하시겠습니까?");
+				/*
+				confirm은 프로세스의 진행을 확인하고자 할 때, 주로 활용된다.
+				중요한 뎅터이라서 한번 더 확인을 하고 프로세스를 진행이 필요한 경우에 쓰인다.
+				ex) 데이터를 삭제할 때, 등록/수정할 때 등
+				if(confirm("확인하시겠습니까?")){} 형태로 바로 조건문에 넣는 경우도 많다.
+				*/
 				console.log( isUpdate);
 				if(isUpdate){
 					alert("수정 완료하였습니다!");

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				// 데이터의 할당의 흐름을 일반적으로 왼쪽에서 오른쪽으로 = (대입연산자)를 활용해서
+				// 처리가 된다.
+				var num01 = 20, num02= 30;
+				num01 = num02;	// num02의 데이터 30을 num01에 대입처리
+				num01 = num01 + num02; // num01과 num02의 데이터를 합쳐서 num01에 다시할당.
+				num01 += num02;	// 위에 연산식을 생력하서 += 식으로도 처리할 수 있다.
+				h2Arr[0].innerText = "num01:"+num01+", num02:"+num02;
+				// ex)
+				var name = prompt("물건명을 입력하세요","");
+				var cnt = prompt("구매수량을 입력하세요",0);
+				var price = 3000;
+				h2Arr[1].innerText = "물건명: "+name+" 갯수: "+cnt+" 총액: "+(price*cnt);
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>
