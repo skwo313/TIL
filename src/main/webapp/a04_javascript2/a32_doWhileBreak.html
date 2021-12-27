@@ -11,6 +11,8 @@
 				var divObj = document.querySelector("div");
 				divObj.innerHTML = "<h2>주문 받습니다</h2>";
 				do{
+					// do{}while();문은 일단, 한번 수행을 해주고,
+					// 반복조건을 check한다.
 					var orderMenu = prompt("주문하실 음식은?", "");
 					divObj.innerHTML += "<h3>"+orderMenu+"</h3>";
 					/*
