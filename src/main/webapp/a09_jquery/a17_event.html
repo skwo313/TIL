@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script src="/javaexp/a00_com/jquery-3.6.0.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				$("h2").text("jquery event");
+				/*
+				# jquery 이벤트 처리
+				1. $("선택자").이벤트명(핸들러 함수);
+				2. $("선택자").on("이벤트명",핸들러 함수)
+				3. $("선택자").on({"이벤트명1",핸들러 함수,
+								 "이벤트명2",핸들러 함수})
+				*/
+				$("h2").mouseover(function(){
+					$(this).css("background","yellow");
+				});
+				$("h2").on("mouseover",function(){
+					$(this).css("background","pink");
+				});
+				$("[name]").on(
+					{	"focus":function(){ // 커서가 위치 했을 떄
+							$(this).css("background","yellow");
+						},
+						"blur":function(){	// 커서가 벗어났을 때
+							$(this).css("background","");
+						},
+					 	"keyup":function(){ // 키를 입력했을 때
+							$("div").text( $(this).val() );
+							$("span").eq(0).text( $(this).val().length+"/20");
+						}
+					}
+				);
+				// ex) 
+				$("textarea").on({ 
+					"focus":function(){
+						$(this).css("background", "pink");
+					},
+					"blur":function(){
+						$(this).css("backgroun", "");
+					},
+					"keyup": function(){
+						$("span").eq(1).text( $(this).val().length+"/10");
+						if ( $(this).val().length>=10 ){
+							$(this).css("color", "red");
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		이름: <input type="text" name="name"/>
+		<span></span>
+		<div></div>
+		<br><br>
+		메시지 입력<br>
+		<textarea></textarea><span></span>
+	</body>
+</html>

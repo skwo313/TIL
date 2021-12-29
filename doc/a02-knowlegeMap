@@ -97,9 +97,14 @@
 				소숫점이하 데이터까지 할당하여 처리할 수 있다.
 			boolean : true/false
 		객체형유형
-			배열형 : int [ jarry=(1000,2000,3000)
-			내장된 api객체
-			사용자정의 객체
+			배열형 : int [] arry=(1000,2000,3000)
+			내장된 api객체 : ArrayList, String, Map ...
+			사용자정의 객체 : 클래스로 정의 ==> main()에서 new 생성자() 객체 생성 
+		cf) 메모리 : stack, heap
+			기본데이터유형 : stack에서 선언과 할당.
+			객체유형 : heap영역에 할당(객체생성), stack에서 heap영역의 주소값을 할당
+				cf) 도서관의 검색pc-어디에 책이 있는지 알려준다(stack영역),
+				 실제 위치한 도서(heap 영역)
 	3) 타입의 변경
 		작은데이터유형 ==> 큰 데이터 유형 (promote)
 			int num01 = 25;
