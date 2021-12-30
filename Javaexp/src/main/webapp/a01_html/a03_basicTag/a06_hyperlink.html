@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		h2 {
+			text-align: center;
+		}
+		a {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<!-- 
+# 하이퍼링크 태그
+1. 하이퍼 텍스트 : 사용자의 선택에 따라 특정 정보로 이동하는 조직된 문서
+2. a태그(Anchor) : 다른 웹 페이지나 웹 페이지 내부의 특정 위치로 이동
+3. href : Hyper refernce를 의미
+4. 기본 코드
+	<a href="이동할페이지">출력내용</a>
+5. 경로설정처리
+	href ="속성"을 통해서 이동할 경로를 설정할 수 있는데, 해당 처리 내용에 대한 옵션을
+	아래와 같다
+	1) 절대경로설정
+		- 외부 ip나 도메인 주소를 통해서 페이지를 호출시
+		- local서버의 경우, workspace\javaexp\src\main\webapp
+			가 현재 서버에서 기준이 되는 절대 경로이다.
+			href="/a01_html/a03_basicTag/a01_fontTag.html"
+			ex)
+			/javaexp/ : 서버의 절대경로 설정 - workspace\javaexp\src\main\webapp
+			webapp경로의 하위 페이지 호출..
+				/a01_html/a03_basicTag/a05_poem.html
+			
+	2) 상대경로설정
+		- 현재 로딩된 파일을 기준 경로하여
+		- 같은 폴드에 파일이 있는 경우에는 파일명으로만 접근가능
+		- 
+		
+ -->
+ 	<h2>절대경로(내부페이지 이동)</h2>
+		 	
+ 	<a href = "/javaexp/a01_html/a03_basicTag/a05_poem.html">시가 있는 페이지 이동!!</a>
+ 	<a href = "/javaexp/a01_html\a03_basicTag\a08_show.html">a08_show 페이지 이동!!</a>
+ 	
+ 
+	<h2>마이 베스트 사이트</h2>
+	 <ol>
+	 	<li><a href="https://www.youtube.com/">유튜브</a>
+	 	<li><a href="https://www.netflix.com/browse">넷플릭스</a>
+	 	<li><a href="https://www.naver.com/">네이버</a>
+	 	<li><a href="https://www.google.com/webhp?hl=ko&sa=X&ved=0ahUKEwiLj6Dz6oz0AhXXMN4KHd-4CZQQPAgI">구글</a>
+	 </ol>
+	</body>
+</html>

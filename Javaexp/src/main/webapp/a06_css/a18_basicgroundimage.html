@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			/*
+			# 대상요소의 배경이미지를 설정하는데
+			1. 대상요소의 크기
+			2. 배경이미지의 크기
+			3. 위 두가지 내용이 동일시는 그대로 처리
+				배경이미지가 대상요소의 크기보다 작을 떄,
+				background-repeat 속성에 따라서 반복적으로 나타나는 옵션을 설정한다.
+			*/
+			div{
+				width:200px; height:200px; color:blueviolet;
+				font-size:16px;
+				background-color:skyblue;
+				background-size:100px 100px; /* 배경 이미지의 크기 */
+				background-image:url("media/spongebob.png");
+				background-repeat:repeat-y; /* 상하로 반복 처리 */
+				background-position:center center; /* 정렬을 중앙으로 처리*/
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "div 박스에 배경 꾸미기";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<hr>
+		<div>
+			spongeBob is an over-optimistic sponge that an
+		</div>
+	</body>
+</html>

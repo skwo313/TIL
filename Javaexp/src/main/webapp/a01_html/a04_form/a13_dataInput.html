@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "시작";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<form>
+			이름: <input type="text" name="name" value="" size="5"/><br>
+			<!-- size: 화면에 보이는 크기를 의미하고, 입력은 더 계속 할 수 있다. -->
+			암호: <input type="password" name="pass" value="" maxlength="4"><br>
+			<!-- maxlength는 입력할 수 있는 크기를 지정하는 것을 말한다. -->
+			사는곳:<input type="text" name="loc" placeholder="주소를 입력하세요!!"/><br>
+			<!-- placeholder : 해당내용을 value 값이 아니지만 초기에 표기되고, 입력순간 사라진다.
+			즉, 해당 입력할 항목에 대한 설명 내용을 표시할 때, 활용된다.
+			-->
+			자소서:<br>
+			<!-- 
+				textarea는 여러라인의 데이터를 입력할 수 있는 요소객체로
+				cols : 열의 크기, rows는 행의 크기를 지정하고,
+				실제 입력되는 내용은 태그 사이의 내용으로 default가 저장된다.
+			 -->
+			<textarea name="introduce" cols="20" rows="5">이곳에 자기소개서 작성</textarea>
+			</form><br>
+			<!--
+			textarea도 서버에 데이터를 넘기기 위해서는 name="속성"이 필요하다.
+			 -->
+			<!-- 
+			# datalist
+			1. 목록 리스트를 작성하는 태그
+				option 태글 항목 하나 표현
+			2. input type="text"에 입력 가능한 데이터 목록 리스트
+			 -->
+			 나라: <input type="text" list="countries">
+			 <datalist id="countries">
+			 	<option value="가나">
+			 	<option value="스위스">
+			 	<option value="브라질">
+			 </datalist> <br>
+			<!-- ex -->
+			사는 지역: <input type="text" list="city">
+			<datalist id="city">
+				<option value="경기도">
+				<option value="서울">
+				<option value="부산">
+			</datalist>
+	</body>
+</html>

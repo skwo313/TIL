@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+		/*
+			javascript는 순차별로 실행된다.
+			DOM을 인식(document.querySelector())할려면
+			먼저, 태그를 선언하고, 하단에 해당 코드를 호출하거나.
+			함수로 해당 내용을 클릭시, 호출하면 인식을 할 수 있다.
+			함수호출은 상단이라도 처리한다
+			 - 화면이 모두 다 로딩된	상황이기에 상단에 선언하여도 인식을 하여 처리할 수 있다.
+		*/
+		</style>
+		
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<script>
+		// # js의 변수와 할당
+		var name = "홍길동";
+		var loc = '서울 신림동';
+		var age = 25;
+		console.log("이름: "+ name);
+		console.log("나이: "+ age);
+		console.log("사는 곳: "+ loc);
+		// 여러개의 동인한 태그일 떄는 querySelectorAll를 통해서 배열로 인식한다.
+		var h1Arry =  document.querySelectorAll("h2");
+		// 출력하는 요소객체에 데이터를 처리할 때, innerText()라는 메서드를 활용한다
+		h1Arry[0].innerText = "이름: " + name;
+		h1Arry[1].innerText = "나이: " + age;
+		h1Arry[2].innerText = "사는 곳: " + loc;
+		</script>
+		// ex)
+		<table align="center" border=3 width= 50%>
+			<tr><th>물건명</th><td></td></tr>
+			<tr><th>가격</th><td></td></tr>
+			<tr><th>갯수</th><td></td></tr>
+		</table>
+		<script>
+			// 모든 태그들은 같은 이름의 선택자를 배열로 인식할 수 있는데,
+			// 구분자로 index를 사용해서 선택할 수 있다.
+			// index는 위에서 아래로 왼쪽에서 오른쪽을 0부터 시작하여, 선택을 할 수 있다.
+			var pname = '사과';
+			var price = 3000;
+			var cnt = 5;
+			var product = document.querySelectorAll("td");
+			product[0].innerText = pname;
+			product[1].innerText = price;
+			product[2].innerText = cnt;
+		</script>
+	</body>
+</html>

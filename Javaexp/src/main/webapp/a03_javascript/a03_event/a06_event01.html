@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "마우스 over와 out";
+				var h3Arry = document.querySelectorAll("h3");
+				for(var idx=0;idx<h3Arry.length;idx++){	
+					h3Arry[idx].onmouseover = function(){
+						this.style.background="blue";
+						this.innerText="마우스 over";
+					};
+					h3Arry[idx].onmouseout = function(){
+						this.style.background="yellow";
+						this.innerText="마우스 over";
+					};
+				};
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h2 align="center"></h2>
+		<h3  align="center">안녕하세요</h3>
+		<h3  align="center">반갑습니다</h3>
+		<h3  align="center">감사합니다</h3>
+	</body>
+</html>

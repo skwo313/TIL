@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[eval을 활용한 계산기]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				// h2Arr[0].innerText = "시작";
+			}
+			function call(str){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText += str;
+				// 기존에 있는 출력 내용에 덧붙여서 문자열을 출력한다.
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" name="btn01" value=" + " onclick="call(this.value)"/>	
+		<!-- this.value를 통해서 현재 객체가 가지고 있는 value값인 " + " 문자열을 함수 call의 매개변수를 통해 
+			전달한다.
+		 -->
+		<input type="button" name="btn02" value="5" onclick="call(this.value)"/>	
+	
+		<h2 onclick="this.innerText = eval(this.innerText)"></h2>
+		<!-- 현재 h2에서 표현되는 문자열을 클릭시, eval 함수에 의해 계산을 해서 다시 현재 화면에 문자열을 표현처리 -->
+		
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[relative]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			div{
+				display:inline-block;
+				height:50px;width:50px;
+				border:1px solid lightgray;
+				text-align:center; color:white; background:red;
+			}
+			#down:hover{
+				position:relative;
+				left:20px;top:20px;
+				background:green; 
+			}
+			#up:hover{
+				position:relative;
+				right:20px;bottom:20px;
+				background:green;
+			}
+			/*
+			ex) 학생의 이름을 리스트하고,해당 이
+			*/
+			li{
+				background:red;
+			}
+			.name:hover{
+				position:relative;
+				bottom:20px;
+				font-size:15px;
+				width:50px;height:50px;
+				background:yellowgreen;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "상대적 위치연습";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<div>T</div>
+		<div id="down">h</div>
+		<div>a</div>
+		<div>n</div>
+		<div id="up">k</div>
+		<div>2</div>
+		<ul>
+			<li class="name">홍길동</li>
+			<li class="name">마길동</li>
+			<li class="name">신길동</li>
+			<li class="name">이길동</li>
+			<li class="name">김길동</li>
+		</ul>
+	</body>
+</html>
