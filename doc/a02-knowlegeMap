@@ -114,11 +114,14 @@
 		큰데이터유형 ==> 작은 데이터 유형 (casting)
 			double num03 = 35.7;
 			int num04 = num03; (x) 에러 발생,
-			캐스팅이 필요로 하다.
+			캐스팅이 필요로 하다. 주물을 특정한 틀에 넣으면 해당 모양으로 만들어지듯
 			특정한 데이터 유형 강제 변환 처리
 			int num05 = (int)num03;
 			ex) 큰 컵에 있는 물을 작은 컵에 담는 경우
 			num05는 35라는 데이터로 할당이 된다.
+			자바에서는 나눗셈 처리시 소숫점 이하의 데이터를 확인할 때, 실수형으로 변경을 하여야 한다.
+				10/3 ==> 3, 10/3.0 ==> 3.333
+				10/(double)3 ==> 3.333
 		숫자 ==> 문자열
 		문자열 ==> 숫자
 			"25" + "30" ==> "2530"
@@ -127,7 +130,9 @@
 4. 연산자
 	1) 연산자와 연산식
 		산술연산자
-		대입연산자
+		대입연산자: 오른쪽에서 왼쪽을 데이터를 = 기호로 할당하는 것을 말한다.
+			int num05 = 25;
+			int tot = kor + eng + math;
 		증감연산자 
 			num05++; 데이터가 1씩 증가한다
 			num05--; 데이터가 1씩 감소된다
@@ -145,12 +150,23 @@
 				age>=14 && age>=18
 			||(or) : 두개의 비교연산식이 둘다 false일 때, false 그 외는 true
 				age<5 || age>=65
+			!(not) : true이면 false로 false이면 true로 변경하는 부정연산자
+				if(!(age<5)){ age가 5미만이 아닌경우 즉 age가 5이상인 경우
+				}
 	2) 연산자와 우선순위
 			(연산자)가 최우선, *//(곱셉과 나눗셈)
 5. 조건문과 반복문
 	1) 코드 흐름제어
 	2) 조건문
 		if(조건){
+		
+		}else{
+		
+		}
+		switch(){
+			case @@ : break;
+			case @@ : break;
+			default;
 		}
 	3) 반복문
 		for(초기값;반복조건;증감연산자){
@@ -158,6 +174,13 @@
 		ex) for (int cnt=1;cnt<=10;cnt++){
 				System.out.println(cnt);
 			}
+		while(조건){
+		
+		}
+		do{
+		
+		}while(조건)	
+			
 	4) continue/break;
 		if문과 함께 반복처리시 해당 step 이후로 처리를 하지 않고, 다음 반복단계를 수행 처리
 		ex) for(int cnt=1;cnt<=10;cnt++){
@@ -208,9 +231,14 @@
 		실행을 하려면 main()메서드가 있는 곳에서 호출하여야 한다.
 		클래스를 통해 생성자로 만들어진 것을 객체라고 한다
 	2) 클래스 구성요소
-		- 저장하는 데이터를 할당하는 곳 : 필드
+		- 저장하는 데이터를 할당하는 곳 : 필드 - 객체의 전역변수 
+			일반적으로 필드는 private로 설정하여 외부에서 접근을 하지 못하게 한다.
+			ex) private String name;
 		- 외부에 있는 데이터를 입력받거나 특정한 기능을 처리하는 것: 생성자/메서드
 			생성자 : 클래스와 동일하여 외부의 데이터를 필드에 할당하는 역할을 한다.
+			public Person(String name){
+				this.name = name;
+			}
 			main()
 				Person p1 = new Person("홍길동");
 				System.out.println("이름: "+ p1.name);
@@ -220,7 +248,7 @@
 				Person(String name){
 					this.name = name; // this는 입력받는 변수와 구분하기위해 사용
 				}
-				String getname(int age){
+				String getName(int age){
 					if(age>=20){
 						"성인:"+name;
 					}else{
@@ -230,14 +258,31 @@
 				}
 			}
 			Person p01 = new Person("홍길동")
-			String name = p01.get(25)
+			String name = p01.getName(25) // "성인:홍길동"이 메서드를 통해 전달되고 그것을 name에 할당
 			
 			메서드 : 외부에 데이터를 입력 받아 기능적인 처리를 한다.
 				- 리턴유형 : 마지막에 리턴할 데이터 유형
 				- 매개변수 : 실제 호출되었을 때, 전달할 데이터의 유형을 선언한다
 				- 프로세스 처리 : 조건문, 할당처리 등
 				- 실제라틴값: 해당 메서드가 호출된 곳에 전달할 데이터
+			
+			메서드와 생성자 오버로딩개념..
+				- 클래스의 구성요소에 있어서, 선언시 동일한 이름 사용하지 못하는 데,
+					생성자와 메서드에 동일한 이름으로 선언할 수 있는 규칙이 있다.
+				- 이 때는 매개변수에 의해 영향을 받는다.
+				- 외부에 매개변수에 의해 식별이 가능하기에 오버로딩(중복정의)가 가능하다.
+					public Person(String name){}
+					public Person(int age){}
+					public Person(String name, int age){}
+					public Person(int age, String name){}
+					public Person(int num01, String str){} // 선언이 불가능하고, 오버로딩 규칙 위배
 				
+					Person p01 = new Person("홍길동");
+					Person p02 = new Person("25");
+					Person p03 = new Person("홍길동", 25);
+					Person p04 = new Person(25,"홍길동");
+					
+			
 	3) static과 final
 		static : 객체들을 공유 메모리 영역
 		final : 클래스명 앞에, 필드명 앞에, 메서드명 앞
@@ -296,7 +341,15 @@
 			예외가 나올만한 코드..
 		}catch(Exception e){
 			예외가 나왔을 때, 처리할 내용
+		}finally{
+		
 		}
+	2) 예외 처리
+		- 필수 예외 처리 (컴파일 예외)
+		- 실행결과 예외 (실행 예외)
+	3) 예외의 위임
+	4) 사용자 정의 예외
+	
 10. 기본 api 클래스
 	1) 자바의 api 도규먼트
 	2) String (문자열)
@@ -336,6 +389,8 @@
 
 15. 스트림
 	데이터의 입출력을 처리하는 객체..
+	기본 스트림 내용에서 file내용 처리
+	
 16. 알고리즘
 	1) 조건에 따른 알고리즘
 	2) 최대/최소값
