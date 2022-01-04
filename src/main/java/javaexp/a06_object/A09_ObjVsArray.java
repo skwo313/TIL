@@ -21,6 +21,33 @@ public class A09_ObjVsArray {
 	}
 
 }
+/*
+# 1:다 관계 객체 처리 방법
+1. 포함된 배열/리스트 형태의 객체를 위한 단일 클래스 선언하기
+ 	- 필드만 생성
+ 	- 생성자, set/get메서드 만들기(자동)
+2. 위 배열/리스트 객체를 포함할 객체를 위한 클래스 선언하기
+ 	- 필드(메인속성, ArrayList<포함될단위객체> )
+ 		ex) class Mart{
+ 			private String name;
+			private ArrayList<MProduct> mlist;
+ 	- 생성자 선언
+ 		매개변수가 없는 생성자.'
+ 		메인속성 하나의 값을 받는 생성자.
+ 		list = ArrayList<VO>()로 초기화 처리.
+ 	- set/get메서드 생성.
+ 	- list에 하나씩 추가할 메서드 선언.
+ 		ex)
+ 		public void buyProduct(MProduct prod) {
+ 			list.add(prod)
+ 		}
+ 	- name과 list를 출력할 메서드 선언.
+ 		public void showList()	{
+ 			sysout(name+"에서 구매한 내역");
+ 			if(mlist.size()>0) { // 등록한 내용이 있을 떄
+ 				for(MProduct mp : mlist) {
+ */
+
 class MProduct{
 	private String name;
 	private int price;
