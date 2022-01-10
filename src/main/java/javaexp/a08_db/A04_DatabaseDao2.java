@@ -126,5 +126,5 @@ public class A04_DatabaseDao2 {
 		A04_DatabaseDao2 dao = new A04_DatabaseDao2();
 		dao.deptList();
 	}
-
+	
 }
