@@ -21,7 +21,7 @@
   src="${path}/a00_com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 <%--
- 
+
  
 --%>
 //
@@ -32,6 +32,26 @@
 </head>
 <body>
 <%
+/*
+# database와 함꼐 모듈처리
+1. 요구사항정의서 확인
+	- DB 처리부분 확인 - 테이블 erd, 물리설계, 테이블 생성
+	- 화면 처리 부분 확인 - front단 화면 구현(화면 설계서)
+	- java단 처리 부분 정리 - dao, vo
+2. DB처리
+	- 테이블 생성
+	- sql 생성
+3. 화면 설계서 내용 확인 front 기본 화면 구성
+	- jsp, html
+4. java단 처리
+	- sql을 통해 출력할 단위 VO, 입력한 단위 VO 변수
+	- dao 작성
+5. jsp단 처리
+	- dao 객체 생성
+	- 화면 요청값  처리(null값에 대한 처리)
+	- 화면 출력 - DB에 불러온 내용 처리
+
+*/
 // import 처리
 // 1. dao 객체 생성
 	A01_Dao dao = new A01_Dao();
