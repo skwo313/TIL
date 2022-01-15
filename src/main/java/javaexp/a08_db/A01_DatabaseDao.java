@@ -218,6 +218,37 @@ public class A01_DatabaseDao {
 		}
 		return emplist;
 	}
+	/*
+	 * 
+	 * */
+	
+	void closeRsc() {
+		if(rs!=null) { 
+			try {
+				rs.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		}
+		if(pstmt!=null) { 
+			try {
+				pstmt.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		}
+		if(con!=null) { 
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		}		
+		
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		A01_DatabaseDao dao = new A01_DatabaseDao();
