@@ -64,18 +64,30 @@
 				$("[name=ename]").focus();
 				return;
 			}
+			if($("#ckId").val()!="Y"){
+				alert("회원 아이디 등록 여부를 check하셔야 합니다")
+				return;
+			}
 			if(confirm("회원가입 하시겠습니까?")){
 				$("form").submit();
 			}
-		})
+		});
+		$("ckIdBtn").click(function(){
+			// ajax 처리 통해서 check해서 지금 등록된 id가 아닐 때
+			$("ckId").val("Y");
+		});
 	});
 </script>
 </head>
 <body>
 	<h3>회원가입</h3>
 	<form method="post">
+			<input type="hidden" id="ckId"/>
 		<table>
-			<tr><th>아이디</th><td><input type="text" name="id"/></td></tr>
+			<tr><th>아이디</th>
+				<td><input type="text" name="id"/>
+					<input type="button" id="ckIdBtn" value="등록여부"/>
+				</td></tr>
 			<tr><th>패스워드</th><td><input type="password" name="pass"/></td></tr>
 			<tr><th>패스워드확인</th><td><input type="password" name="passCfm"/></td></tr>
 			<tr><th>이름</th><td><input type="text" name="name"/></td></tr>
