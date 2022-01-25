@@ -73,8 +73,18 @@
 			}
 		});
 		$("ckIdBtn").click(function(){
-			// ajax 처리 통해서 check해서 지금 등록된 id가 아닐 때
-			$("ckId").val("Y");
+			$.ajax({
+				url:"${path}/CheckIdMvc.do",
+				data:"id="+$("[name=id]").val(),
+				success:function(data){
+					alert("받은값"+data);
+					// ajax 처리 통해서 check해서 지금 등록된 id가 아닐 때
+					$("ckId").val(data);
+					// if 유효성 check 후,
+					// $("[name=id]").attr
+				}
+			});
+			
 		});
 	});
 </script>

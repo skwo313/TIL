@@ -21,8 +21,35 @@
   src="${path}/a00_com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 <%--
- 
- 
+# ajax 처리 순서
+1. 어떤 js이벤트에 의해서 ajax처리할 것인가를 결정
+	1) key를 입력했을 때,
+	2) 특정한 button을 클릭했을 때
+	
+2. ajax통해서 호출할 자원(controller, jsp지정)
+	1) servlet의 경우는 mapping url 호출..
+		url:"${path}/empAjax.do"
+		==> controller 중에서 urlPatterns = { "/empAjax.do" }
+		로 선언한 부분을 호출한다.
+	2) 서버에 전달할 요청값에 대한 처리
+		data:$("form).serialize(),
+			: jqeury에서 아래 query string 형식으로 자동으로 만들어준다.
+				form하위에 있는 모든 요소객체를 name="key" value="value"
+		data:"key=value&key2=value"
+			ename=A&job=SA
+		controller
+			request.getParameter("ename");
+			request.getParameter("job");
+	3) url과 요청내용에서 받은 결과를 가져오기
+		dataType:"json",
+		success:function(data){
+				매개변수인 data를 통해서 받은 데이터
+				dataType의 유형이 text : 문자열 그대로 받기 처리.
+				dataType의 유형이 json : 문자열을 객체로 변환해서 받는다.
+				객체를 받은 내용을 필요로 하는 html 문자열로 변환해서 반복문과 조건을 통해
+					특정한 DOM객체 html(), append()를 통해서 화면에 출력한다.
+			
+			}
 --%>
 //
 	$(document).ready(function(){
@@ -35,7 +62,7 @@
 			//$("h3").text( $("form").serialize() );
 			console.log( $("form").serialize() );
 			ajaxFunc($("form").serialize());
-		})
+			
 	});
 	function ajaxFunc(qStr){
 		$.ajax({
