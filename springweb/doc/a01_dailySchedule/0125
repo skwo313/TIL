@@ -1,0 +1,31 @@
+# 주요학습범위
+1. 스프링 요청값 및 모델 데이터 설정
+2. 스프링 DI 연습
+
+# 생각해봅시다.
+1. 스프링 요청값을 VO 객체를 통한 처리
+	메서드의 매개변수를 객체로 설정하면, usebean과 동일하게 property로
+	데이터를 할당할 수 있다.
+	//	/call.do?name=홍길동&age=25&loc=서울신림동
+	@RequestMapping("/call.do")
+	public String call(Person p){
+		// Person 객체에 setName(String), setAge(int), setLoc(String)
+		// 기능 메서드가 정의되어 있으면, 요청값을 객체에 할당하여 사용할 수 있다.
+	}
+	
+2. 컨테이너에서 자동 객체 생성이란 무엇인가?
+	dispatcher-servlet.xml에 선언된 클래스를 <bean으로 class="패키지명.클래스"
+	으로 선언해 놓으면, 톰캣이 기동하여 호출하는 순간, 등록된 모든 클래스는 container
+	안에서 객체로 생성이 된다. 그리고 이 객체들은 기능 호출 메서드 방법이나 연관관계에
+	의해 서로 설정되어 처리할 수 있다.
+
+3. 스프링의 모델데이터 session 설정
+	스프링에서는 메서드의 매개변수로 Model 객체를 선언하고, 이 모델 객체를 통해
+	view단에서 사용할 데이터를 처리할 수 있다.
+	그리고, @SessionAttribute라는 선언을 통해서도 모델 객체와 함께 session설정도 할 수 있다.
+	public String call(Model d) {
+
+
+
+
+
