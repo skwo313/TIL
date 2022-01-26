@@ -42,4 +42,21 @@
 	 	<constructor-arg value="101동"/>
 	 	<constructor-arg value="302호"/>
 	 </bean>
+	 
+	 <!-- 
+	 bean id="ap" class="a01_diexp.vo.AirPlane"
+	 
+	 1. constructor-arg 없는 객체를 생성할 때
+	 AirPlane ap = new Airplane() :
+	 2. constructor-arg가 하위에 있으면, 생성자의 매개변수의 순서로 데이터
+	 	할당되면서 객체 생성을 한다.
+	 	만일 1개만 있으면
+		 	constructor-arg value="K104"
+		 	AirPlane ap = new AirPlane("k104")
+	 	만일 2개만 있으면 
+	 		constructor-arg value="K104"
+	 		constructor-arg value="대한항공"
+	 		
+	 		AirPlane ap = new AirPlane("k104","대한항공")
+	  -->
 </beans>
