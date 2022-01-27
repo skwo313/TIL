@@ -27,5 +27,45 @@
        http://www.springframework.org/schema/util/spring-util.xsd
    		http://www.springframework.org/schema/websocket
 		http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+	<!-- 
+	# byName에 대한 의존성 자동 주입설정하기..
+	1. 하나의 컨테이너에 동일한 type의 여러 객체가 선언되어 있을 때, 해당 타입으로만으로
+		의존성 자동 주입에 대하여 모호성이 발생한다.
+	2. 이 때, 메서드의 set property와 동일한 이름으로 id를 식별자 설정하면 해당하는 객체가 설정이 되어
+		처리 된다.
+	 -->
+	<bean id="r01" class="a01_diexp.vo.Romeo">
+		<constructor-arg value="김로미오"/>
+		<constructor-arg value="24"/>
+	</bean>
+	<bean id="r02" class="a01_diexp.vo.Romeo">
+		<constructor-arg value="이로미오"/>
+		<constructor-arg value="22"/>
+	</bean>
+	<bean id="romeo" class="a01_diexp.vo.Romeo">
+		<constructor-arg value="신로미오"/>
+		<constructor-arg value="15"/>
+	</bean>
+	<!-- byType을 하면 같은 컨테이너에 여러개의 객체가 할당이 가능하여 식별이 불가능하다. 
 	
+		setRomeo가 있기에 id는 romeo가 있으면 그 객체가 할당이 된다.
+	-->
+	<bean id="j01" class="a01_diexp.vo.Juliet" autowire="byName"/>
+	<!-- ex) -->
+	<bean id="wl01" class="a01_diexp.vo.WorkLocation">
+		<constructor-arg value="한국" />
+		<constructor-arg value="서울" />
+	</bean>
+	<bean id="wl02" class="a01_diexp.vo.WorkLocation">
+		<constructor-arg value="미국" />
+		<constructor-arg value="LA" />
+	</bean>
+	<bean id="loc" class="a01_diexp.vo.WorkLocation">
+		<constructor-arg value="일본" />
+		<constructor-arg value="도쿄" />
+	</bean>
+	
+	<bean id="worker" class="a01_diexp.vo.Worker" autowire="byName">
+		<constructor-arg value="홍길동" />
+	</bean>
 </beans>

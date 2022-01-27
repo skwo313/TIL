@@ -48,6 +48,21 @@
 		- controller에 설정되어 있는 url 패턴으로 호출하여 화면 로딩 처리..
 	
 3. DI에 대한 이해 및 처리.
+	dispatcher-servlet.xml의 스프링에서 사용되는 컨테이너 메모리의 사용방법을
+	xml파일과 main()메서드가 있는 클래스를 통해 연습한다.
+	이 후, 전체 컨테이너 설정 및 활용을 하고자 한다.
+	
+	1) autowiring
+		- 컨테이너 안에 있는 객체들 간에 연관관계를 설정해놓았을 때, 자동으로 할당되어 사용할 수 있게 하는 것을
+			말한다.
+		- 컨테이너에서 선언 - autowire="byType/byName"
+		- <context:annotation-cofig/>를 통해, 소스내에서 autowiring 처리
+	2) 특정한 패키지단위 자동 객체 로딩
+		- 컨테이너에 선언되어 사용할 객체를 class선언 시, 사용되는 package단위로 설정하여 사용 
+			<context:component-scan base-package="a01_diexp.vo3/>
+	3) autowiring 개념과 component-scan을 조합하여, 특정한 패키지에 filter객체를
+		선언하면, 객체의 등록과 함께 자동 autowiring 개념으로 dependency injection
+		(의존성 주입)을 자동으로 처리할 수 있다.	
 
 4. spring MVC
 	1) controller 호출 방식

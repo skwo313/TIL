@@ -1,7 +1,12 @@
-package a01_diexp.vo;
+package a01_diexp.vo3;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("j01")
 public class Juliet {
 	private int age;
+	@Autowired
 	private Romeo romeo;
 	public Juliet() {
 		super();
