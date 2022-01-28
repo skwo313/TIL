@@ -41,6 +41,35 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-	</context:component-scan>	
-		
+	</context:component-scan>
+	<!-- 컨테이너에 공통 DB설정 정보 가져오기 -->
+	<context:property-placeholder location="classpath:/resource/config"/>
+	
+	<!-- lib에 있는 만들어진 객체들을 생성하고 사용 
+	1. DB 처리를 위한 연격개체 선언화 활용.
+		config 안에 선언된 key를 아래 DB 연결 처리하는 정보에 설정.
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" > <!-- 자원의 해제 처리하는 메서드를 지정 -->
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${pass}"/>
+	</bean>		
+	<!-- 
+	2. mybatis 컨테이너에서 사용하기..
+	 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- dataSource에 의해 연결된 객체 호출하기. -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 설정 파일 지정하기 -->
+		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml"/>
+	</bean>
+	<!-- 
+	3. Dao 인터페이스 패키지 선언하기
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="springweb.a02_mvc.a03_dao"/>
+	</bean>
+	
 </beans>
