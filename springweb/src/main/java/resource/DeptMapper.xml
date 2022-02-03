@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springweb.a02_mvc.a03_dao.A02_DeptDao">
+	<select id="getCount" resultType="int" parameterType="int">
+		select count(*) cnt 
+		from dept 
+		where deptno = #{deptno}
+	</select>
+	<select id="getDeptList" resultType="dept" parameterType="int">
+		select *
+		from dept 
+		where deptno = #{deptno}
+	</select>
+</mapper>
