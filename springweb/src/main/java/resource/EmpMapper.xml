@@ -33,5 +33,28 @@
 		where empno = #{empno}
 	</select>
 	
+	<select id="getEnames" resultType="String" parameterType="int">
+		select ename
+		from emp
+		where deptno = #{deptno}
+	</select>
+	<select id="getEmpno" resultType="int" parameterType="String">
+		SELECT empno
+		FROM emp 
+		WHERE job = #{job}
+	</select>
+	<select id="getDeptEmp" resultType="deptemp">
+		SELECT dname, empno, ename name, job, TO_CHAR(HIREDATE, 'Q') div,
+			nvl(sal, 0)+NVL(comm,0) tsal 
+		FROM EMP e , DEPT d 
+		WHERE e.DEPTNO = d.DEPTNO
+	</select>
+	<select id="getSalGrade" resultType="salgrade">
+		SELECT empno, ename, sal, grade 
+		FROM EMP e , SALGRADE s 
+		WHERE sal BETWEEN losal AND hisal
+	</select>
+		
+	
 </mapper>
 

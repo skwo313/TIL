@@ -75,6 +75,60 @@
 		from emp02
 		where deptno = ${deptno}
 	</select>
-4. start.do
-		
+4. start.do를 통해 에러없이 나오면 정상 처리된다.
+
+# Dao와 연동하는 XXXMapper.xml
+1. 기본메서드 형식
+	public ArrayList<VO> getVo(Vo sch);
 	
+2. 기능 리턴데이터에 따른 mapper.xml의 처리형식
+	0) 핵심 속성 : resultType="@@"
+	1) 단일 데이터
+		기본데이터유형
+			byte, int, short, long...
+			# sql
+			select count(*) cnt from
+			select avg(sal) asal from
+			select ename from
+			# dao
+			public int totCount();
+			public double avg();
+			public String getEname();
+			# mapper.xml
+			<select id="totCount" resultType="int"
+			<select id="avg" resultType="double"
+			<select id="getEname" resultType="string"
+			
+		객체유형
+			Vo(여러가지 속성)
+			# sql
+			select ename, job, sal from
+			select * from dept
+			# dao
+			public Emp getEmp();
+			public Dept getDept();
+			# mapper.xml
+			<select id="getEmp" resultType="emp"
+			<select id="getDept" resultType="dept"
+			
+	2) 다중 데이터
+		행이 여러 개가 나오는 데이터 유형을 말한다.
+		단일 컬럼에서 여러개의 행데이터가 리턴되는 경우
+			sql : select ename from emp where deptno = 10;
+			dao : public List<String> getEnames(int deptno);
+				  public String[] getEnames(int deptno);
+			mapper.xml
+			<select id="getEnames" resultType="String" parameterType="int"
+			
+		여러 컬럼에서 여러 개의 행데이터가 리턴되는 경우가 있다.
+		select * 
+		from emp
+		where 
+		
+		# resultMap 활용하기.
+		1. key나 기타 column명과 property가 다르게 사용할 경우에
+			활용한다.
+		2. 처리순서
+			1) resultMap 기본 vo와 연동하여 선언
+			2) <select resultMap="선언된resultMap아이디">
+		

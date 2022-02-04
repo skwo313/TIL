@@ -13,4 +13,11 @@
 		from dept 
 		where deptno = #{deptno}
 	</select>
+	
+	<select id="getDeptSal" resultType="DeptSal" parameterType="int">
+		SELECT deptno, max(sal) mxsal, min(sal) misal
+		FROM EMP e 
+		GROUP BY DEPTNO 
+		HAVING deptno = #{deptno}
+	</select>
 </mapper>
