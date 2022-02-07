@@ -23,6 +23,7 @@ public class A01_EmpService {
 		if(sch.getEname()==null) sch.setEname("");
 		if(sch.getJob()==null) sch.setJob("");
 		
+		/*
 		dao.getCount(10);
 		dao.getJobCount("A");
 		dao.getEmpDetail(7369);
@@ -31,7 +32,10 @@ public class A01_EmpService {
 		System.out.println(dao.getEmpno("SALESMAN").size());
 		System.out.println(dao.getDeptEmp().size());
 		System.out.println(dao.getSalGrade().size());
-		
+		System.out.println(dao2.getDept2("RESEARCH"));
+		System.out.println("resultMap 연습2: "+dao2.getGrade().size());
+		System.out.println(dao.getSchEmp(7839, 20).get(0).getEname());
+		*/
 		return dao.getEmpList(sch);
 	}
 }

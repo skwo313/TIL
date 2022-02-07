@@ -13,6 +13,7 @@
 		- 인터페이스 개념
 		- 인터페이스 활용
 		- 인터페이스의 컨테이너 사용
+		
 	2) 데이터베이스의 접근을 위한 환경 이해
 		# DB connection 부분
 			드라이버
@@ -131,4 +132,18 @@
 		2. 처리순서
 			1) resultMap 기본 vo와 연동하여 선언
 			2) <select resultMap="선언된resultMap아이디">
-		
+			
+# 매개변수 데이터 처리하기
+1. 단일데이터 매개변수 처리
+	public Emp getEmp(int empno);
+	<select id="getEmp" resultType="emp" parameterType="int">
+			
+2. 2개 이상 데이터 입력
+	select 
+	from emp
+	where mgr = #{mgr}
+	and deptno = #{deptno}
+	
+	public Emp getEmp_mgr_deptno(@Param("mgr") int mgr, @Param("deptno") int deptno);
+	
+	

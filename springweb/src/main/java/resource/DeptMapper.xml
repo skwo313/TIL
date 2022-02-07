@@ -20,4 +20,24 @@
 		GROUP BY DEPTNO 
 		HAVING deptno = #{deptno}
 	</select>
+	
+	<resultMap type="dept2" id="dept2Rst">
+		<result column="deptno" property="no" />
+		<result column="dname" property="name" />
+		<result column="loc" property="location" />
+	</resultMap>
+	<select id="getDept2" resultMap="dept2Rst" parameterType="String">
+		SELECT * 
+		FROM dept 
+		WHERE dname = #{dname}
+	</select>
+	
+	<resultMap type="salgrade2" id="gradeRst">
+		<result column="grade" property="level"/>
+		<result column="losal" property="lowsalary"/>
+		<result column="hisal" property="highsalary"/>
+	</resultMap>
+	<select id="getGrade" resultMap="gradeRst">
+		SELECT * FROM SALGRADE
+	</select>
 </mapper>

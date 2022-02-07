@@ -1,0 +1,15 @@
+2. MVC 개발 패턴에 의해서 데이터 처리와 요청값 처리는 어떠한 순서로 처리하는 것이 효율적인가?
+	1) 전체 개발 내용
+		백엔드 : controller, service, dao, XXXMapper.xml
+		프런트엔드 : jsp(html, css, js, model데이터(el,jstl))
+	2) 개발 순서
+		요구사항 정의서, DB erd 설계 확인
+		화면설계서 확인
+		입력/출력 구분 - sql, 화면 구성(form 요소객체, 테이블 구성, 화면 출력 구성)
+		controller단 기본 화면 디자인 호출(jsp) - form 요청 구성,
+		sql 구문 작성
+		VO(입력/출력)
+		DAO, XXXMapper.xml
+		service
+		controller - 모델데이터호출, 요청값에 대한 처리
+		view - 모델데이터 출력, 화면 처리 완료

@@ -54,7 +54,13 @@
 		FROM EMP e , SALGRADE s 
 		WHERE sal BETWEEN losal AND hisal
 	</select>
-		
+	
+	<select id="getSchEmp" resultType="emp">
+		SELECT * 
+		FROM emp02
+		WHERE mgr = #{mgr}
+		AND deptno = #{deptno}
+	</select>
 	
 </mapper>
 
