@@ -62,5 +62,8 @@
 		AND deptno = #{deptno}
 	</select>
 	
+	<select id="getEmp" parameterType="int" resultType="emp">
+		select * from emp02 where empno=#{empno}
+	</select>
 </mapper>
 

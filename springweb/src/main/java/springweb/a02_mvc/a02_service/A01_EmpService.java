@@ -38,4 +38,10 @@ public class A01_EmpService {
 		*/
 		return dao.getEmpList(sch);
 	}
+//	public void insertEmp(Emp ins) {
+//		dao.insert
+//	}
+	public Emp getEmp(int empno) {
+		return dao.getEmp(empno);
+	}
 }

@@ -19,4 +19,6 @@ public interface A02_DeptDao {
 	public DeptSal getDeptSal(int deptno);
 	public Dept2 getDept2(String dname);
 	public List<Salgrade2> getGrade();
+	public List<Dept> getDeptList(Dept sch);
+	public void insertDept(Dept ins);
 }

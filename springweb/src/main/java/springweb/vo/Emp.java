@@ -7,6 +7,7 @@ public class Emp {
 	private String job;
 	private int mgr;
 	private Date hiredate;
+	private String hiredateS;
 	private double sal;
 	private double comm;
 	private int deptno;
@@ -14,6 +15,13 @@ public class Emp {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public String getHiredateS() {
+		return hiredateS;
+	}
+
+	public void setHiredateS(String hiredateS) {
+		this.hiredateS = hiredateS;
+	}	
 	public Emp(int empno, String ename, String job, int mgr, Date hiredate, double sal, double comm, int deptno) {
 		super();
 		this.empno = empno;
@@ -25,6 +33,9 @@ public class Emp {
 		this.comm = comm;
 		this.deptno = deptno;
 	}
+
+
+
 	public int getEmpno() {
 		return empno;
 	}
@@ -61,18 +72,22 @@ public class Emp {
 	public void setSal(double sal) {
 		this.sal = sal;
 	}
+
 	public double getComm() {
 		return comm;
 	}
+
 	public void setComm(double comm) {
 		this.comm = comm;
 	}
+
 	public int getDeptno() {
 		return deptno;
 	}
+
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
-	
+
 	
 }

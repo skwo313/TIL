@@ -25,4 +25,6 @@ public interface A01_EmpDao {
 	public List<SalGrade> getSalGrade();
 	public ArrayList<Emp> getSchEmp(@Param("mgr") int mgr,  
 									@Param("deptno") int deptno);
+	
+	public Emp getEmp(int empno);
 }

@@ -23,4 +23,10 @@ public class A01_EmpController {
 		
 		return "WEB-INF\\views\\a02_mvc\\a01_empList.jsp";
 	}
+	@RequestMapping("/emp.do")
+	public String getEmpno(int empno, Model d){
+		System.out.println("상세 empno:"+empno);
+		d.addAttribute("emp",service.getEmp(empno));
+		return "WEB-INF\\views\\a02_mvc\\a02_empDetail.jsp";
+	}
 }

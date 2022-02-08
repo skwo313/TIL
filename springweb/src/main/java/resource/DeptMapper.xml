@@ -8,12 +8,13 @@
 		from dept 
 		where deptno = #{deptno}
 	</select>
+	<!-- 
 	<select id="getDeptList" resultType="dept" parameterType="int">
 		select *
 		from dept 
 		where deptno = #{deptno}
 	</select>
-	
+	 -->
 	<select id="getDeptSal" resultType="DeptSal" parameterType="int">
 		SELECT deptno, max(sal) mxsal, min(sal) misal
 		FROM EMP e 
@@ -39,5 +40,15 @@
 	</resultMap>
 	<select id="getGrade" resultMap="gradeRst">
 		SELECT * FROM SALGRADE
+	</select>
+	
+	<select id="getDeptList" resultType="Dept" parameterType="Dept" >
+		select *
+		from dept
+		where dname like '%'||#{dname}||'%'
+		and loc like '%'||#{loc}||'%'	
+	</select>
+	<select id="insertDept" parameterType="Dept">
+		insert into dept02 values(${deptno}, ${dname}, ${loc})
 	</select>
 </mapper>

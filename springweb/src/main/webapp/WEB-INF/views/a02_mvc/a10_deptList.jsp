@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<style type="text/css">
+<style>
 	td{text-align:center;}
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
@@ -31,70 +31,48 @@
 		var proc = "${proc}";
 		if(proc!=""){
 			alert(proc);
-			location.href="${path}/empList.do";	
-			/* 화면이 다를 때는 꼭 필요.
-			if( confirm( proc+"\n조회화면으로 이동하시겠습니까?") ){
-				location.href="${path}/empList.do";	
-			}
-			*/
-		}			
-		
-		
+			location.href="${path}/deptList.do";
+		}
 		$("#regBtn").click(function(){
-			if(confirm("등록하시겠습니다.")){
-				$("#frm02").submit(); // frm02
+			if(confirm("등록하시겠습니까?")){
+				$("#frm02").submit();
 			}
-			
-		});
-		<%-- 
-		
-		--%>	
+		})
 	});
-	function goDetail(empno){
-		// get방식으로 상세화면 이동..
-		location.href="${path}/emp.do?empno="+empno;	
-	}
 	
 </script>
 </head>
 
 <body>
 <div class="jumbotron text-center">
-  <h2>사원정보조회</h2>
-
+  <h2>부서정보</h2>
 </div>
 <div class="container">
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="사원명" 
-	    	name="ename" value="${emp.ename}"/>
-	    <input class="form-control mr-sm-2" placeholder="직책명" 
-	    	name="job" value="${emp.job}"/>
+	    <input class="form-control mr-sm-2" name="dname" value="${dept.dname }" placeholder="부서이름" />
+	    <input class="form-control mr-sm-2" name="loc" value="${dept.loc }" placeholder="부서위치" />
 	    <button class="btn btn-info" type="submit">Search</button>
-	    <button  data-toggle="modal" data-target="#exampleModalCenter" 
-	    	class="btn btn-success" type="button" >등록</button>
+	    <button data-toggle="modal" data-target="#exampleModalCenter"
+	    class="btn btn-success" type="button">등록</button>
  	</nav>
 	</form>
    <table class="table table-hover table-striped">
-   	<col width="20%">
-   	<col width="20%">
-   	<col width="20%">
-   	<col width="20%">
-   	<col width="20%">
+   	<col width="33%">
+   	<col width="33%">
+   	<col width="34%">
     <thead>
+    
       <tr class="table-success text-center">
-        <th>사원번호</th>
-        <th>사원명</th>
-        <th>직책명</th>
-        <th>급여</th>
         <th>부서번호</th>
+        <th>부서명</th>
+        <th>부서위치</th>
       </tr>
     </thead>	
     <tbody>
-    	<c:forEach var="emp" items="${emplist}">
-    	<tr ondblclick="goDetail(${emp.empno})"><td>${emp.empno}</td><td>${emp.ename}</td><td>${emp.job}</td>
-    	<td><fmt:formatNumber value="${emp.sal}"/></td><td>${emp.deptno}</td></tr>
-    	</c:forEach>
+    	<c:forEach var="dept" items="${dlist}">
+		<tr><td>${dept.deptno}</td><td>${dept.dname}</td><td>${dept.loc}</td></tr>	  			
+		</c:forEach>
     </tbody>
 	</table>    
     
@@ -103,47 +81,34 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">사원정보등록</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">부서정보등록</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-		<form id="frm02" class="form" action="${path}/insertEmp.do"  method="post">
+		<form id="frm02" class="form" action="${path }/insertDept.do" method="post">
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="사원명 입력" name="ename">
-	      </div>
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="직책명 입력" name="job">
+	        <input type="text" class="form-control" placeholder="부서번호 입력" 
+	        	name="deptno" value="0">
 	      </div>
 	     </div>
-	     <div class="row">
+	     <div class="row"> 
 	      <div class="col">
-	        <input type="date" class="form-control" placeholder="입사일 입력" name="hiredateS">
-	      </div>
-	      <div class="col">
-	        <input type="number" class="form-control" placeholder="관리자 번호 입력" name="mgr"  value="0">
+	        <input type="text" class="form-control" placeholder="부서명 입력" name="dname">
 	      </div>
 	     </div>
-	     <div class="row">
+	     <div class="row"> 
 	      <div class="col">
-	        <input type="number" class="form-control" placeholder="급여 입력" name="sal" value="0">
-	      </div>
-	      <div class="col">
-	        <input type="number" class="form-control" placeholder="보너스 입력" name="comm"  value="0">
+	        <input type="text" class="form-control" placeholder="부서위치 입력" name="loc">
 	      </div>
 	     </div>
-	     <div class="row">
-	      <div class="col">
-	        <input type="number" class="form-control" placeholder="부서번호 입력" name="deptno"  value="0">
-	      </div>
-	     </div>	     	     	      
 	    </form> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="regBtn" class="btn btn-primary">Save changes</button>
+        <button type="button" id="regBtn" class="btn btn-primary">부서등록</button>
       </div>
     </div>
   </div>
