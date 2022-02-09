@@ -22,4 +22,8 @@ public class A02_DeptService {
 	public void insertDept(Dept ins) {
 		dao.insertDept(ins);
 	}
+	
+	public void uptDept(Dept upt) {
+		dao.uptDept(upt);
+	}
 }

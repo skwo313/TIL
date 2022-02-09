@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="${encoding}">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 </head>
 <body>
 	<div id="show">
-		<h2 align="center">{{msg}}</h2>
+		<h2 align="center">{{name}}</h2>
+		<h2 align="center">{{age}}</h2>
+		<h2 align="center">{{loc}}</h2>
 	</div>
 </body>
 <script>
+	var model = {name:"홍길동", age:25, loc:"서울"}
+
 	var vm = new Vue({
 		el:"#show",
-		data:{msg:"시작!!"}
+		data:model
 	});
 </script>
 </html>

@@ -27,4 +27,6 @@ public interface A01_EmpDao {
 									@Param("deptno") int deptno);
 	
 	public Emp getEmp(int empno);
+	public void uptEmp(Emp upt);
+	public void delEmp(int empno);
 }

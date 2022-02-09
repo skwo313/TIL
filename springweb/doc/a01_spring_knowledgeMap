@@ -129,8 +129,64 @@
 7. 위 url + 요청값으로 포함해서
 	http://localhost:7080/springweb/gogo2.do?name=himan&pass=7777
 	으로 해서 위의 기능 메서드를 호출하여 처리한다.
+	
+# 스프링의 핵심 이해
+1. 서버와 클라이언트단의 데이터 전송 및 출력
+
+	클라이언트(브라우저) =======> 서버(톰캣)
+	1) 브라우저의 url 주소를 통해 /start.do라는 urlmapping 주소를 호출하면
+	2) 서버는 해당 url 주소에 /start.do로 연결되어 있는 jsp를 출력한다.
+		http://loacalhost:7080/springweb/start.do
+		@RequestMapping("/start.do")
+		public String start(){
+			return "@@@@/call.jsp";
+		}
+	3) 마지막에 호출된 jsp를 html로 최종적으로 변경되어, 서버에서 브라우저로 
+		전달되어 브라우저 화면에 출력된다.
+	4) 화면에서 아래와 같이 데이터를 서버에 전달할 내용이 있으면
+		url 주소와 요청값이 전달되어 진다.
+		id:[  ]
+		pass:[  }
+		[로그인]
+		<form action="${path}/login.do"
+			<input name="id">
+			<input name="pass">
+	5) 위 action 주소와 input값에 입력된 내용은 login.do?id=himan&pass=7777
+	6) 컨트롤러 호출
+		@RequestMapping("/login.do")
+		public String login(Member m, Model d){
+			m.getId() : himan
+			m.getpass() : 7777
+			d.addAttribute("member",service.getMember(m)); // service, dao, mapper.xml
+			// 데이터가 있으면 member라는 모델데이터에 객체가 들어간다
+			d.addAttribute("login", "로그인성공");
+			
+			return "@@@@/main.jsp";
+		}
+	7) main.jsp
+		js에서 모델 데이터 받기..
+		var login = "${login}";
 		
+		<table>
+			<tr><td>회원아이디</td><td>${member.id}</td></tr>
+			<tr><td>회원명</td><td>${member.name}</td></tr>
+			<tr><td>권한</td><td>${member.auth}</td></tr>
+
+# 파일 업로드 처리
+1. 처리 프로세스
+	첨부파일을 추가해서 전송하면
+		<form>
+		<input type="file"/>
+	서버에서 받아서
+		controller단에서 Multipart 객체를 통해 받아서
 		
+	특정한 파일서버의 위치에 저장 처리한다.
+		MultiPart 객체를 File객체로 변환하여 지정한 파일 서버에 저장 처리
+		
+2. 개발 순서
+	1) 컨테이너에 파일업로드 처리하는 객체 등록, 파일저장위치를 conf로 설정
+	2) controller에서 해당 file객체의 이름을 Multipart파일 객체로 받아서
+	3) service단에 특정한 위치에 저장
 		
 		
 

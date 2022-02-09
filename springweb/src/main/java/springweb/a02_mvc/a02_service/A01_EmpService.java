@@ -44,4 +44,10 @@ public class A01_EmpService {
 	public Emp getEmp(int empno) {
 		return dao.getEmp(empno);
 	}
+	public void uptEmp(Emp upt) {
+		dao.uptEmp(upt);
+	}
+	public void delEmp(int empno) {
+		dao.delEmp(empno);
+	}
 }

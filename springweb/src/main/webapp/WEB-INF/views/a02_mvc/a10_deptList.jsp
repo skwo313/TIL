@@ -38,8 +38,40 @@
 				$("#frm02").submit();
 			}
 		})
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				$("#frm02").attr("action","${path}/uptDept.do");
+				$("#frm02").submit();
+			}
+		})
+		
 	});
+	function regFun(){
+		$("#exampleModalLongTitle").text("부서정보 등록");
+		$("#frm02")[0].reset(); // 초기화 처리
+		$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();
+	}
+	function detail(deptno, dname, loc){
+		// 타이틀변경
+		$("#exampleModalLongTitle").text("부서정보 등록");
+		// 버튼 활성화 비활성화 처리
+		$("#regBtn").hide();$("#uptBtn").show();$("#delBtn").show();
+		// 각각의 form에 데이터 할당.
+		$("#frm02 [name=deptno]").val(deptno);	
+		$("#frm02 [name=dname]").val(dname);	
+		$("#frm02 [name=loc]").val(loc);
+	}
 	
+	/* function uptBtn(){
+		var proc = "${proc}";
+		if(proc!=""){
+			alert(proc);
+		}
+		if(confirm("수정하시겠습니까?")){
+			$("#frm02").attr("action","${path}/uptDept.do");
+			$("#frm02").submit();
+		}
+	} */
 </script>
 </head>
 
@@ -53,7 +85,7 @@
 	    <input class="form-control mr-sm-2" name="dname" value="${dept.dname }" placeholder="부서이름" />
 	    <input class="form-control mr-sm-2" name="loc" value="${dept.loc }" placeholder="부서위치" />
 	    <button class="btn btn-info" type="submit">Search</button>
-	    <button data-toggle="modal" data-target="#exampleModalCenter"
+	    <button data-toggle="modal" onclick="regFun()" data-target="#exampleModalCenter"
 	    class="btn btn-success" type="button">등록</button>
  	</nav>
 	</form>
@@ -71,7 +103,12 @@
     </thead>	
     <tbody>
     	<c:forEach var="dept" items="${dlist}">
-		<tr><td>${dept.deptno}</td><td>${dept.dname}</td><td>${dept.loc}</td></tr>	  			
+			<tr onclick="detail(${dept.deptno}, '${dept.dname}', '${dept.loc}')"
+					data-toggle="modal" data-target="#exampleModalCenter">
+					<td>${dept.deptno}</td>
+					<td>${dept.dname}</td>
+					<td>${dept.loc}</td>
+			</tr>	  			
 		</c:forEach>
     </tbody>
 	</table>    
@@ -107,8 +144,11 @@
 	    </form> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" 
+        	data-dismiss="modal">Close</button>
         <button type="button" id="regBtn" class="btn btn-primary">부서등록</button>
+        <button type="button" id="uptBtn" class="btn btn-info">부서수정</button>
+        <button type="button" id="delBtn" class="btn btn-danger">부서삭제</button>
       </div>
     </div>
   </div>

@@ -21,4 +21,5 @@ public interface A02_DeptDao {
 	public List<Salgrade2> getGrade();
 	public List<Dept> getDeptList(Dept sch);
 	public void insertDept(Dept ins);
+	public void uptDept(Dept upt);
 }

@@ -65,5 +65,19 @@
 	<select id="getEmp" parameterType="int" resultType="emp">
 		select * from emp02 where empno=#{empno}
 	</select>
+	<update id="uptEmp" parameterType="emp">
+		update emp02
+			set ename = #{ename},
+				job = #{job},
+				mgr = #{mgr},
+				hiredate = to_date(#{hiredateS}, 'YYYY-MM-DD'),
+				sal = #{sal},
+				comm = #{comm},
+				deptno = #{deptno}
+		where empno = #{empno}
+	</update>
+	<delete id="delEmp" parameterType="int">
+		delete from emp02 where empno = #{empno}
+	</delete>
 </mapper>
 

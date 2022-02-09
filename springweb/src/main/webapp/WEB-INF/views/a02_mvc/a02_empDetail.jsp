@@ -29,7 +29,29 @@
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-
+		var proc="${proc}";
+		if(proc!=""){
+			alert(proc);
+		}
+		if(proc=="삭제되었습니다"){
+			location.href="${path}/empList.do";
+		}
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				$("form").attr("action","${path}/uptEmp.do");
+				$("form").submit();
+			}
+		});
+		$("#delBtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href="${path}/delEmp.do?empno="+$("[name=empno]").val();
+			}
+		});
+		
+		$("#mainBtn").click(function(){
+			location.href="${path}/empList.do";
+			
+		});
 	});
 </script>
 </head>
@@ -65,7 +87,7 @@
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">입사일</span>
 		</div>
-		<input name="hiredate" type="date" class="form-control" 
+		<input name="hiredateS" type="date" class="form-control" 
 			value='<fmt:formatDate value="${emp.hiredate }" pattern="yyyy-MM-dd"/>' />
 		<div class="input-group-prepend">
 			<span class="input-group-text">부서번호</span>

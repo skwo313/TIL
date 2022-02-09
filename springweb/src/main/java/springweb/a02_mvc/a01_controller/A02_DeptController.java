@@ -26,4 +26,12 @@ public class A02_DeptController {
 		service.insertDept(ins);
 		return "WEB-INF\\views\\a02_mvc\\a10_deptList.jsp";
 	}	
+	
+	@RequestMapping("/uptDept.do")
+	public String uptDept(Dept upt, Model d) {
+		d.addAttribute("proc", "부서수정완료");
+		service.uptDept(upt);
+		d.addAttribute("dlist", service.getDeptList(upt));
+		return "WEB-INF\\views\\a02_mvc\\a10_deptList.jsp";
+	}
 }
