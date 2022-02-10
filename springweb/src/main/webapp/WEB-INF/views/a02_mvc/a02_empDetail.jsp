@@ -89,6 +89,14 @@
 		</div>
 		<input name="hiredateS" type="date" class="form-control" 
 			value='<fmt:formatDate value="${emp.hiredate }" pattern="yyyy-MM-dd"/>' />
+			<%--
+			${emp.hiredate} : private Date hiredate; getHiredate()
+			날짜형식의 데이터이기에 원하는 형식으로 출력을 하려면 <fmt:formatDate>
+			가 필요하다.
+			
+			해당 내용을 DB에 저장할 때는, 문자열 형식으로 저장하여 전달해서 DB
+			to_date('문자열데이터','YYYY-MM-DD')로 필요하기에 name="hiredateS"
+			 --%>
 		<div class="input-group-prepend">
 			<span class="input-group-text">부서번호</span>
 		</div>

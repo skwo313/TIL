@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<h3 v-for="fruit in fruits">{{fruit}}</h3>
+	</div>
+</body>
+<script>
+	/*
+	# 반복 랜더링 처리 v-for
+	1. 모델데이터의 배열, 객체, 객체형배열을 반복문에 의해서 효과적으로 처리할 수 있다.
+	2. 기본 형식
+		1) <반복할DOM v-for="단위변수 in 배열형모델">
+				{{단위변수}}
+	*/
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"v-for문 활용", fruits:["사과", "바나나", "딸기"]}
+	});
+</script>
+</html>

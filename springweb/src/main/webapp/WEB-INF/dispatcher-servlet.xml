@@ -78,4 +78,7 @@
 	 	<property name="basePackage" value="springweb.a02_mvc.a03_dao"/>
 	 </bean>
 	
+	<!-- 파일 업로드를 위한 viewer 선언 -->
+	<bean id="multipartResolver" 
+			class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

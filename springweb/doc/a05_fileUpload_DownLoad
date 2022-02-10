@@ -1,0 +1,38 @@
+# 스프링에서 파일처리하기
+1. 파일 처리 프로세스
+	화면에서 첨부파일을 선택하여, 첨부를 하고,
+	파일등록 버튼을 클릭하여, 서버에 전송이 된다.
+	전송된 파일이 서버에 전송되어 목록을 확인할 수 있다.
+
+2. 파일 처리를 위한 환경 구성
+	1) container에서 파일업로드 viewer 선언.
+		org.springframework.web.multipart.commons.CommonsMultipartResolver
+	2) 업로드 위치 config 파일을 설정(파일서버가 있으면 파일서버 위치를 지정)
+		src\main\java\resource\config 에 key=value 형식으로 지정
+		upload=경로명지정
+		ex) upload=C:\a01_javaexp
+		
+3. 파일 처리 개발 순서
+	1) 초기화면 호출 : 내용과 첨부파일설정
+		controller(/upload.do) ==> view 호출
+	2) view단 구성
+		<form enctype="multipart/form-data" method="post"
+				action="/upload.do" >
+			내용: <input type="text" name="title"/><br>
+			첨부파일: <input type="file" name="report" />
+	3) 파일첨부 시 처리할 controller 선언
+		vo가 없을 시,
+			public String upload(@RequestParam("report") MultipartFile report,
+								 @RequestParma("title") String title
+		vo가 있을 시(private MultipartFile report 포함)
+			public String upload(FileVo vo)
+			
+	4) 파일첨부 시 처리할 service 선언(springweb.a02_mvc.a02_service.A03_FileService.java)
+		파일명 가져오기 : report.getOriginalFilename()
+		경로설정 가져오기 : 
+			@Value("${upload}")
+			private String upload;
+		저장할 파일 객체 가져오기
+			File uploadFile = new File(upload+fname);
+		MultipartFile 객체를 실제 특정한 경로에 저장하기 위해 File로 전환하여야 한다.	
+			
