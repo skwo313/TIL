@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import springweb.a02_mvc.a02_service.A02_DeptService;
 import springweb.vo.Dept;
-import springweb.vo.Emp;
 
 @Controller
 public class A02_DeptController {

@@ -3,13 +3,22 @@ package springweb.a02_mvc.a02_service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import springweb.a02_mvc.a03_dao.A03_FileDao;
+import springweb.vo.FileInfo;
+
 @Service
 public class A03_FileService {
+	
+	@Autowired
+	private A03_FileDao dao;
+	
 	// 파일업로드 경로 정보 가져오기..
 	@Value("${upload}")
 	private String upload;
@@ -24,6 +33,11 @@ public class A03_FileService {
 		String result="";
 		try {
 			mf.transferTo(file);
+			
+			// 업로드 된 파일 정보를 DB에 등록 
+			FileInfo ins = new FileInfo(upload, fname, "");
+			dao.insertFileInfo(ins);
+			
 			result="업로드 성공";
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
@@ -39,5 +53,8 @@ public class A03_FileService {
 		} 
 		System.out.println("파일업로드:"+result);
 		return result;
+	}
+	public ArrayList<FileInfo> getFileList(){
+		return dao.getFileList();
 	}
 }

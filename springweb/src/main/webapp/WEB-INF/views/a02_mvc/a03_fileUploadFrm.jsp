@@ -17,6 +17,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+<style>
+	td {text-align:center;}
+</style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
@@ -63,13 +66,15 @@
     <thead>
     
       <tr class="table-success text-center">
-      	<th>내용</th>
-   		<th>파일명</th>
+      	<th>파일명</th>
+   		<th>경로</th>
       </tr>
     </thead>	
     <tbody>
-    	<tr><td>${param.title}</td>
-	    	<td>${upFile}</td></tr>
+    	<c:forEach var="file" items="${flist }" >
+	    	<tr><td>${file.fname}</td>
+		    	<td>${file.pathinfo}</td></tr>
+		</c:forEach>
     </tbody>
 	</table>    
     

@@ -10,10 +10,12 @@
 		<typeAlias alias="salgrade" type="springweb.vo.SalGrade"/>
 		<typeAlias alias="dept2" type="springweb.vo.Dept2"/>
 		<typeAlias alias="salgrade2" type="springweb.vo.Salgrade2"/>
+		<typeAlias alias="fileInfo" type="springweb.vo.FileInfo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/EmpMapper.xml"/>
 		<mapper resource="resource/DeptMapper.xml"/>
+		<mapper resource="resource/FileMapper.xml"/>
 	</mappers>
 	
 </configuration>

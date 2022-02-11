@@ -9,7 +9,54 @@
 <body>
 	<div id="show">
 		<h2 align="center">{{msg}}</h2>
-		<h3 v-for="fruit in fruits">{{fruit}}</h3>
+		<h3 v-for="(fruit, idx) in fruits">{{idx+1}} {{fruit}}</h3>
+		<table border>
+			<tr><th>속성</th><th>속성값</th></tr>
+			<tr v-for="(val, prop) in person" >
+				<td>{{prop}}</td><td>{{val}}</td>
+			</tr>
+		</table>
+		<select>
+			<option v-for="(val, prop) in person"
+				 :value="prop">{{val}}</option>
+		</select>
+		
+		<table border>
+			<tr><th>팀명</th><th>선수명</th><th>성적</th></tr>
+			<tr>
+				<td v-for="(val, prop) in player">{{val}}</td>
+			</tr>
+		</table>
+		<!-- 
+		plist:[
+				{pname:"사과", price:3000, cnt:2}
+		 -->
+		<style>
+			td{text-align:center;}
+		</style>
+		<table align="center" border>
+			<tr><th>번호</th><th>물건명</th><th>가격</th><th>갯수</th><th>계</th></tr>
+			<tr v-for="(prod, idx) in plist" >
+				<td>{{idx+1}}</td>
+				<td>{{prod.pname}}</td>
+				<td>{{prod.price}}</td>
+				<td>{{prod.cnt}}</td>
+				<td>{{prod.price*prod.cnt}}</td>
+			</tr>
+		</table>
+		
+		<table align="center" border>
+			<tr><th>순위</th><th>팀명</th><th>경기</th><th>승</th><th>패</th><th>무</th><th>승률</th></tr>
+			<tr v-for="(prod, idx) in kbo">
+				<td>{{idx+1}}</td>
+				<td>{{prod.tname}}</td>
+				<td>{{prod.game}}</td>
+				<td>{{prod.win}}</td>
+				<td>{{prod.lose}}</td>
+				<td>{{prod.tie}}</td>
+				<td>{{prod.winrate}}</td>
+			</tr>
+		</table>
 	</div>
 </body>
 <script>
@@ -17,12 +64,31 @@
 	# 반복 랜더링 처리 v-for
 	1. 모델데이터의 배열, 객체, 객체형배열을 반복문에 의해서 효과적으로 처리할 수 있다.
 	2. 기본 형식
-		1) <반복할DOM v-for="단위변수 in 배열형모델">
+		1) 배열 
+			<반복할DOM v-for="단위변수 in 배열형모델">
 				{{단위변수}}
+		2) 객체
+			<반복할DOM v-fo="(단위값, prop) in 객체모델">
+		3) 객체형 배열
+			
+		
 	*/
 	var vm = new Vue({
 		el:"#show",
-		data:{msg:"v-for문 활용", fruits:["사과", "바나나", "딸기"]}
+		data:{msg:"v-for문 활용", fruits:["사과", "바나나", "딸기"],
+			  person:{name:"홍길동", age:25, loc:"서울신림동"},
+			  player:{tname:"토트넘", pname:"손흥민", record:"1위"},
+			  plist:[{pname:"사과", price:3000, cnt:2},
+				  	 {pname:"바나나", price:4400, cnt:3},
+				  	 {pname:"딸기", price:13000, cnt:1}
+			  ],
+			  kbo:[{ranking:"1위",tname: "KT", game:144, win:76, lose:59, tie:9, winrate: 0.563},
+				   {ranking:"2위",tname: "두산", game:144, win:72, lose:65, tie:8, winrate: 0.563},
+				   {ranking:"3위",tname: "삼성", game:144, win:73, lose:65, tie:8, winrate: 0.563},
+				   {ranking:"4위",tname: "LG", game:144, win:71, lose:65, tie:8, winrate: 0.563},
+				   {ranking:"5위",tname: "키움", game:144, win:70, lose:65, tie:8, winrate: 0.563},
+				  ]
+		}
 	});
 </script>
 </html>
