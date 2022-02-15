@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<!-- 
+# 이벤트 처리
+1. 기본 구조
+	v-on : 이벤트명="기능핸들러메서드"
+	==> @이벤트명="기능핸들러메서드"
+2. 기능 함수 정의
+	methods:{
+		함수명:function(){}
+	}
+ -->
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<h3 align="center">카운트:{{count}}</h3>
+		<p align="center">
+			<button @click="count+=parseInt(count)">카운트업</button>
+			<button @click="count+=parseInt(count)">카운트다운</button>
+			<button v-on:click="countUp">카운트업(함수)</button>
+			<button @click="countDown">카운트업(함수)</button>
+		</p>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"이벤트처리",count:0},
+		methods:{
+			countUp:function(){
+				alert("카운트 업");
+				this.count+=parseInt(this.count)+1; //증가처리
+				console.log(this.count);
+			}
+		}
+	});
+</script>
+</html>

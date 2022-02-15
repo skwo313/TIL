@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<p align="center">
+			사원명:<input type="text" v-model="ename" v-on:keyup="search"/><br>
+			직책:<input type="text" v-model="job" @:keyup="search"/><br>
+				<h3 align="center">{{requestVal}}</h3>
+		</p>
+		<p align="center">
+			<input type="text" v-model="num01">
+			<select v-model="cal" v-on:change="calcu">
+				<option value="0">+</option>
+				<option value="1">-</option>
+				<option value="2">*</option>
+				<option value="3">/</option>
+			</select>
+			<input type="text" v-model="num02">
+			<h3 align="center">{{tot}}</h3>
+		</p>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#show",
+		data:{msg:"키이벤트 처리", ename:"", job:"", requestVal:"", data:[],
+				num01:0, num02:0, cal:0, tot:0},
+		methods:{
+			search:function(){
+				this.requestVal = "ename="+this.ename+"&job="+this.job;
+			},
+			calcu:function(){
+				if(this.cal==0){
+					this.tot = parseInt(this.num01)+parseInt(this.num02);
+				}else if(this.cal==1){
+					this.tot = parseInt(this.num01)-parseInt(this.num02);
+				}else if(this.cal==2){
+					this.tot = parseInt(this.num01)*parseInt(this.num02);
+				}else{
+					this.tot = parseInt(this.num01)/parseInt(this.num02);
+				}
+			},
+			calcu:function(){
+				alert("연산자 선택!!");
+				console.log("선택된 연산 index:"+this.cal)
+				var calArr=[" + "," - "," * "," / "];
+				this.chCal = calArr[this.cal];	// select의 선택한 0~3번 중의 연산자.
+				var sums=[parseInt(this.num01)+parseInt(this.num02), this.num01-this.num02,
+					this.num01*this.num02, 
+					(this.num01=='0' || this.num02=='0')?0:this.num01/this.num02 ];
+				this.sum = sums[this.cal];
+				console.log("선택된 총계:"+this.sum);
+			}
+			
+			
+		}
+	});
+</script>
+</html>
