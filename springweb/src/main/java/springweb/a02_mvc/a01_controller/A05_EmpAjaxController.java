@@ -18,12 +18,19 @@ public class A05_EmpAjaxController {
 	
 	@GetMapping("/empAjax.do")
 	public String empAjaxFrm() {
-		return "WEB-INF\\views\\a02_mvc\\a05_empAjaxList.jsp";
+		return "WEB-INF\\views\\a02_mvc\\a13_empAjaxList.jsp";
 	}
 	@GetMapping("/empAjax01.do")
 	public String empAjax(Emp sch, Model d) {
 		d.addAttribute("empList", service.getEmpList(sch));
 		return "pageJsonReport"; //json View 호출
 		// AttayList형 empList를 json 형식으로 json view에 의해 변형이 된다
+	}
+	
+	@GetMapping("/empAjaxDetail.do")
+	public String empAjaxDetail(int empno, Model d) {
+		d.addAttribute("emp", service.getEmp(empno));
+		return "pageJsonReport"; // json View 호출..
+		// ArrayList형 empList를 json 형식으로 json view에 의해 변경 처리해준다.
 	}
 }
