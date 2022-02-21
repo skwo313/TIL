@@ -11,7 +11,15 @@
 <script src="/springweb/a00_com/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="tmp01">
+	<h3 :style="{color:color3}">안녕하세요</h3>
+</template>
 <script type="text/javascript">
+	Vue.component("com01",{
+		template:"#tmp01",
+		props:['color3']
+	})
+
 	$(document).ready(function(){
 		var vm = new Vue({
 			el:".container",
@@ -25,6 +33,7 @@
 <div class="container">
 	<div class="jumbotron text-center">
 	  <h2 >{{msg}}</h2>
+	  <com01 color3="red"></com01>
 	</div>
 	<form id="frm01" class="form-inline"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
