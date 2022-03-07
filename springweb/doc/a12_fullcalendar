@@ -1,0 +1,22 @@
+# DB 처리하기.
+	1. json 데이터
+	속성 : 
+	id : 일정아이디
+	title : 제목 
+	start : 시작일
+	end : 마지막일
+	content : 내용
+	color : 배경색상
+	textColor : 글자 색상
+	allDay : 종일여부
+	
+	create table calendar (
+		ID NUMBER,
+		TITLE VARCHAR2(100),
+		START1 VARCHAR2(50),
+		END1 VARCHAR2(50),
+		CONTENT VARCHAR2(500),
+		BACKGROUNDCOLOR VARCHAR2(20),
+		TEXTCOLOR VARCHAR2(20),
+		ALLDAY NUMBER(1,0)
+		

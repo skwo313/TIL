@@ -1,0 +1,87 @@
+# 주요학습범위
+1. 게시판의 답변형 데이터 처리
+2. aws를 활용한 배포 처리
+
+# 생각해봅시다
+1. 페이징 처리를 위해 화면에 처리값과 로직처리, DB처리값을 구분할 수 있는가?
+	핵심 속성값 : DB 최종 sql의 시작번호와 마지막번호를 가지고 오는 로직을 위해 필요
+	총 데이터 건수 : (DB) dao를 통한 처리
+	한번에 보여줄 데이터 건수 : 요청값 (select)
+	총 페이지 수 : 총데이터건수/한번에보여줄데이터
+	선택한 현재 페이지 : 요청값 click시 hidden으로 선택한 페이지 번호 요청값으로 전달
+	시작번호/마지막번호 : 한번에 보여줄 뎅터 건수, 선택한 현재 페이지수.
+
+2. 클라우드를 활용하기 위해 어떤 지식과 기술이 필요하는가?
+	온라인 상 공유 자원을 이용해서 운영체제를 만들어, 웹서버를 구축하고 데이터베이스나 소스를 로딩하여,
+		웹 페이지를 구현 처리하는 것으로 아래와 같은 지식과 기술이 필요로 한다.
+	클라우드 서비스 내용
+	운영체제에 대한 기본 지식
+		- 접근 툴의 활용 : putty, 보안설정 key 처리
+		- 리눅스 운영 체제/윈도우 운영 체제 명령어 및 활용 방법
+			파일 접근 방법 
+			프로그래밍 설치 방법(jdk, tomcat)
+			환경변수 설정 방법 path 경로 등
+			방화벽에 대한 설정
+	웹서비스의 처리 방식에 대한 이해
+		WAS서버기동
+		프로젝트별로 소스 작성 - local, svn, git
+		프로젝트단위 배포를 위한 파일 생성 .war
+		WAS의 서버에 관리자 기능 접근 설정.
+			- admin 권한 접근 처리
+			- war파일 배포를 위한 권한 처리
+		배포 및 결과 화면 확인
+
+# 학습목표
+1. 페이지 처리한 답변형 게시판의 비지니스 로직을 이해하고 활용할 수 있다.
+2. ec2를 활용하여 만들어진 프로젝트를 서버에 올릴 수 있다.
+
+
+
+# 전날 정리
+1. 
+	select rownum cnt, level, b.*
+	from board b
+	START WITH refno=0 : 계층적 sql의 최상위 조건을 선언
+	CONNECT BY PRIOR NO = refno : 테이블 안에 컬럼끼리 (no와 refno) 연관관계(상/하위)를 선언
+	ORDER siblings BY NO DESC; : 최근에 등록된 내용을 상위로 하여 desc 처리
+	
+2. 답글을 처리하는 화면 처리구조와 속성 변경
+	1. 글등록 화면을 로딩할 때, ModelAttribute("모델명")을 통해, 요청ㄱ밧과 모델값을 처리하는 객체를 매개값으로
+		받게 처리한다.
+		controller
+		@RequestMapping("/insertFrm")
+		public String uptBoard(Board ins){
+			return "a02_boardInsert";
+			
+	
+	view단 : 
+	a03_detail
+	$("#reBtn").click(function(){
+			if(confirm("답글을 작성하시겠습니까?")){
+				$("[name=refno]").val($("[name=no]").val());
+				$("[name=title]").val("RE: "+$("[name=title]").val());
+				$("[name=content]").val("\n\n\n\n\n\n======이전글======\n"+$("[name=content]").val());
+				$("form").attr("action", "${path}/board.do?method=insertFrm");
+				$("form").submit();
+		}
+	})
+	
+3. 
+	$("#reBtn").click(function(){
+			if(confirm("답글을 작성하시겠습니까?")){
+				$("[name=refno]").val($("[name=no]").val());
+				$("[name=title]").val("RE: "+$("[name=title]").val());
+				$("[name=content]").val("\n\n\n===이전 내용"+$("[name=content]").val());
+				$("form").attr("action", "${path}/board.do?method=insertFrm");
+				$("form").submit();
+		}
+	})
+	
+	<button id="reBtn">답글</button>
+	
+4. 
+	select rownum cnt, level, e.*
+	from emp e 
+	start with mgr = 0 
+	connect by prior empno = mgr
+	order siblings by empno desc;
