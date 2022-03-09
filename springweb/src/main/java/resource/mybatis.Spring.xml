@@ -11,11 +11,13 @@
 		<typeAlias alias="dept2" type="springweb.vo.Dept2"/>
 		<typeAlias alias="salgrade2" type="springweb.vo.Salgrade2"/>
 		<typeAlias alias="fileInfo" type="springweb.vo.FileInfo"/>
+		<typeAlias alias="calendar" type="springweb.vo.Calendar"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/EmpMapper.xml"/>
 		<mapper resource="resource/DeptMapper.xml"/>
 		<mapper resource="resource/FileMapper.xml"/>
+		<mapper resource="resource/CalendarMapper.xml"/>
 	</mappers>
 	
 </configuration>

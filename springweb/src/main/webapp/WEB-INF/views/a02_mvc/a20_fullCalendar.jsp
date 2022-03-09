@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
 <link href='${path}/a00_com/lib/main.css' rel='stylesheet' />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
   body {
     margin: 40px 10px;
@@ -55,15 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
       selectable: true,
       selectMirror: true,
       select: function(arg) {
+    	console.log("#일정등록시 속성 확인#")
+      	console.log(arg)
+      	$("#modalBtn").click(); // 강제 수행하여 모달창이 로딩되도록 한다.
+    	 /*
         var title = prompt('일정등록:');
         if (title) {
           calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
+            title: title, // 타이틀
+            start: arg.start, // 시작일자
+            end: arg.end, // 마지막일자
+            allDay: arg.allDay // 종일여부
           })
-        }
+        }*/
         calendar.unselect()
       },
       eventClick: function(arg) {
@@ -73,68 +79,37 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: [
-    	{
-            title: '일정 등록^^',
-            start: '2022-03-02'   			
-    	},
-        {
-          title: 'All Day Event',
-          start: '2022-03-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2022-03-07',
-          end: '2022-03-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2022-03-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2022-03-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2022-03-11',
-          end: '2022-03-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2022-03-12T10:30:00',
-          end: '2022-03-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2022-03-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2022-03-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2022-03-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2022-03-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2022-03-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2022-03-28'
-        }
-      ]
+      events: function(info, successCallback,failureCallback){
+    	  // 서버에 있는 json 데이터 가져와서, fullcalenar 입력하기
+    	  $.ajax({
+    		  type:"post",
+    		  url:"${path}/calList.do",
+    		  dataType:"json",
+    		  success:function(data){
+    			  console.log(data.calList)
+    			  successCallback(data.calList);
+    			  document.getElementById('script-warning').style.display = 'none';
+    		  },
+    		  error:function(err){
+    			  console.log(err)
+    			  failureCallback(err);
+    			  document.getElementById('script-warning').style.display = 'block';
+    		  }
+    	  });
+      },
+      /*
+      events: {
+    	  url: 'php/get-events.php', // controller에서 ajax데이터를 로딩하여 처리..
+          failure: function() {
+            document.getElementById('script-warning').style.display = 'block'
+          } 
+      }, */
+      loading: function(bool) {
+          document.getElementById('loading').style.display =
+            bool ? 'block' : 'none';
+      }
     });
-
+    calendar.setOption('themeSystem', "Bootstrap 5");
     calendar.render();
   });
 
@@ -142,8 +117,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	$(document).ready(function(){
 		<%-- 
-		
-		--%>	
+      events: {
+        url: 'php/get-events.php',
+        failure: function() {
+          document.getElementById('script-warning').style.display = 'block'
+        }
+      },
+      loading: function(bool) {
+        document.getElementById('loading').style.display =
+          bool ? 'block' : 'none';
+      }
+      //   <div id='loading'>loading...</div>
+      /*
+		  <div id='script-warning'>
+		    <code>php/get-events.php</code> must be running.
+		  </div>      
+      */		
+		--%>
+      $(document).ready(function(){
+    	 $('[data-toggle="tooltip"]').tooltip(); 
+      });
 	});
 </script>
 </head>
@@ -151,7 +144,16 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 <div id='calendar'></div>
+<div id='loading'>loading...</div>
+<div id='script-warning'>
+    <code>서버</code> must be running.
+</div>  
 
+<%--
+	$("#modalBtn").click(); // 강제 수행하여 모달창이 로딩되도록 한다.
+ --%>
+<button id="modalBtn" data-toggle="modal"
+	data-target="#exampleModalCenter" style="display:none"></button>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -166,10 +168,38 @@ document.addEventListener('DOMContentLoaded', function() {
 		<form id="frm02" class="form"  method="post">
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="사원명 입력" name="ename">
+	        <input type="text" class="form-control" placeholder="제목 입력" name="title">
+	      </div> 
+	     </div>
+	     <div class="row">	     
+	      <div class="col">
+	        <input type="date" class="form-control" placeholder="시작일 입력" name="start">
 	      </div>
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="직책명 입력" name="job">
+	        <input type="date" class="form-control" placeholder="마지막일 입력" name="job">
+	      </div>
+	     </div>
+	     <div class="row">	     
+	      <div class="col">
+	      	<textarea  class="form-control" name="content"
+	      		 placeholder="내용" 
+	      		 cols="10" rows="10"></textarea>
+	      </div>
+	     </div>
+	     <div class="row">	  
+	      <div class="col">
+	        <input type="color" class="form-control" placeholder="배경색상" name="backgroundColor">
+	      </div>
+	      <div class="col">
+	        <input type="color" class="form-control" placeholder="글자색상" name="textColor">
+	      </div>
+	     </div>
+	     <div class="row">	
+	      <div class="col">
+	        <input type="color" class="form-control" name="borderColor">
+	      </div>	       
+	      <div class="col">
+	        <input type="checkbox" class="form-control" name="allDay" value="true">
 	      </div>
 	     </div>
 	    </form> 
