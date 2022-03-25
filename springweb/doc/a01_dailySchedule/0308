@@ -1,0 +1,33 @@
+1. 
+	jquery lib를 다운 받아 필요한 doc파일을 확인한다
+	fullcanlendar
+	webapp\fullcalendar-5.10.2\examples\selectable.html
+	
+2. 	
+	resultMap을 사용하여 컬럼명을 원하는 이름으로 설정한다.
+		<result column="db컬럼명" property="vo설정명">
+		
+3. fullcalendar의 DB연도을 위한 기능함수와 처리방법
+	1. json 데이터 속성값 확인 - DB로 구ㅡ성
+	2. api 확인 ajax 호출 메서드 확인
+	3. 해당 처리 함수에서 ajax 처리
+		- backend단 처리 - dao, mapper, service, controller(pageJsonReport)
+	4. 결과를 필요한 메서드에 할당 처리
+		받은 json 데이터를, 화면에 할당한 함수에 처리
+		successCallback(data.calList);
+	
+4. fullcalendar 데이터베이스 설계를 위한 속성값 도출을 어떻게 하는지 기술하세요
+	1. 기본 json 데이터 확인
+	2. doc에서 구체적인 내용 확인
+	3. js에서 console.log(객체) 속성을 확인
+	
+	
+	속성확인
+	- 이벤트 핸들러 함수를 확인 - 등록, 상세내용 등 처리하는 이벤트 확인
+	- 이벤트 핸드럴 함수가 처리될 때, 필요한 입력 방식을 결정해서 처리 (dialogue)
+	- 최종적으로 입력데이터 처리 ajax 수행
+2. jquery lib에서 여러가지 속성값은 어떻게 확인하고 활용할 수 있는가?
+	- doc 확인
+	- 특정 이벤트 핸들러의 매개변수를 넘겨오는 객체를
+		console.log()를 통해서 중간에 나타나는 속성값에 대한 확인을 할 수 있도록 한다
+3. 
