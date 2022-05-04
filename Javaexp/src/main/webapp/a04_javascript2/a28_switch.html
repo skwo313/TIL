@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				var switchBtn = prompt("불을 켤 버튼 번호를 입력하세요[1~3]", 1);
+				switch(switchBtn){
+					case "1":
+						h2Arr[0].innerText = "A번 구역이 불이 켜졌습니다.";
+						break;
+					case "2":
+						h2Arr[0].innerText = "B번 구역이 불이 켜졌습니다.";
+						break;
+					case "3":
+						h2Arr[0].innerText = "C번 구역이 불이 켜졌습니다.";
+						break;
+					default :
+						h2Arr[0].innerText = "버튼은 1,2,3이 있습니다.";
+				}
+				//ex)
+				var month = prompt("월을 입력하세요", "1");
+				switch(month){
+					case "1" :
+					case "3" :
+					case "5" :
+					case "7" :
+					case "8" :
+					case "10" :
+					case "12" :
+						// switch case문은 break; 나올 때, case문을 벗어난다.
+						// 동일한 내용을 처리할 필요가 있을 때는 생략이 가능하다.
+						h2Arr[1].innerText = "마지막 날은 31일";
+						break;
+					case "4" :
+					case "6" :
+					case "9" :
+					case "11" :
+						h2Arr[1].innerText = "마지막 날은 30일";
+						break;
+					case "2" :
+						h2Arr[1].innerText = "마지막 날은 28일";
+						break;
+					default :
+						h2Arr[1].innerText = "월 입력 범위는 1~12일입니다";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>

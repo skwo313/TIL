@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				var score = prompt("성적을 입력하세요",0);
+				/*
+				prompt를 통해서 입력된 데이터를 문자열형 데이터이다.
+				숫자형으로 비교할 때, 기본적인 비교 연산자는 형변환이 일어난 이후로 처리되는
+				경향이 있다.
+				"25" == 25 true
+				cf) js에서는 숫자형 문자열에 대한 허용을 많이하고 있어서, 데이터 유형까지
+				check할 필요가 있을 때는 === 비교연산자를 활용한다.
+				"25" === 25 false : 데이터 유형과 실제 데이터를 check 하여 boolean값을
+									리턴한다.
+				25 === 25  true
+				"25" !== 25 true : 데이터 유형과 실제 데이터를 check해서 같지 않을 때
+				*/
+				h2Arr[0].innerText = "합격여부: "+ (score>=70) ;
+				h2Arr[1].innerText = "합격점여부: "+(score==70);
+				h2Arr[2].innerText = "불합격여부: "+ (score<70) ;
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>

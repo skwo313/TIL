@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[박스 모델!]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			body{ background:ghostwhite;}
+			span{ background:deepskyblue;}
+			div.box{
+				background:yellow;
+				width: 250px;
+				height: 250px;
+				border-style: solid; /* border의 형태/색상/굵기 지정 */
+				border-color: peru;
+				border-width: 10px;
+				margin: 40px;	/* border 외부의 대생객체와 간격 */
+				padding: 20px;	/* border 내부의 포함된 요소객체(글자/태그)와의 간격 */
+			}
+			/*
+			# 간격 : 외부요소 --> margin --> padding --> 포함된 요소(태그나 글자)
+			*/
+			
+			h2{ background: pink;}
+			/* ex) */
+			#box2 {
+				width: 300px;
+				height: 300px;
+				border: 1px solid green;
+				margin: 30px;
+				padding: 10px;
+				background: mistyrose;
+				
+			}
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "박스의 구성요소";
+			}
+		</script>
+		
+	</head>
+	<body>
+		<h2></h2>
+		<div class="box">
+			<span>안녕하세요!(box모델 연습)</span>
+		</div>
+		<div id="box2">
+			<span>안녕하세요!(box모델 연습2)</span>
+		</div>
+	</body>
+</html>

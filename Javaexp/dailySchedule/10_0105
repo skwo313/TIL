@@ -1,0 +1,83 @@
+# 주요학습범위
+1. DAO를 통한 데이터베이스 처리
+	1) 웹 프로그램에서 데이터베이스 처리 구조에 대한 이해
+	2) database 처리시, 필요한 객체에 대한 이해
+	3) sql 구문(select, insert, update, delete)에 따른 데이터 처리 방법의 구분
+	4) database 서버에서 받아오거나 전달할 때, 사용하는 VO와 메서드 처리방법
+	5) 서버를 통한 예외 처리 방법에 대한 이해
+	
+# 생각해봅시다
+1. database를 처리를 위해 어떤 환경이 구성이 필요한가?
+	WEB application서버의 JSP컨테이너의 java코드를 통해 DB서버에 접근하여 데이터를 가져오는 것이다.
+	이를 위해 DB서버와 연결을 할 수 있어야 한다.
+	ex) 전화기를 통해서 통화
+	1) 통신할 수 있는 전화망(유선/무선)이 구축 : network 환경 구축
+	2) 단말기(전화기)를 활용하여 전화망을 통해서 상대방단말기(전화기)에서 접속을 하여야 한다.
+			db client						db 서버
+			프로그래밍(jdbc드라이버+개발자코딩)	
+2. 기본적인 DB처리에 필요한 객체들은 어떻게 필요로 하는가?
+	ex) 전화기를 통해서 통화
+	1) 전화기번호입력 : ip/port/sid (식별) ==> Connection (객체 활용)
+		상대방이 전화기를 받기 : 계정과 비밀번호(인증)
+	2) 상대방과 대화를 시작 : sql통해서 서버와 대화 ==> Statement(대화 객체)
+		내가 말을 통해서 상대방에게 메세지를 주는 처리 : insert/update/delete :서버에 영향을 미치는 작용
+		말을 통해서 상대방의 또다른 결과를 받는 처리 : select ==> ResultSet(결과를 다시 전달 받는 객체)
+		
+3. jdbc는 어떤 역할을 하먀, 이것을 활용하기 위해서 환경설정과 code는 어떤 것이 필요로 하는가?
+	1) 실제 DB 서버와 접속에서 필요로 하는 내용이 많아서 그 공통적인 내용을
+	class와 만들어 패키지화하는 프로그램이 드라이버이다.
+	2) 각 밴드(서버 회사 - 오라클, mysql, mssql.. 등등)에 따라 다른 프로그램이 지원된다.
+	cf) 특정 객체를 통해 입력하면 결과로 어떤 데이터가 나온다는 개념으로 접근이 필요..
+	api, driver, lib, framework
+	3) 웹 프로그래밍 프로젝트의 경우 \javaexp\src\main\webapp\WEB-INF\lib
+		에 위치시키고,
+		Class.forName("드라이버명")을 통해서 메모리에 로딩을 하고,
+		접근하여 사용한다.
+	
+4. database에서 트랜잭션 처리는 실제 코드에서 어떻게 필요로 하고 사용되는가?
+	database : 등록/수정/삭제
+	하나의 DB 클라이언트가 접근하여 명령을 통해 등록/수정/삭제를 할 때,
+		commit 하기전에는 임시로 해당 접근 클라이언트에서만 수정된 데이터를 보이게 하고 있다가.
+			(다른 클라이언트는 변경된 정보가 나타나지 않음)
+		만약에 복구를 할려면 rollback을 통해서 이전 상태로 복구를 하고,
+		확정이 되면 commit을 통해서 확정이 되고, 전 클라이언트들도 동일하게 변경된 데이터를 
+		볼 수 있고, rollback을 하더라도 복구가 되지 않는다.
+		con.commit();
+		con.rollback();
+
+5. sql 구문에 따른 객체의 활용 방법이 다르다는데, 어떤 객체들을 구분하여 사용하여야 하는가?
+		Statement(대화)의 기능 메서드가 차이가 나는데,
+		select ==> stmt.executeQuery(sql); ==> ResultSet를 통해서 해당 명령문을 통해
+		 	서버에서 받아오는 데이터를 객체로 받을 수 있다.
+		 insert/update/delete ==> stmt.executeUpdate(sql)
+		 	con.setAutoCommit(false); con.commit(); con.rollback();
+		 	
+6. 예외를 처리할 때, 어떤 내용을 주로 다루개 되는가?
+	DB 처리는 컴파일예외를 처리하여야 한다.
+	1) 연결시 예외 처리
+	2) sql구문 수행시 예외 처리
+		SQLExeption이라는 jdbc드라이버에서 지원하는 에외 처리.
+		자원의 종료 con.close();
+		insert/update/delete 경우에 예외가 발생하는 구문에서 con.rollback();을 처리하여야 한다.
+		
+
+# 학습목표
+1. 데이터 베이스를 자바프로그램을 통해 접근하기 위한 환경을 이해하고, 환경을 구성할 수 있다.
+2. DAO가 웹프로그램에서 처리하는 기능을 이해하고 사용할 수 있다.
+3. DAO에서 사용되는 핵심 core 객체들의 기능을 이해하고 사용할 수 있다.
+4. 기능 메서드의 처리 패턴을 이해하고 사용할 수 있다.
+5. 데이터 베이스 처리 시, 메모리 해제와 예외처리와의 관계를 이해하고 활용할 수 있다.
+6. 트랜잭션 처리와 예외처리 코드를 이해하고 활용할 수 있다.
+
+# 주요핵심 keyword
+1. Connection(con), Statement(stmt), PreparedStatement(pstmt), ResultSEt(rs)
+2. Class.forName()
+3. DriverManager.getConnection(접근정보, 계정명, 비밀번호)
+4. con.createStatement(), stmt.executeQuery(), stmt.executeUpdate()
+5. rs.next(), rs.getString("컬럼명"), rs.getInt(인덱스명), rs.getDouble("컬럼명")
+6. rs.close(), stmt.close(), con.commit(), con.rollback();
+
+
+# 주요 진행계획
+
+# 개념 및 원리이해

@@ -1,0 +1,4 @@
+QnA
+1. 왜 request는 import없이 사용할 수 있는가?
+	- (복잡하여 추후에 더 추가)jsp(jsp 자체가 Servlet이라는 클래스에 출력용으로 처리되는 부분을 손쉽게 하기 위해 만든 형식)
+	는 servlet이라는 클래스를 포함되고 있어 servlet의 매개변수 중 하나인 request는 import 없이 사용할 수 있다

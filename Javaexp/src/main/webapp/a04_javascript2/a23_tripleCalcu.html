@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[삼항연산자]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				// (조건)?결과1:결과2
+				// 조건이 true일때는 결과1을 처리, 조건이 false일때는 결과2를
+				// 바로 처리하여 출려할 떄 사용된다.
+				var age = 25;
+				h2Arr[0].innerText = "나이:"+age;
+				h2Arr[1].innerText = "구분:"+(age>=18?"성년":"미성년");
+				/* ex) */                                                           
+				var age2 = prompt("나이를 입력하세요", 0);
+				h2Arr[2].innerText = "무료여부:"+(age2<5||age2>=65?"무료":"유료");
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>

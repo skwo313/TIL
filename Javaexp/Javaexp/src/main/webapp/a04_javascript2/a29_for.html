@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[for문]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				h2Arr[0].innerText = "for문 예제";
+				// idx: 1~4까지 반복 처리
+				for(var i=1;i<=5;i++){
+					h2Arr[i].innerText = i + "번째 안녕하세요!";					
+					h2Arr[i].style.fontSize=i*10+"px";
+				}
+			}
+		</script>
+		<script type="text/javascript">
+		/*
+		1.
+		
+		var person = {name:"홍길동", age:25, loc:"서울신림"};
+		for(var prop in person)	{
+			prop : name, age, loc
+			person[prop] : "홍길동", 25 ,"서울신림"
+		}
+		
+		2. for(var index in 배열){
+			index :
+			배열[index]
+		}
+		var arry = [2000, 3000, 4000];
+		for( var index in arry){
+			idx : 문자열로 "0", "1", "2"
+			arry[idx] : 2000, 3000, 4000
+		}
+		
+		# forEach 구문
+		1. 배열의 데이터를 보다 효과적으로 처리하기 위하여 익명함수와 매개변수로
+			데이터를 처리하는 방법.
+		2. 기본형식
+			배열명.forEach(function(인덱스, 단위객체)){
+			
+			});
+		*/
+		var arry = ["사과","바나나","딸기"];
+		arry.forEach(function(fruit,idx){
+			// idx는 for과 달리 숫자형이다.
+			console.log(idx+1+":"+fruit);
+		})
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>

@@ -1,0 +1,44 @@
+# 주요학습범위
+1. 생성자객체(class)
+2. 내장 함수와 객체
+3. jquery 설치 방법
+4. DOM 객체 활용
+
+# 생각해봅시다
+1. js에서 프로그램을 효과적으로 사용할 때, 어떤 단계의 api와 lib, framework가 있는가?
+	- 사용자 정의 변수/함수/객체
+	- 내장 함수/객체
+	- lib : 효과적으로 사용되는 외부 lib 활용
+	- framework
+		<javascript src=""> : 외부에서 CDN, 다운로드하여 여러가지 js의 정의된 내용을
+		효과적으로 활용하여, 보다 기능적으로 완성도가 높은 프로그램을 처리할 수 있다.
+		jquery, vue, react
+	- plugin 프로그래밍
+		화면구현까지 완료가 된 내용을 호출하여 사용할 수 있게 하는 것을 말한다.
+		fullcalendar api, 차트 api 등...
+2. javascript 기본과 jquery는 어떠한 차이점이 있을까?
+	- var obj = document.querySelector("#ch01");
+		obj.style.background = "yellow";
+		obj.innerText = "안녕";
+	- $("#ch01").css("background","yellow");
+	  $("#ch01").text("안녕");
+	  $("#ch01").css("background", "yellow").text("안녕");
+
+# 학습목표
+1. DOM 객체가 메모리가 어떻게 만들어지고, 어떤 순서로 처리해야하면 사용자 정의 객체를 통해서
+	처리하는 방식을 이해핳고 활용할 수 있다.
+2. jquery의 환경설정 방법을 이해하고, 사용할 수 있다.
+3. js에서의 DOM 활용방법과 jquery에 DOM 활용방법을 비교하여, 선택자와 기능메서드를 사용할 수 있다.
+
+# 주요핵심 keyword
+1. CDN(content delivery network) 방식
+2. $(document).ready(function(){ body의 모든 요소객체 DOM으로 사용가능 });
+3. $("css선택자").css("속성", "속성값"), .attr()
+4. text()(innerText), html()(innerHTML), val()(value)
+5. click(), hover(), mouseover()
+
+# 주요 진행계획
+1. 오전 내장기능함수/내장객체, jquery 설치
+2. 오후 jquery 기본 선택자 및 기능메서드
+
+# 개념 및 원리이해

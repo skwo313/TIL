@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[폼 요소]오늘도 감사한 날! 화이팅!</title>
+		
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "폼요소객체 css설정";
+			}
+		</script>
+		<style>
+			input[type=text]{color:red;}
+			input:hover, textarea:hover{ background:aliceblue;}
+			input[type=text]:focus, input[type=email]:focus{font-size:120%;}
+			label{display:block;padding:5px;} /* 레이블 단위로 줄바꾸기 처리되었음 */
+			label span{
+				display:inline-block; width:90px; text-align:right;padding:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2></h2>
+		<hr>
+		<form>
+			<label><span>이름</span><input type="text" placeholder="Elvis"></label>
+			<label><span>Email</span><input type="email" placeholder="elvis@graceland.com"></label>
+			<label><span>Comment</span><textarea placeholder="메시지를 남겨주세요"></textarea></label>
+			<label><span></span><input type="submit"></label>
+		</form>
+		
+		
+	</body>
+</html>

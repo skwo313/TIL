@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+	<form action="a06_membership.jsp" method="post">
+		아이디: <input type="text" name="id" value=""><br>
+		비밀번호: <input type="password" name="pass" maxlength="16"><br>
+		비밀번호 확인: <input type="password" name="passcheck" maxlength="16"><br>
+		이름: <input type="text" name="name" value=""><br>
+		휴대전화: <input type="text" list="pnum" size="2" name="pnum">
+		<datalist id="pnum">
+			<option value="010">
+			<option value="011">
+			<option value="017">
+			<option value="018">
+			<option value="019"></datalist>
+		-<input type="text" name="pnum01" size="2">-<input type="text" name="pnum02" size="2"><br>
+		이메일: <input type="text" name="email"><br>
+		<input type="submit" value="회원가입">
+	</form>
+		
+	</body>
+</html>
+<!-- 
+2021-12-14
+[1단계:개념] 1. form 요소의 속성에 대하여 기술하세요.
+[1단계:개념] 2. form 요소와 하위요소객체가 서버에 특정한 소스로 전송되는 프로세스를 속성값과 요소객체의 속성값과 함께 기술하세요
+			?속성=속성값&속성2=속성값2
+			String 단일요청 = request.getParameter("요청키");
+			String 다중요청 = request.getParameterValues("요청키");
+[1단계:개념] 3. input type="text" 요소객체의 기본 속성을 기술하세요.
+[1단계:개념] 4. input의 type의 종류를 기술하고, 그 특징을 기술하세요.
+[1단계:개념] 5. textarea의 속성은 어떤 것이 있고, 일반 input 요소객체와 차이점을 기술하세요.
+[1단계:확인] 6. input와 textarea를 이용하여 온라인 일기를 등록해보세요.
+[1단계:개념] 7. input type="text" datalist와의 관계를 기술하세요.
+[1단계:확인] 8. input 물건명/가격/갯수에서 가격은 1000/2000/4000, 갯수 1~10 datalist를 활용하여 처리하여 다음 페이지에 출력하세요.
+			<form action="a06_product.jsp" method="post">
+				물건명: <input type="text" name="pname" value="">
+				가격: <input type="text" list="price" name="price">
+					<datalist id="price">
+						<option value="1000">
+						<option value="2000">
+						<option value="4000">
+					</datalist>
+				갯수: <input type="text" list="cnt" name="cnt">
+					<datalist id="cnt">
+						<option value="1">
+						<option value="2">
+						<option value="3">
+						<option value="4">
+						<option value="5">
+						<option value="6">
+						<option value="7">
+						<option value="8">
+						<option value="9">
+						<option value="10">
+					</datalist>	
+					<input type="submit"/>
+			</form>
+		-------jsp-----
+		<h2>넘어온 물건정보</h2>
+		<h3>${param.pname }</h3>
+		<h3>${param.price }</h3>
+		<h3>${param.cnt }</h3>
+		
+		
+[1단계:개념] 9. button을 처리하는 form하위 요소객체의 종류들과 특징을 기술하세요.
+[1단계:개념] 10. type의 radio와 checkbox의 차이를 기술하고, 서버에서 호출되는 방식까지 기술하세요.
+[1단계:개념] 11. select의 속성을 기술하세요
+[2단계:확인] 12. 온라인 사이트의 회원가입 항목들을 확인하여, 오늘 배운 form하위 요소객체를 이용하여 회원가입하고, 가입된 내용을 출력처리하세요
+		<form action="a06_membership.jsp" method="post">
+			아이디: <input type="text" name="id" value=""><br>
+			비밀번호: <input type="password" name="pass" maxlength="16"><br>
+			비밀번호 확인: <input type="password" name="passcheck" maxlength="16"><br>
+			이름: <input type="text" name="name" value=""><br>
+			휴대전화: <input type="text" list="pnum" size="2" name="pnum">
+			<datalist id="pnum">
+				<option value="010">
+				<option value="011">
+				<option value="017">
+				<option value="018">
+				<option value="019"></datalist>
+			-<input type="text" name="pnum01" size="2">-<input type="text" name="pnum02" size="2"><br>
+			이메일: <input type="text" name="email"><br>
+			<input type="submit" value="회원가입">
+		</form>
+		-------jsp-----
+		<body>
+			<h2>회원가입 정보</h2>
+			<h3>${param.id }</h3>
+			<h3>${param.pass }</h3>
+			<h3>${param.passcheck }</h3>
+			<h3>${param.name }</h3>
+			<h3>${param.pnum }</h3>
+			<h3>${param.pnum01 }</h3>
+			<h3>${param.pnum02 }</h3>
+			<h3>${param.email }</h3>
+		</body>
+		
+ -->

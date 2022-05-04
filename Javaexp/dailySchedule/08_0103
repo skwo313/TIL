@@ -1,0 +1,60 @@
+2. 메서드의 핵심기능인 매개변수와 프로세스처리, 리턴값에서 구분하여, 각 상호간의 작용을 이해하고 있는가?
+	public String getProduct(int pay){
+		String product = "";
+		if( pay == 1200){
+			product="코카콜라";
+		}else if(pay == 1000)
+		
+		AutoSeller as = new AutoSellor();
+		String revProd1 = as.getProduct(1000);
+		System.out.println("자동판매기로부터 받은 물건:"+revProd1);
+		
+3. 매개변수에 객체를 전달한다는 것은 어떤 의미를 가지고 있는가?
+	public String login(Member m){
+		String isValid = "미인증";
+		if(m.getId().equals("himan")&&m.getPass().equals("7777")){
+			isValid = "인증";
+		}
+		return isValid;
+	}
+	ShoppingMall m = new ShoppingMall();
+	String loginResult = m.login(new Member("himan","7777"));
+	System.out.println("인증 결과:"+loginResult);
+	
+4. 하나의 객체에서 다른 여러개의 객체를 포함하는 형식이 어떤 것이 있는가?
+	1) 같은 종류의 여러개의 객체를 포함
+		- 배열, ArrayList<타입지정> 활용..
+		class Mart{
+			private String name;
+			private ArrayList<product> list;
+			// 마트에서 구매한 물건 구매리스트 선언
+		}
+		
+	2) 다른 종류의 여러개의 객체를 포함
+		- 다양한 객체선언, ArrayList<상속상위>, ArrayList<Object>
+		class Computer{
+			private Cpu cp;
+			private Ram rm;
+			private Hdd hd;
+		}
+		class robot{
+			private ArrayList<FlyWay> flyways;
+			// FlyWay 인터페이스로 상위를 선언하고, 상속받은 다양한 실제클래스를 사용할 수 있게 처리.
+		}
+		
+# 학습목표
+1. 객체의 1:1관계 1:다 관계를 이해할 수 있다.
+2. 메서드 매개변수의 이해와 일반 변수처리, 객체처리를 이해하고 활용할 수 있다.
+3. 다양한 메서드 실습예제 가운데
+
+# 주요핵심 keyword
+
+# 주요 진행계획
+
+# 개념 및 원리이해
+	
+			
+			
+		
+		
+			

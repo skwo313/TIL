@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<!-- 
+		# 시멘틱 태그
+		1. header, section, article, footer, nav 태그로 의미가 있는 태그를 말한다
+		2. 위치와 색, 모양이 자동으로 결정되는 것이 아님..
+		3. 개발자가 css를 이용하여 직접 위치와 색, 모양을 지정해야 한다
+		
+		<header>
+		// 페이지나 섹션의 머리말 표현
+		// 페이지 제목, 페이지를 소개하는 간단한 설명
+		<nav>
+		// 하이퍼링크들을 모아 놓은 특별한 섹션
+		// 페이지 내 목차를 만드는 용도
+		<section>
+		// 문서의 장(chapter, section) 혹은 절을 구성하는 역할
+		// 일반 문서에 여러 장이 있듯이 웹 페이지에 여러 <section>가능
+		// 해당 태그(<h1>~<h6>)를 사용하여 절 혹은 섹션의 주제 기입
+		<article>
+		// 본문과 연관 있지만, 독립적인 콘테트를 담는 영역
+		// 혹은 보조 기사, 블로그 포스트, 댓글 등 기타 독립적인 내용
+		<aside>
+		// 본문에서 약간 벗어난 노트나 팁
+		// 신문,잡지에서 주요 기사 옆 관련 기사, 삽입 어구로 표시된 논평 등
+		// 페이지의 오른쪽이나 왼쪽에 주로 배치
+		<footer>
+		// 꼬리말 영역, 주로 저자나 저작권 정보
+		# 위 태그가 기능적을 의미를 가지는 것은 아닌다. 그래서 css로 위치나 크기 등의 
+			속성을 지정하여야 한다.
+		 -->
+		
+		 <style type="text/css">
+		 	/*
+		 	margin: border를 기준으로 포함되는 상위 객체와의 간격
+		 	padding : border를 기준으로 내용/글자 사이와의 간격
+		 	*/
+		 	body{
+		 		margin:0; 
+		 		padding:0; 
+		 		height:100%;
+		 	}
+		 	header{
+		 		width:100%;
+		 		height: 15%;
+		 		background: yellow;
+		 	}
+		 	/*
+		 	float : 연속된 다른 요소객체와의 관계에 대한 정렬을 처리
+		 	*/
+		 	nav{
+		 		width:15%;height:70%;float:left;
+		 		background:orange;
+		 	}
+		 	section{
+		 		width:70%;height:70%; float:left;
+		 		background:olivedrab;
+		 	}
+		 	aside{
+		 		width:15%; height:70%; float:left;
+		 		background:orange;
+		 	}
+		 	/* clear: both : 앞선 요소객체가 float로 정령된 것은
+		 		다시 초기화 시키고 새롭게 정렬을 양방향을 처리할 때. */
+		 	footer{
+		 		width:100%;height:15%;clear:both;
+		 		background:plum;
+		 	}
+		 	
+		 </style>
+		 <header>헤더부분</header>
+		 <nav>메뉴이동처리(navigation)</nav>
+		 <section>section 부분 처리(문서 장/절)</section>
+		 <aside>aside(본문에서 약간 벗어난 노트나 팁)</aside>
+		 <footer>꼬리말 영역</footer>
+	</body>
+</html>

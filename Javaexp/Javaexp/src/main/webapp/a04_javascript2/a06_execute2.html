@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			console.log("실행1");
+			window.onload = function(){
+				console.log("실행4");
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "시작";
+			}
+			
+			console.log("실행2");
+			
+			function callCon(){
+				console.log("실행5");
+			}		
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h3 onclick="callCon()">순서</h3>
+		<script type="text/javascript">
+			console.log("실행3");
+		</script>
+	</body>
+</html>

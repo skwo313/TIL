@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var score = new Student("김영희",70,80,60);
+				score.records();
+			}
+			// ex)
+			function Student(name,kor,eng,math){
+				this.name = name;
+				this.kor = kor;
+				this.eng = eng;
+				this.math = math;
+				this.records = function(){
+					var h2Arry = document.querySelectorAll("h2");
+					h2Arry[0].innerText= "이름"+this.name;
+					h2Arry[1].innerText= "국어점수"+this.kor;
+					h2Arry[2].innerText= "영어점수"+this.eng;
+					h2Arry[3].innerText= "수학점수"+this.math;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		<h2></h2>
+		
+	</body>
+</html>

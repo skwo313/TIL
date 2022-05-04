@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<!-- 
+		1. hyperlink
+			다른 페이지를 이동하게 해주는 태그
+		2. 기본 형식
+			<a href="이동할페이지">표시되는문자열</a>
+		3. 이동 경로설정
+			1) 기본적으로 현재 페이지와 동일한 폴드를 쓰는 페이지는
+				바로 이동이 가능하다.
+			2) 상위 폴드에 있는 파일
+			
+				../start.html : 상위 폴드 경로로 이동하여, 해당폴드에 있는 start.html로 
+				페이지 이동
+				현재경로는 a03_basigTag이고,
+				상위폴드경로는 a01_html폴드이고,
+				그 안에 있는 start.html을 호출한다
+			3) 하위 폴드에 있는 파일로 이동.
+				./a01_sub/a01_sub.html
+				현재 폴드에 하위 폴드 a01_sub에 있는 a01_sub.html파일로 이동
+		 -->
+		<h2>하이퍼링크(기본 경로-현재폴드)</h2>
+		<a href="a01_fontTag.html">첫번쨰 페이지 이동</a><br>
+		<a href="../start.html">상위 경로에 있는 start.html로 이동</a><br>
+		<a href="./a01_sub/a01_sub.html">하위 경로에 있는 start.html로 이동</a><br>
+		<!-- ex) -->
+		<a href="a15_spaceDiv.html">현재 폴더 경로</a><br>
+		<a href="../index.html">상위 폴더 경로</a><br>
+		<a href="./a01_sub/a01_sub2.html">하위 폴더 경로</a><br>
+		<!-- 
+		4. 절대경로설정
+			1) 서버(tomcat/웹서버)를 기동했을 때.
+				- 지정한 서버내 웹 실행의 default 경로가 절대경로로 설정이 되어 다른 페이지를 접ㄱㄴ할 수 있다
+				- 웹 서버의 절대 경로
+				http://localhost:7080/javaexp
+				이 경로가 default 경로이다..
+					파일의 위치 : javaexp\src\main\webapp
+					서버로딩시 위치: http://localhost:7080/javaexp/
+					이 두경로는 웹서버가 기동될 때, 같은 위치로 설정되는 default 경로이다.
+					
+				해당 내용으로 페이지가 호출되면 defualt경로 내에 default 설정파일이 호출된다..
+				web.xml에서 default파일 설정
+				<welcome-file-list>
+			        <welcome-file>index.html</welcome-file>
+			        <welcome-file>index.htm</welcome-file>
+			        <welcome-file>index.jsp</welcome-file>
+			    </welcome-file-list>
+				
+			2) 서버를 기동하지 않고 실행할 때(vscode)
+				- 운영체제의 파일접근방식으로 접근이 된다. c:\\, ...
+		 -->
+		 <h3>웹서버를 활용하여 절대 경로 호출</h3>
+		 <a href="http://localhost:7080/javaexp/index.html">초기 index.html파일</a><br>
+		 <a href="/javaexp/index3.html"><br>
+		 	같은 서버내에서 호출하기에 생략해서 index3.html파일</a><br>
+		 	<!-- webapp 하위에 index3.html 파일이 있으면 호출이 가능하다. -->
+		 <a href="/javexp/a02_jsp/a01_object.jsp">절대경로로 jsp파일 호출이 가능하다</a><br>
+		 <!-- ex) 절대경로 -->
+		 <h3>웹서버를 활용하여 절대 경로 연습</h3>
+		 <a href="/javaexp/show.html">절대경로</a><br>
+		 <a href="/javaexp/a01_html\a04_form\a05_formElemets.html">절대경로2</a><br>
+		 <!-- 
+		 # 웹서버상 절대 경로가 이용되는 형태
+		 1. 하이퍼링크 : 메뉴페이지 이동, 특정 페이지 호출..
+		 2. 이미지 호출 :  <img src="절대경로/이미지명/>
+		 3. 외부 css 호출 : 
+		 4. 외부 js 호출 :
+		  -->
+	</body>
+</html>

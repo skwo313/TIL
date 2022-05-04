@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[script 태그로 실행]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+			# script 
+			1. js는 head나 body에 어디서든지 script /script로 실행이 가능하다.
+			2. 웹 페이지 내에 여러번 삽입이 가능하다.
+			*/
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "script 택로 실행예제";
+			}
+			function chText(obj){
+				obj.innerText = "안녕하세요!(글자 변경됨)";				
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<h3 onclick="chText(this)">글자가 바뀌어라</h3>
+		<h3 onclick="chColor(this)">색상이 바뀌어라</h3>
+		<script>
+			function chColor(obj){
+				// 태그에 <h3 style="속성:속성값;" 을 설정할 수 있듯이
+				// style 속성은 선언하여 속성값을 할당할 수 있다
+				obj.style.color="navy";				
+			}
+		</script>
+		<script type="text/javascript">
+			function chAll(ob){ // var ob = document.querySelector("h4"); // 클릭한 h4를 ob에 할당
+				ob.style.color="yellow";
+				ob.style.background="navy";
+				ob.innerText="잘 바뀌어 졌나요?";
+			}
+		</script>
+		<h4 onclick="chAll(this)">모든 걸 다 바꿔!</h4>
+	</body>
+</html>

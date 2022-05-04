@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script src="/javaexp/a00_com/jquery-3.6.0.js" type="text/javascript"></script>
+		<script>
+			window.onload = function(){
+				var h2Arr = document.querySelectorAll("h2");
+				h2Arr[0].innerText = "시작";
+			};
+			function start(obj){
+				var tds = document.querySelectorAll("td");
+				var int01 = setInterval(function(){
+					for(var idx=0;idx<tds.length;idx++){
+						tds[idx].style.background="";
+					}
+					for(var idx=0;idx<tds.length;idx++){
+						tds[idx].style.background="red";
+					}
+				}, 1000);
+				obj.innerText = "배경색상변경(60초후 종료)";
+				var set01 = setTimeout(function(){
+					
+				},30000);
+			};
+		</script>
+	</head>
+	<body>
+		<h2 onclick="start(this)"></h2>
+		<table width="300px" height="300px" border>
+			<tr><td></td><td></td><td></td><td></td><td></td></tr>
+		</table>
+		
+	</body>
+</html>
+<!-- 
+[1단계:확인] 1. 클래스형 생성자 객체형태로 2021년 연예대상자(이름, 방송사,분야, 상내역)을 필드로 지정하고, show()를 통해서
+            테이블로 출력하세요.
+[2단계:확인] 2. 1X5 테이블을 만들고, 30초동안 배경색상이 왼쪽에서 오른쪽으로 이동, 오른쪽에서 왼쪽으로 이동되게 처리하세요.
+[1단계:개념] 3. jquery 환경설정 방법 2가지를 기술하세요
+[1단계:확인] 4. jquery를 활용한 action 메서드를 활용하여 h7의 배경색상과 글자를 다르게 처리하세요.
+[1단계:개념] 5. jquery의 데이터 출력 메서드들을 기술하세요. 
+	.text() : 요소내부의 text를 갖고옴. 또는 text 바꿈
+	.html() : 요소내부의 html를 String형태로 갖고옴. 또는 html를 바꿈
+			text와 다르게 html태그 기능이 실행
+	
+[1단계:개념] 6. jquery의 속성설정 메서드들을 기술하세요.
+	.css() : ( )의 선택 요소의 css속성값을 갖고옴. 또는 style속성 추가
+	.attr() : ( )의 선택 요소의 기본속성값을 갖고옴. 또는 기본속성 추가
+[1단계:확인] 7. jquery로 구구단의 문제를 임의로 input을 통해서 초기 화면에 출력하고, 
+                답을 입력하고 이에 따라 정답여부를 출력하세요.
+                [ 5 ]X[ 6 ] = [  ] [정답확인]
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script src="/javaexp/a00_com/jquery-3.6.0.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				var ranNum01 = Math.floor(Math.random()*9+1);
+				var ranNum02 = Math.floor(Math.random()*9+1);
+				$("[name=num01]").val(ranNum01);
+				$("[name=num02]").val(ranNum02);
+				$("[type=submit]").click(function(){
+					var inputResult = $("[name=result]").val();
+					var answer = ranNum01*ranNum02;
+					if(inputResult == answer){
+						$("h2").text("정답입니다!")
+					} else{
+						$("h2").text("오답입니다!")
+					}
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<input type="text" name="num01"/>
+		X <input type="text" name="num02"/>
+		= <input type="text" name="result"/>
+		<input id="btn" type="submit" value="결과확인"/>
+		<h2></h2>
+		
+	</body>
+</html>
+ -->

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "시작";
+			
+				var price = prompt("가격을 입력하세요", 0);
+				var cnt = prompt("갯수를 입력하세요", 0);
+				if(price!=null & cnt!=null){
+					var sum = (price*cnt);
+					h2Obj.innerText = sum+"원 입니다.";
+				}else{
+					alert("입력이 안되었습니다");
+				}
+			}
+			// ex)
+			var name = prompt("좋아하는 연예인 이름", "");
+			var age = prompt("좋아하는 연예인 나이", 0);
+			if(name!=null & age!=null){
+				document.write("<h3>좋아하는 연예인 정보</h3>");
+				document.write("<h3>이름:"+name+"</h3>");
+				document.write("<h3>나이:"+age+"</h3>");
+			}else{
+				alert("이름과 나이를 입력 후, 확인을 클릭하세요");
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		
+	</body>
+</html>

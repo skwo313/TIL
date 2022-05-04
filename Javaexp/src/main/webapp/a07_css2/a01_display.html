@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>[display]오늘도 감사한 날! 화이팅!</title>
+		<style>
+			div{
+				border: 2px solid yellowgreen;
+				color: blue;
+				background:aliceblue;
+			}
+			span{
+				border: 3px dotted red;
+				background:yellow;
+			}
+			/*
+			# block : 줄바꿈과 넓이와 높이를 지정할 수 있음
+			# inline : 줄바꿈없이 포함된 글자와 내용으로 넓이와 높이가 지정되어 변경 불가능하다.
+			# inline-block : 줄바꿈없이 포함된 글자와 내용을 가지고 있지만, 넓이와 높이를 지정할 수 있다.
+			# none: 해당요소객체가 보이지 않게 처리(공간도 잡지 않음)
+			cf) visibility:hidden; 과 구분 공간은 잡지만 보이지 않음
+			*/
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "block/inline/inline-block 속성값";
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+		<hr>
+		<!-- 
+		display:none; : 해당 요소객체를 보이지 않고, 공간도 잡지 않게 처리
+		cf) visibility:hidden; 해당 요소객체를 보이지 않지만, 공간을 차지 한다.
+		 -->
+		나는 <div style="display:none;">div(none)</div> 입니다<br>
+		나는 <div style="display:inline;">div(inline)</div> 입니다<br>
+		나는 <div style="display:inline-block; height:50px;">
+				div(inline-block)</div> 입니다<br>
+		<!-- 
+		inline-block은 요소객체가 라인으로 출력하지만, width/height 속성을 설정할 수 있다.
+		 -->		
+		나는 <div >
+				<span style="display:block;">div(block)</span>
+				<span style="display:block;">div(block)</span>
+			</div> 입니다<br>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>오늘도 감사한 날! 화이팅!</title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var h2Obj = document.querySelector("h2");
+				h2Obj.innerText = "폼이벤트 연습";
+				var btnObj = document.querySelector("#btn01");
+				btnObj.onclick = function(){
+					var idVal = document.querySelector("[name=id]").value;
+					document.querySelector("h3").innerText = "입력한 ID: "+idVal;
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h2 align="center"></h2>
+		<p align="center">
+		ID: <input type="text" name="id" size="5"><br>
+		<input id="btn01" type="button" value="로그인" >
+		</p>
+		<h3 align="center">출력할 공간</h3>
+	</body>
+</html>
