@@ -1,0 +1,40 @@
+# 주요학습범위
+1. jsp 전체 범위 내용 확인하기
+	- ajax처리 : 비동기적 데이터 처리
+2. 스프링 프레임워크 : 기본, 전용툴 sts
+
+# 생각해봅시다
+1. 웹 개발의 유형은 어디까지 발전해 왔는가?
+	cgi
+	jsp(모델1)
+	jsp(모델2)
+	framework
+		- struts
+		- spring
+		- anyframework/전자정보프레임웍 :
+			기본 setting을 자동 처리 table를 생성하면 이 테이블을 활용하여 vo, dao, 페이징처리된 화면리스트
+			등록/수정/삭제 처리 웹화면 자동 생성..
+		- springboot
+			추가되는 환경설정이나 lib 처리를 자동으로 처리할 수 있게 만들었음
+			1) jsp환경
+			2) 타임리프를 통한 화면구현, vue(lib)형태로 화면구현
+			3) front서버와, backend서버 분리..
+				- front서버 : node계열 (css, html, js ==> typescript ), vue, react
+				- back서버 : tomcat(db처리, controller, service, dao) ajax로 front에 데이터를
+					전송처리.
+2. ajax를 통해서 처리할 수 있는 프로그램 유형은 어떤 것들이 있는가?
+	1) 순수 js를 통해 controller단에서 요청에 의해 처리되는 화면 처리
+	2) jquery를 통해 controller과의 데이터 처리 및 화면 구현
+	3) axios(ajax lib)를 통한 스프링의 데이터 호출 및 vue 화면으로 구현 처리..
+			
+
+# 학습목표
+1. ajax 개념을 알고, 처리프로세스를 이해하고, backend/frontend을 구분하여 코딩할 수 있다.
+2. 스프링 프레임워크에 대한 이해를 한다.
+
+# 주요핵심 keyword
+1. 기본 js ajax : XMLHttpRequest, open(url, get/post, 비동기여부), send(),
+				responseText(), onreadyStateChange, readyState, status
+2. jquery Ajax : $.ajax({ url:"", type:"", data:"", success:function(){} })
+
+

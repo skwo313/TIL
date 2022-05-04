@@ -1,0 +1,32 @@
+# 생각해봅시다
+1. 요청값을 VO 객체와 자동 mapping 처리는 무엇인가?
+	?id=@@&pass=@@@&name=
+	
+	vo객체에
+	주의 : 필드 private String id;
+	public void setId(String id){}
+	public void setPass(String pass){}
+	public void setName(String name){}
+	String id = request.getParameter("id"); (x) 필요없이 바로 객체로 할당
+	String pass = request.getParameter("pass"); (x) 필요없이 바로 객체로 할당
+	Memeber m = new Memeber();
+	m.setId(id);
+	m.setPass(pass); // bean으로 설정이 되면 요청값을 받아서 객체로 할당하는데까지
+	// 자동으로 처리할 수 있다
+	
+2. el을 통한 session 값은 어떻게 처리되는가?
+	<jsp:useBean scope="page/request/session/application"/>
+	<c:set scope="page/request/session/application"/>
+	${참조명.property명}
+	${mem.id}  ==> mem.getId()
+	
+3. 스프링 개발 환경은 무엇을 말하는가?
+	MVC 패턴으로 개발하는 환경을 구성하는 것을 말한다.
+	필요로 하는 객체는 컨테이너 메모리에 로딩한 상황에서 호출하여 처리하기 때문에,
+		실행속도가 backend단에서 빠르게 처리되는 것을 알 수 있다.
+	요청값, 모델데이터의 효과적인 처리
+	DB 처리를 효율적 처리
+	
+
+# 학습목표
+
