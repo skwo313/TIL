@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{text-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="child-tmp">
+	<div>
+		<button @click="clickEvent">클릭클릭</button>
+		<span>구매갯수: {{cnt}}</span>
+	</div>
+</template>
+<script type="text/javascript">
+/*
+# 상/하위 컴포넌트에서 이벤트 발산하기
+1. 데이터 흐름 처리.
+	1) 상위 컴포넌트 ==> 하위 컴포넌트
+		props 속성을 통해서 전달.
+		cf) new Vue() : 최상위 객체
+			Vuew.component() : 하위 객체
+			
+			전체화면은 Vue() 인스턴스에 있고,
+				포함되는 컴포넌트
+				Vue.component() : 검색을 위한 컴포넌트
+					상위로 전달할 떄는 event와 이벤트 핸들러에 의해서
+					
+				Vue.component() : 검색된 리스트를 위한 컴포넌트
+					상위에서 하위로 전달할 때는 속성(props)에 의해서
+					
+			위와 같은 구조인 경우에 검색 컴포넌트에 이벤트를 검색 버튼 클릭 시 , 발산($.emit())
+			에 의해 이벤트를 상위 Vue()인스턴스의 특정 메서드로 전달을 하고 ,상위 vue 인스턴스는 
+			ajax에 의해 이러한 검색조건을 받아, 데이터를 가져와서.. 검색 리스트를 위한
+			컴포넌트에 <list-comp :list="모델데이터" 형식으로 props로 받은 데이터를 전달해주어야 한다.
+		
+	2) 하위 컴포넌트 ==> 상위 컴포넌트
+		- 이벤트 발산(emit)를 통해서 처리.
+		- 처리 순서
+			하위 템플릿
+				v-on:이벤트명="하위컴포넌트정의함수"
+				function 하위컴포넌트정의함수(){
+					$.emit("하위선언이벤트",전달할매개1, 전달매개2)
+				}
+			<하위컴포넌트	@하위선언이벤트="상위컴포넌트에정의된함수"
+			상위 템플릿
+				function 상위컴포넌트에정의된함수(매개1, 매개2){
+					하위에서 넘겨온 데이터
+ */
+	$(document).ready(function(){
+		Vue.component("child-comp",{
+			template:"#child-tmp",
+			data:function(){
+				return {cnt:0};
+			},
+			methods:{
+				clickEvent:function(){
+					this.cnt=parseInt(this.cnt)+1;	
+					this.$emit("btnclick", this.cnt);
+					// 상위에 btnclick이라는 이벤트에 지금 카운트와 함께 넘긴다..
+					// 컴포넌트의 속성으로 이벤트가 정의된 곳에 이벤트명과 데이터를 넘기
+					// <child-comp @이벤트명="상위의함수">
+					// <child-comp @btnclick
+				}
+			}
+		
+		});
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"상/하위 이벤트 발산", price:2500, tot:0},
+			methods:{
+				parentClick:function(cnt){
+					this.tot = this.price*cnt
+				}
+			}
+		});	
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	  <child-comp @btnclick="parentClick"></child-comp>
+	  <h3>물건가격:{{price}}, 총계:{{tot}}</h3>
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

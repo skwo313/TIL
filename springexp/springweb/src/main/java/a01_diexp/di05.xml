@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+# xml의 dtd 선언 부분
+1. dtd : 상단에 어떤 태그를 사용할지를 선언하는 부분.
+2. dtd에 맞는 태그를 활용할 수 있다.
+# 스프링은 이 dispatcher-servlet.xml에서 선언한 클래스들을 
+객체로 컨테이너에서 로딩 후, 해당 객체들을 url 패턴으로 호출하여 처리한다.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+  		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+   		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+	<!-- 
+	# 다양한 구조체의 컨테이너 설정..
+	1. list : 배열, ArrayList 객체를 설정할 때, 사용된다.
+	2. set : 중복을 하지 않지만, 순서를 확보 못하는 구조체 객체..
+		property="agent"
+			set
+					value 입력
+		public void setAgent(Set<String> agent)
+	3. map : key/value 형식의 데이터를 할당할 때 사용되는 객체
+		Map<key, valueObj>
+		map 
+			entry
+				key/value
+		public void setConfig(Map<String, Integer> config)
+	4. Properties : key/value 형식 데이터 등록
+		props
+			prop key="키" value="값"
+	 -->
+	 <bean id="sensor01" class="a01_diexp.vo.Sensor">
+	 	<!-- void setAgent(Set<String> agent) -->
+	 	<property name="agent">
+	 		<set>
+	 			<value>주식매매</value>
+	 			<value>주식매매</value>
+	 			<value>자산관리</value>
+	 			<value>자산관리</value>
+	 			<value>주식매매</value>
+	 			<value>주식매매</value>
+	 			<value>보험관리</value>
+	 		</set>
+	 	</property>
+	 	<!-- void setAddInfo(properties addInfo) -->
+	 	<property name="addInfo">
+	 		<props>
+	 			<prop key="threshold">1500</prop>
+	 			<prop key="retry">3</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 
+	 <bean id="fruitShop" class="a01_diexp.vo.FruitShop">
+	 	<property name="prod">	<!-- setProd(Set<String> prod) -->
+	 		<set>
+	 			<value>바나나</value>
+	 			<value>바나나</value>
+	 			<value>사과</value>
+	 			<value>사과</value>
+	 			<value>딸기</value>
+	 			<value>딸기</value>
+	 		</set>
+	 	</property>
+	 	<property name="prodInfo"> <!-- setProdInfo(Properties prodInfo) -->
+	 		<props>
+	 			<prop key="바나나">5000</prop>
+	 			<prop key="사과">4500</prop>
+	 			<prop key="딸기">12000</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 
+	 
+</beans>

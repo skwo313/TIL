@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<!-- 
+	// springweb.a02_mvc.a03_dao.A01_EmpDao ; dao의 인터페이스명
+	// ArrayList<Emp> getEmpList(Emp sch);
+	1. 메서드의 명 : id
+	2. 리턴타입 : resultType : mybatis.Spring.xml에 선언된 alias로 선언 가능
+	3. 매개변수 : parameterType
+	이렇게 연동관계를 설정하여 dao와 sql을 연동하여 결과를 처리한다.
+ -->	
+<mapper namespace="springweb.a02_mvc.a03_dao.A01_EmpDao">
+	<select id="getEmpList" resultType="emp" parameterType="emp">
+		select *
+		from emp02
+		where ename like '%'||#{ename}||'%'
+		and job like '%'||#{job}||'%'
+	</select>
+	<select id="getCount" resultType="int" parameterType="int">
+		select count(*) cnt
+		from emp02
+		where deptno = #{deptno}
+	</select>
+	<select id="getJobCount" resultType="int" parameterType="String">
+		select count(*) cnt
+		from emp02
+		where job like '%'||#{job}||'%'
+	</select>
+	<select id="getEmpDetail" resultType="emp" parameterType="int">
+		select * 
+		from emp02
+		where empno = #{empno}
+	</select>
+	
+	<select id="getEnames" resultType="String" parameterType="int">
+		select ename
+		from emp
+		where deptno = #{deptno}
+	</select>
+	<select id="getEmpno" resultType="int" parameterType="String">
+		SELECT empno
+		FROM emp 
+		WHERE job = #{job}
+	</select>
+	<select id="getDeptEmp" resultType="deptemp">
+		SELECT dname, empno, ename name, job, TO_CHAR(HIREDATE, 'Q') div,
+			nvl(sal, 0)+NVL(comm,0) tsal 
+		FROM EMP e , DEPT d 
+		WHERE e.DEPTNO = d.DEPTNO
+	</select>
+	<select id="getSalGrade" resultType="salgrade">
+		SELECT empno, ename, sal, grade 
+		FROM EMP e , SALGRADE s 
+		WHERE sal BETWEEN losal AND hisal
+	</select>
+	
+	<select id="getSchEmp" resultType="emp">
+		SELECT * 
+		FROM emp02
+		WHERE mgr = #{mgr}
+		AND deptno = #{deptno}
+	</select>
+	
+	<select id="getEmp" parameterType="int" resultType="emp">
+		select * from emp02 where empno=#{empno}
+	</select>
+	<update id="uptEmp" parameterType="emp">
+		update emp02
+			set ename = #{ename},
+				job = #{job},
+				mgr = #{mgr},
+				hiredate = to_date(#{hiredateS}, 'YYYY-MM-DD'),
+				sal = #{sal},
+				comm = #{comm},
+				deptno = #{deptno}
+		where empno = #{empno}
+	</update>
+	<delete id="delEmp" parameterType="int">
+		delete from emp02 where empno = #{empno}
+	</delete>
+</mapper>
+

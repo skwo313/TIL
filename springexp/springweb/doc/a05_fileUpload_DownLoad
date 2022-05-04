@@ -1,0 +1,148 @@
+# 스프링에서 파일처리하기
+1. 파일 처리 프로세스
+	화면에서 첨부파일을 선택하여, 첨부를 하고,
+	파일등록 버튼을 클릭하여, 서버에 전송이 된다.
+	전송된 파일이 서버에 전송되어 목록을 확인할 수 있다.
+
+2. 파일 처리를 위한 환경 구성
+	1) container에서 파일업로드 viewer 선언.
+		org.springframework.web.multipart.commons.CommonsMultipartResolver
+	2) 업로드 위치 config 파일을 설정(파일서버가 있으면 파일서버 위치를 지정)
+		src\main\java\resource\config 에 key=value 형식으로 지정
+		upload=경로명지정
+		ex) upload=C:\a01_javaexp
+		
+3. 파일 처리 개발 순서
+	1) 초기화면 호출 : 내용과 첨부파일설정
+		controller(/upload.do) ==> view 호출
+	2) view단 구성
+		<form enctype="multipart/form-data" method="post"
+				action="/upload.do" >
+			내용: <input type="text" name="title"/><br>
+			첨부파일: <input type="file" name="report" />
+	3) 파일첨부 시 처리할 controller 선언
+		vo가 없을 시,
+			public String upload(@RequestParam("report") MultipartFile report,
+								 @RequestParma("title") String title
+		vo가 있을 시(private MultipartFile report 포함)
+			public String upload(FileVo vo)
+			
+	4) 파일첨부 시 처리할 service 선언(springweb.a02_mvc.a02_service.A03_FileService.java)
+		파일명 가져오기 : report.getOriginalFilename()
+		경로설정 가져오기 : 
+			@Value("${upload}")
+			private String upload;
+		저장할 파일 객체 가져오기
+			File uploadFile = new File(upload+fname);
+		MultipartFile 객체를 실제 특정한 경로에 저장하기 위해 File로 전환하여야 한다.	
+			report.transfetTo( uploadFile );
+	5) 데이터베이스에 파일정보를 등록, 등록된 내용을 리스트 할 수 있게 처리.
+		테이블 구성 : 고유키, 경로명, 파일명, 등록일, 수정일, 기타
+			create table fileInfo(
+				fno number,
+				pathinfo varchar2(500),
+				fname varchar2(100),
+				regdte date,
+				uptdte date,
+				etc varchar2(500)
+			);
+			create sequence fno_seq
+				start with 1000
+				minvalue 1000
+				maxvalue 9999;
+				
+		등록/조회 dao mapper 작성
+			sql 작성
+				select * from fileInfo
+				INSERT INTO fileInfo VALUES(fno_seq.nextval, 'upload', 
+					'연습.txt', sysdate, sysdate, '기타');
+			vo 작성
+				FileInfo.java
+				private int fno;
+				private String pathinfo;
+				private String fname;
+				private Date regdte;
+				private Date uptdte;
+				private String etc;
+			dao 
+				public void insertFileInfo(FileInfo ins);
+				public FileInfo getFileList();
+			mapper
+				<insert id="insertFileInfo" parameterType="fileInfo">
+					INSERT INTO fileInfo VALUES(fno_seq.nextval, #{pathinfo}, 
+						#{fname}, sysdate, sysdate, #{etc})
+				<select id="getFileList" resultType="fileInfo">
+					select * from fileInfo
+						
+				
+		
+		service단에서 파일업로드 시 데이터베이스 입력 처리
+		
+# 파일 다운로드 
+1. 프로세스
+	다운할 파일을 클릭 시, 해당 파일 정보를 요청값으로 해서, controller를 호출한다.
+	요청된 컨트롤러는 해당 파일에 model데이터로 설정하여,
+	컨테이너에서 지정된 다운로드 viewer를 호출한다.
+	다운로드 viewer에 의해서 파일을 서버에서 브라우저가 있는 곳으로 stream으로
+	보내어져서 다운로드가 시작하고, 특정한 위치에 파일을 확인할 수 있다.
+2. 사전 이해 개념
+	1) 스프링 컨테이너의 viewer
+	2) 웹프로그래밍에서 파일을 다운로드 시, 처리할 기본 구성요소
+		서버 다운로드할 파일을 만들어서 ===> 클라이언트 브라우저
+		response 객체를 통해서 파일을 binary형식으로 만들어서 전달 처리
+		response header부분에 파일을 전송할 수 있는 정보를 설정해서 전달할 수 있다.
+		- file 크기, 파일명, 형식
+	3) 한글 encoding 처리
+		파일명이 한글일 때도 브라우저에 정삭적으로 전달하기 위해서 설정..
+3. 개발 절차
+	1) 사전 환경 설정 작업
+		- 컨테이너에서 jsp view와 일반 view를 구분하기 위한 선언방식
+		기본적으로 bean으로 등록된 view가 먼저 호출이 되고, 컨테이너에서 
+		이 view가 없을 때, jsp view 즉 jsp 파일이 호출되게 선언
+		- viewer클래스 생성 : 파일을 다운로드할 수 있게 viewer를 클래스로 선언하여야 한다.***
+		컨테이너에 등록.
+	2) 프로그래밍 순서
+		=스프링 컨테이너 설정===============================
+		- 다운로드 viewer 클래스 만들기(파일객체, response객체를 통해 파일전송할 수 있게 설정, stream으로 파일
+		- 다운로드 viewer 컨테이너에 등록 bean
+		=컨트롤단 처리=====================================
+		- 화면에서 클릭시, 요청값으로 파일이나 파일관련 정보를 받아서 처리하는 downloadController
+			선언
+		- 모델데이터 파일관련 정보 설정
+		- return "다운로드 viewer" 호출
+		======================================
+		- view단에서 특정한 파일을 클릭 및 controller url호출 하게 처리 loaction.href="";
+	
+# 다운로드 viewer 처리
+1. 상속 AbstractView
+	1) overriding 메소드 재정의
+	- renderMergedOutputModel
+		매개변수
+		Map<String, object> model,
+		HttpServletRequest request
+		HttpServletResponse response
+2. 다운로드 처리
+	1) upload된 파일 가져오기.(서버가 가지고 있는 파일)
+		- 현재 viewer를 호출시, 사용되는 model 객체가져오기
+		- File 객체 생성
+	2) 모델과 함께 있는 File객체 가져오기.(서버가 가지고 있는 파일)
+	3) 반응 객체(response)로 전달 처리(클라이언트에 파일)
+		- 전체 파일명
+		- 파일명
+		- 파일의 길이
+		- SerContentType 설정 : application/download;charset-utf-8
+		- SetContrentLength로 파일의 길이 설정
+		- 한글명된 파일은 Encoding 처리.
+		- 파일을 response에 탑재를 위한 header부분 설정
+			Content-Disposition으로 attachment로 파일 설정
+			Content-Transfer-Encoding설정 binary 설정..
+		- 파일을 network으로 전송하기 위해 Stream객체로 변환
+			InputStream(읽어오는 객체) ==> OupStream 보내는 객체..
+			FileInputStream(파일객체)
+			FileCopyUtils.copy(inputstram, outstream)
+			outstream의 flush를 통해서 자원을 해제
+		
+		
+		
+
+			

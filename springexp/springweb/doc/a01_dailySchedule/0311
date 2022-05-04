@@ -1,0 +1,79 @@
+# 주요학습범위
+1. 스프링 boot와 vue를 연동하는 게시판 조회화면
+
+# 생각해봅시다.
+1. 스프링 boot의 화면단(view)과 데이터 베이스의 설정 방식은 무엇이 있을까?
+	- 특정한 패키지와 이름으로 자동 controller 등록이 가능
+	- mybatis mapper 설정, view단의 호출 처리 부분..
+	
+2. 스프링 boot와 vue는 어떤 방식으로 데이터를 처리하는가?
+	- 스프링 boot의 java와 mapper를 통해서 backend 처리
+	- resources 하위에 templates와 static를 통해서 view단 html, js, css 설정
+	- ajax방식으로 backend단 데이터 처리.. 
+
+3. vue의 이벤트 버스란 어떤 작용을 하는 것인가?
+	- 컴포넌트간에 데이터 전송
+		emit, on을 이벤트 방식으로 데이터 전송처리.
+
+
+
+
+1. 메일 발송과 수신되는 서버를 기술하세요.
+	SMTP : 클라이언트가 메일을 보내거나, 메일 서버 간에 메일을 주고 받을 때 사용되는 프로토콜
+	POP3, IMAP : 메일 서버에 도착되어 있는 메일을 클라이언트로 가져올 때 사용 / 동기화 방식 차이
+	 
+2. 스프링에서 메일이 발송되게 하는 개발 환경을 기술하세요
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	 	<property name="host" value="smtp.gmail.com"/>  
+	 	<property name="port" value="587"/>
+	 	<property name="username" value="skwo00313@gmail.com"/>
+	 	<property name="password" value="rhkddn4772"/>
+	 	<!-- 보안 관련 설정 -->
+	 	<property name="javaMailProperties">
+	 		<props>
+	 			<prop key="mail.smtp.auth">true</prop>
+	 			<prop key="mail.smtp.starttls.enable">true</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 
+3. 
+	# service
+	
+	public String sendMail(Mail email) {
+		String msg = "메일 발송 성공";
+		// 1. 멀티 미디어형 메일 데이터 전송.
+		MimeMessage mmsg = sender.createMimeMessage();
+		try {
+			// 2. 제목 설정.
+			mmsg.setSubject(email.getTitle());
+			// 3. 수신자 설정.
+			mmsg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciever()));
+			// 4. 내용 설정.
+			
+			mmsg.setText(email.getContent());
+			// 5. 발송 처리
+			sender.send(mmsg);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			msg = "메일 발송 에러: " + e.getMessage();
+			System.out.println(msg);
+		} catch (Exception e) {
+			msg = "일반 에러 발생:" + e.getMessage();
+		}
+		
+		return msg;
+	}
+	# controller
+	@RequestMapping( value= "mailFrm.do", method = RequestMethod.GET)
+	public String mailFrm() {
+		return "WEB-INF\\views\\a02_mvc\\a10_mailForm.jsp";
+	}
+	
+	@RequestMapping( value = "mailSend.do", method = RequestMethod.POST)
+	public String mailSend(Mail mail, Model d) {
+		
+		d.addAttribute("msg", service.sendMail(mail));
+		return "WEB-INF\\views\\a02_mvc\\a10_mailForm.jsp";
+	}
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+# xml의 dtd 선언 부분
+1. dtd : 상단에 어떤 태그를 사용할지를 선언하는 부분.
+2. dtd에 맞는 태그를 활용할 수 있다.
+# 스프링은 이 dispatcher-servlet.xml에서 선언한 클래스들을 
+객체로 컨테이너에서 로딩 후, 해당 객체들을 url 패턴으로 호출하여 처리한다.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+  		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+   		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+	<!-- 
+	# 소스를 통한 autowiring 처리
+	1. 컨테이너에서는 객체 생성만 하고, 연관관계 설정은 객체에 선언으로 처리 할 수 있다.
+	2. 처리순서
+		1) 스프링 컨테이너는 객체 생성
+		2) 생성된 객체에서 autowiring annotation 선언.
+		3) main()에서 해당 객체를 통해 연관관계 할당 여부 확인..
+	3) 주의 사항.
+		1) injection(의존성 주입)은 접근제어자 상관없이 처리가 가능하다.
+			- 필드, 메서드에서 가능하다.
+		2) 의존성 주입으로 인해 객체생성을 하지 않고, 컨테이너 객체들끼리 할당이 가능하다.
+	 -->
+	 <!-- 버전에 따라서 소스상 autowiring을 할 떄, 필요하다. -->
+	<context:annotation-config/>
+	<bean id="gm" class="a01_diexp.vo.GentleMan">
+		<constructor-arg value="홍신사"/>
+	</bean>
+	<bean id="hp" class="a01_diexp.vo.HandPhone">
+		<constructor-arg value="아이폰12"/>
+		<constructor-arg value="apple"/>
+	</bean>
+	
+	<!-- ex -->
+	<context:annotation-config/>
+	<bean id="gs" class="a01_diexp.vo.GiftSender">
+		<constructor-arg value="홍길동" />
+	</bean>
+	<bean id="prod" class="a01_diexp.vo.Product">
+		<constructor-arg value="사과" />
+		<constructor-arg value="3000" />
+	</bean>
+</beans>

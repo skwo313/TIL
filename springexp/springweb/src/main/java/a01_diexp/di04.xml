@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+# xml의 dtd 선언 부분
+1. dtd : 상단에 어떤 태그를 사용할지를 선언하는 부분.
+2. dtd에 맞는 태그를 활용할 수 있다.
+# 스프링은 이 dispatcher-servlet.xml에서 선언한 클래스들을 
+객체로 컨테이너에서 로딩 후, 해당 객체들을 url 패턴으로 호출하여 처리한다.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+  		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+   		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+	<!-- 
+	# 1:다 관계 객체 선언과 활용.
+	1. 마트에서 여러가지 물건을 구매할 수 있듯이, 객체는 1:다 관계로 설정하여 사용할 수 있다.
+	2. 선언 순서
+		1) 포함될 객체
+			물건객체 - 생성자를 통해서 선언하되 id값을 여러가지로 선언하여 사용할 수 있다.
+		2) 포함할 객체
+			마트객체 
+				마트명, ArrayList<Product> 형태로 필드를 선언한다.
+				위에 선언한 물건 객체를 setList(ArrayList<Product> plist)로 담을 수 있다.
+		3) di의 xml 형태로 다중의 객체 할당하기..
+			property name="list"
+				list
+					ref bean="선언된 객체의 참조변수1"
+					ref bean="선언된 객체의 참조변수2"
+					ref bean="선언된 객체의 참조변수3"
+	 -->
+	 <!-- 구매할 객체 선언 -->
+	<bean id="prod01" class="a01_diexp.vo.Product">
+		<constructor-arg value="사과"/>
+		<constructor-arg value="2000"/>
+	</bean>	 
+	<bean id="prod02" class="a01_diexp.vo.Product">
+		<constructor-arg value="바나나"/>
+		<constructor-arg value="4000"/>
+	</bean>	
+	<bean id="prod03" class="a01_diexp.vo.Product">
+		<constructor-arg value="딸기"/>
+		<constructor-arg value="12000"/>
+	</bean>
+	 <!-- 포함할 객체 선언
+	 Mart mt = new Mart("행복마트");
+	 ArrayList<Product> plist = new ArrayList<Product>();
+	 plist.add(prod01);
+	 plist.add(prod02);
+	 plist.add(prod03);
+	 mt.setPlist(plist);
+	  -->
+	 <bean id="mt" class="a01_diexp.vo.Mart">
+		<constructor-arg value="행복마트"/>
+		<property name="plist">
+			<list> <!--  해당 메서드를 통해서 들어올 수 있는 객체가 ArrayList형이기에 선언 -->
+				<ref bean="prod01" /> <!-- 추가 되는 내용이 객체형일  -->
+				<ref bean="prod02" /> <!-- 추가 되는 내용이 객체형일  -->
+				<ref bean="prod03" /> <!-- 추가 되는 내용이 객체형일  -->
+			</list>
+		</property>
+	</bean>
+	 
+	 <bean id="ps1" class="a01_diexp.vo.Passenger">
+	 	<constructor-arg value="홍길동"/>
+	 	<constructor-arg value="35"/>
+	 </bean>
+	 <bean id="ps2" class="a01_diexp.vo.Passenger">
+	 	<constructor-arg value="마길동"/>
+	 	<constructor-arg value="25"/>
+	 </bean>
+	 <bean id="ps3" class="a01_diexp.vo.Passenger">
+	 	<constructor-arg value="신길동"/>
+	 	<constructor-arg value="15"/>
+	 </bean>
+	 
+	 <bean id="bus" class="a01_diexp.vo.Bus">
+	 	<constructor-arg value="7780"/>
+	 	<property name="plist">
+	 		<list>
+	 			<ref bean="ps1"/>
+	 			<ref bean="ps2"/>
+	 			<ref bean="ps3"/>
+	 		</list>
+	 	</property>
+	 </bean>
+</beans>

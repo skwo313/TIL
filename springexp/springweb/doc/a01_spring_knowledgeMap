@@ -1,0 +1,290 @@
+# 스프링의 지식체계 계열화
+1. 환경설정에 대한 이해
+	- view :
+		front단 처리
+		jquery + bootstrap
+		
+2. 스프링의 기본적인 처리 순서.
+	web.xml ==> dispatcher-servlet.xml ==> controller ==> view 호출..
+	웹서버를 기동하고, 브라우저 주소값을 입력하고 서버에 접속했을 때, web.xml에
+	가장 먼저 접근한다.
+	web.xml에서 설정한 내용을 기동한다.
+	1. 초기 default 화면 로딩 : <welcome-file-list>
+		http://localhost:7080/springweb/으로 호출되는 파일 순서 리스트
+	2. front controller 설정
+		*.do 끝나면 스프링프레임워크 환경으로 호출되게 설정
+		DispatcherServlet ==> 사용자정의 controller를 호출
+	3. DispatcherServlet 선언과 함께, WAS로 통해 사용할 객체들과 설정 내용을
+		dispatcher-servlet.xml 안에 선언하고, 이 선언된 내용을
+		첫번째 url을 호출할 때, 메모리에 로딩된다.
+	4. 메모리에 로딩된 객체들 중에 url패턴이 맞는 controller안에 기능 메서드를 호출
+		1) 요청하는 url
+			서버내용 동일한 url pattern을 설정하면 에러가 발생한다.
+			@RequestMapping("/start.do")
+		2) 요청값 즉, query string에 대한 처리
+		3) model 데이터 설정 처리
+		4) 호출한 view을 forward방식으로 호출
+			cf) redirect 방식과 forward 방식의 차이
+				redirect : request, response 객체를 포함시키지 않고 호출하기에
+						모델데이터를 처리할 수 없다.
+				forward : request, response 객체를 포함시키면서 호출하기에
+						요청값, 모델데이터를 처리할 수 있다
+		@RequestMapping("/start.do")
+		public String start(){
+			return "WEB-INF\\views\\a01_springStart.jsp";
+		}
+		주의) WEB-INF는 보안 폴드이기에 직접적인 호출은 불가능하게 되어 있다.
+			스프링의 경로 보안을 위해 controller 단위 url를 통해서만 view단이 호출되게 처리
+	
+	
+	1) 스프링 MVC 초기화면 호출.
+		- controller 생성
+			- urlpattern 설정, 기능메서드 호출.
+			- @Controller 설정.
+			- model 데이터,
+			- view단 호출.
+		- dispatcher-servlet.xml에 controller 등록
+		- view단 모델 데이터 호출..
+		- controller에 설정되어 있는 url 패턴으로 호출하여 화면 로딩 처리..
+	
+3. DI에 대한 이해 및 처리.
+	dispatcher-servlet.xml의 스프링에서 사용되는 컨테이너 메모리의 사용방법을
+	xml파일과 main()메서드가 있는 클래스를 통해 연습한다.
+	이 후, 전체 컨테이너 설정 및 활용을 하고자 한다.
+	
+	1) autowiring
+		- 컨테이너 안에 있는 객체들 간에 연관관계를 설정해놓았을 때, 자동으로 할당되어 사용할 수 있게 하는 것을
+			말한다.
+		- 컨테이너에서 선언 - autowire="byType/byName"
+		- <context:annotation-cofig/>를 통해, 소스내에서 autowiring 처리
+	2) 특정한 패키지단위 자동 객체 로딩
+		- 컨테이너에 선언되어 사용할 객체를 class선언 시, 사용되는 package단위로 설정하여 사용 
+			<context:component-scan base-package="a01_diexp.vo3/>
+	3) autowiring 개념과 component-scan을 조합하여, 특정한 패키지에 filter객체를
+		선언하면, 객체의 등록과 함께 자동 autowiring 개념으로 dependency injection
+		(의존성 주입)을 자동으로 처리할 수 있다.	
+
+4. spring MVC
+	1) controller 호출 방식
+		- url 패턴
+		- 요청값 처리.
+		
+	2) model 처리
+		- service ==> dao ==> XXXMapper.xml을 통해서 요청값을 넘긴 후, 다시 (매개변수 전달)
+		- XXXMapper.xml ==> dao ==> service ==> controller 모델 데이터 설정.(리턴값을 통해서 전달)
+	
+	3) view단 처리
+		- form 하위 요소객체 : 입력을 통해 요청값 처리(query string)
+		- table 리스트 처리 : 모델데이터를 통해서 el/jstl을 활용하여 출력 처리
+		- css/html 화면 구성
+		- js, jquery를 통해서 유효성 check, 동적인 이벤트 처리..
+		
+	4)
+	
+5. database 처리를 위한 mybatis framework활용
+	1) dao, mapper 연결 규칙 알기..
+		# dao
+		interface EmpDao{
+		public ArrayList<Emp> empList(Emp sch);
+		# XXXMapper.xml
+		<select id="empList" parameterType="emp" resultType="emp"
+			패키지명+인터페이스명 = namespace 속성
+			메서드명 = id 속성값
+			매개변수 객체(Emp sch) = parameterType 속성값
+			리턴 객체(ArrayList<Emp>) = returnType 속성값
+			
+	2) dao 인터페이스의 내부적인 결과 생성과정에 대한 이해
+		XXXMapper.xml + interface ==> 실제 객체가 mybatis를 통해서 만들어진다
+		EmpDao empdao = new EmpDaoObj();	상위 추상 인터페이스 = 하위 실제 객체() : 다형성 처리
+		class EmpDaoObj implements EmpDao{
+
+6. AOP
+
+7. 기타 실무 예제
+	파일업로드
+	ajax 처리 : fullcalendar(jquery lib)
+	채팅
+	다국어 처리
+	배치프로그래밍
+	게시판(파일업로드, 페이징처리, 무한레벨 답글 작성(계층 구조 데이터))
+
+# 스프링 기본 호출 처리.
+1. controller 클래스 만들기
+2. @Annotation Controller 설정.
+3. dispatcher-servlet에 controller 등록하기..
+4. @RequestMapping("/gogo2.do")
+	함께하는 기능메서드 선언 : 주의 /gogo2.do 기존의 이름이 아니어야 한다.
+5. 메서드 선언
+	public String 메서드명(){
+		return "리턴할 view";
+	}
+6. 요청값 형식 설정
+	?nmae=himan&pass=7777
+	public String 메서드명(@RequestParam("name") String name,
+						 @RequestParam("pass") String pass,
+						 @RequestParam("age") int age
+		){
+		
+	요청값은 매개변수로 @RequestParam("요청키") 받을데이터유형 변수명
+7. 위 url + 요청값으로 포함해서
+	http://localhost:7080/springweb/gogo2.do?name=himan&pass=7777
+	으로 해서 위의 기능 메서드를 호출하여 처리한다.
+	
+# 스프링의 핵심 이해
+1. 서버와 클라이언트단의 데이터 전송 및 출력
+
+	클라이언트(브라우저) =======> 서버(톰캣)
+	1) 브라우저의 url 주소를 통해 /start.do라는 urlmapping 주소를 호출하면
+	2) 서버는 해당 url 주소에 /start.do로 연결되어 있는 jsp를 출력한다.
+		http://loacalhost:7080/springweb/start.do
+		@RequestMapping("/start.do")
+		public String start(){
+			return "@@@@/call.jsp";
+		}
+	3) 마지막에 호출된 jsp를 html로 최종적으로 변경되어, 서버에서 브라우저로 
+		전달되어 브라우저 화면에 출력된다.
+	4) 화면에서 아래와 같이 데이터를 서버에 전달할 내용이 있으면
+		url 주소와 요청값이 전달되어 진다.
+		id:[  ]
+		pass:[  }
+		[로그인]
+		<form action="${path}/login.do"
+			<input name="id">
+			<input name="pass">
+	5) 위 action 주소와 input값에 입력된 내용은 login.do?id=himan&pass=7777
+	6) 컨트롤러 호출
+		@RequestMapping("/login.do")
+		public String login(Member m, Model d){
+			m.getId() : himan
+			m.getpass() : 7777
+			d.addAttribute("member",service.getMember(m)); // service, dao, mapper.xml
+			// 데이터가 있으면 member라는 모델데이터에 객체가 들어간다
+			d.addAttribute("login", "로그인성공");
+			
+			return "@@@@/main.jsp";
+		}
+	7) main.jsp
+		js에서 모델 데이터 받기..
+		var login = "${login}";
+		
+		<table>
+			<tr><td>회원아이디</td><td>${member.id}</td></tr>
+			<tr><td>회원명</td><td>${member.name}</td></tr>
+			<tr><td>권한</td><td>${member.auth}</td></tr>
+
+# 파일 업로드 처리
+1. 처리 프로세스
+	첨부파일을 추가해서 전송하면
+		<form>
+		<input type="file"/>
+	서버에서 받아서
+		controller단에서 Multipart 객체를 통해 받아서
+		
+	특정한 파일서버의 위치에 저장 처리한다.
+		MultiPart 객체를 File객체로 변환하여 지정한 파일 서버에 저장 처리
+		
+2. 개발 순서
+	1) 컨테이너에 파일업로드 처리하는 객체 등록, 파일저장위치를 conf로 설정
+	2) controller에서 해당 file객체의 이름을 Multipart파일 객체로 받아서
+	3) service단에 특정한 위치에 저장
+		
+# 스프링에서 session 처리
+0. web 프로그래밍에서 session 범위
+	page, request, session, application
+1. session이란?
+	서버와 클라이언트의 관계속에 서버에 저장되는 임시 메모리를 말하고,
+	서버(tomcat)와 클라이언트(브라우저)의 연결된 상황에서 서버쪽에 데이터를 저장하여 가지고 
+	있어서 여러가지 처리를 할 때, 활용한다.
+2. 주요 기능
+	1) 로그인 후, 회원 정보(아이디, 이름, 권한, 포인트)를 가지고, 각 페이지별/기능버튼별로
+		로그인 여부와 권한에 따른 접근 처리를 할 수 있다.
+	2) 임시로 장바구니나 쇼핑카트에 결재전에 특정한 데이터를 가지고 있다가 결재 후에는 DB로
+		처리 하게 할 때, 활용된다.
+3. 스프링에서 session 처리 방법
+	1) Controller 단에서 설정
+		- 공통 컨트롤 속성값 설정 :
+			SessionAttributes("세션명")
+			ModelAttribute("세션명")
+		- 각 기능 메서드별로 요청값에 의해 받는 모델 attribute 객체에 의해 session 값을 설정 처리한다.
+	
+	2) JSP의 Servlet에서 지원하는 HttpServletRequest 객체의 getSession()메서드를 활용하여 
+		session을 설정 처리..
+		
+# 간단한 login 세션 처리하기
+1. 핵심파일
+	컨트롤러 : A07_SessionController.java
+	뷰 : WEB-INF\views\a10_sessLogin.jsp
+2. 처리할 프로세스
+	1) 초기 로그인 화면에서 아이디와 패스워드 입력 로그인 클릭 컨트롤러 호출
+	2) 컨트롤러 id, pass가 himan/7777일 때,
+		로그인 성공, session값으로 이름과 권한, point할당 
+			main 페이지 이동 session으로 상단에 @@ 로그인 중 표기
+			특정 버튼이 권한에 맞을 떄가 기능 처리가능 하도록 session 값을 확인
+		그렇지 않을 떄, 다시 로그인 화면 호출 
+3. 개발 순서 및 핵심 코드..
+	1) 컨트롤러 
+		@GetMapping("/logFrm.do")
+		public String logFrm(){
+			return "WEB-INF\views\a10_sessLogin.jsp";
+		}
+	2) 로그인 화면 a10_sessLogin.jsp 아이디 패스워드 처리
+		<form action="${path}/login10.do" method="post">
+	3) 로그인 session 처리 controller
+		@PostMapping("/login10.do")
+		public String login10(@ModelAttribute("member") Member m, Model d){
+			String page = "a10_sessLogin.jsp";
+			if(m.getId().equals("himan")&&m.getPass().equals("7777")){
+				m.setName("홍길동"); m.setAuth("admin"); m.setPoint(10000);
+				d.addAttribute("msg", "로그인 성공");
+				page="a11_main.jsp"
+			}else{
+				d.addAttribute("msg","로그인 실패");
+			}
+			return page;
+		}
+	4) 화면단 처리 a11_main.jsp
+		${member.name} ${member.auth} .. 등 확인	
+	5) 공통 js msg 처리
+		var msg = "${msg}";
+		if(msg!=""){
+			alert(msg);
+		}
+
+# jquery lib를 활용한 ajax 통신 처리
+1. 필요한	jquery lib를 다운 받는다.
+	fullcalendar
+2. 기본 환경 내용과 파일을 확인 한다.
+3. 해당 lib의 doc파일을 확인한다.
+4. 스프링으로 초기화면이 나올 수 있도록 공통 파일을 설정한다.
+5. 핵심 json 데이터를 확인한다.
+6. DB 구조를 확인하고 처리할 수 있도록 한다.
+	- 테이블 만들기
+	- 기본 sql 작성하기
+7. 데이터 처리를 위한 dao/mapper 설정 처리
+8. service/controller 설정..
+9. 각 내용별로 업무 내용 처리
+	1) 조회하기
+	2) 등록하기
+	3) 수정하기
+	4) 삭제하기
+	
+# 메일 발송 처리
+1. 기본 환경 설정.
+	- 메일 서버 계정 생성 및 확인
+		gmail.com 계정 등록
+		보안 설정 부분 처리.
+	- 컨테이너에서 gmail 서버 활용할 수 있게 등록 처리..
+	
+2. 초기 메일 화면 구성
+	- controller/view단
+		발송할 메일 주소, 수신 메일 주소
+		메일 내용
+	- 요청 처리 controller
+	- 메일 처리 service
+		메일 처리 api를 통해서 메일 발송처리.
+		
+				
+			
+			
+			
+			

@@ -1,0 +1,49 @@
+2022-03-05
+# 전날 복습
+[1단계:개념] 1. 스프링 부트를 생성 후, resources\application.properties를 통해 설정할 속성값을 기술하세요.
+			자동으로 만들어질 컨테이너에 대한 내용을 text 형식으로 설정할 수 있다
+			내장된 톰켓의 server.port값
+			
+			mybatis 설정값
+			
+[1단계:개념] 2. gradle을 통해 설정할 내용과 적용할 방법을 기술하세요.
+			라이브러리 디펜던시 적용 
+			implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+			   implementation 'org.springframework.boot:spring-boot-starter-web'
+			   implementation 'org.springframework.boot:spring-boot-starter-websocket'
+			   testImplementation 'org.springframework.boot:spring-boot-starter-test'   
+			   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+			   runtimeOnly 'com.oracle.database.jdbc:ojdbc8' : DB의 jdbc 드라이버 설정
+			
+			   implementation 'commons-io:commons-io:2.8.0'
+			   implementation 'commons-fileupload:commons-fileupload:1.4'
+[1단계:개념] 3. 스프링 부트의 기본 MVC 설정 구조를 기술하세요..
+			#application.properties에 설정
+				spring.mvc.view.prefix=/WEB-INF/views/
+				spring.mvc.view.suffix=.jsp
+[1단계:개념] 4. 스프링 부트에서 DB를 처리하고자 한다. 설정할 파일과 설정할 내용을 기술하세요..
+			1) application.properties에 jdbc정보 설정
+			2) mybatis config 파일설정 : configuration.MybatisConfig
+			@Bean
+		 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory
+		 		sqlSessionFactory) throws Exception {
+		 		return new SqlSessionTemplate(sqlSessionFactory);
+		 	}
+		 	3) mapper 설정
+			
+~9:30 까지 제출해주세요.
+
+# 주요학습범위
+1. spring boot 활용
+
+# 생각해봅시다.
+1. 스프링 boot의  vue의 컴포넌트 처리에 필요한 eventBus 방식이란 무엇인가?
+		
+			
+# 학습목표
+1. 스프링 boot의 DB 처리 방식을 이해하고 활용할 수 있다.
+2. 스프링 boot의 vue와 영동하는 개발 환경을 구성할 수 있다.
+
+
+ 	
+# 주요핵심 keyword

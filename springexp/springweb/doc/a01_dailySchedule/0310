@@ -1,0 +1,57 @@
+# 주요 학습 범위
+1. 스프링을 통한 자동 메일 발송
+2. 스프링 boot와 vue를 연동하는 게시판 조회화면
+
+# 생각해봅시다.
+1. 메일 발송을 위해서는 어떤 환경이 필요로 하는가?
+	메일 클라이언트 	메일 서버(daum, naver, gmail을 활용)
+					- 수신 서버(POP)
+					- 발신 서버(SMTP)
+	1) 메일 클라이언트에서 수신 서버나 발신 서버에 대한 설정을 하고,
+	2) 메일 작성을 위한 form을 만들고, 해당 내용을 처리를 한다.
+	3) 수신/발신 서버에 보안적인 설정이 필요.
+2. 메일 발송은 실무에서 어떤 프로그램 처리에 주로 필요로 하는가?
+	1) 기본적인 의사 소통으로 메일 발송 처리
+	2) 자동 메일 발송 - 수신자가 다수일 때, 특정한 시간이나 내용을 form 요소 객체로 전송처리
+	3) 계정의 계정 정보나 비밀번호를 잊을 시에 등록된 메일로 발송
+	4) 회사에서 초기 계정 정보를 계정 등록 시, 발송 처리
+		관리자가 이메일. 이름으로 등록함과 동시에 자동으로 메일로 계정(sequence-사원번호)과 임시비밀번호를 가입하는 사람에게
+		발송 처리.
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. fullcalendar의 등록 기능 수행 절차를 기술하세요.
+	<insert id="insertCalendar" parameterType="calendar">
+		INSERT INTO calendar values(cal_seq.nextval, 
+			#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},
+				#{textColor},
+				#{allDay})	
+	</insert>
+	# controller
+	@RequestMapping("insertCalendar")
+	public String insertCalendar(Calendar ins){
+		service.insertCalendar(ins);
+		return "redirect:/calendar.do";
+	}
+	$("#regBtn").click(function(){
+		if(confirm("일정등록하시겠습니까?")){
+			$("#frm01").attr("action","${path}/insertCalendar.do");
+			$("#frm01").submit();
+		}		
+	});
+	
+2. 	fullcalndar의 상세화면 로딩 기능 메서드와 이를 처리하기 위한 절차를 기술하세요
+	
+	

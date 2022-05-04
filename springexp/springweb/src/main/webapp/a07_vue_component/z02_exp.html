@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/springweb/a00_com/bootstrap.min.css" >
+<style>
+	td{text-align:center;}
+</style>
+<script src="/springweb/a00_com/jquery.min.js"></script>
+<script src="/springweb/a00_com/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<template id="temp01">
+	<h3 :style="{background:bk}" @click="call01">안녕하세요 {{bk}}</h3>
+</template>
+<template id="temp02">
+	<button @click="favorclick">{{favor}}</button>
+</template>
+<script type="text/javascript">
+	var idx = 0;
+	Vue.component("comp01",{
+		template:"#temp01",
+		data:function(){
+			return {bk:"red"};
+		},
+		methods:{
+			call01:function(){
+				var colors = ["red", "blue", "green"];
+				var chColor01 = colors[idx++%3];
+				this.bk = chColor01;
+				this.$emit("chcolor", chColor01);
+			}
+		}
+	})
+	Vue.component("favor-comp",{
+		template:"#temp02",
+		data:function(){
+			return {favor:"좋아요"};
+		},
+		methods:{
+			favorclick:function(){
+				if(this.favor=="좋아요"){
+					this.favor="싫어요";
+				}else{
+					this.favor="좋아요";;
+				}
+			}
+		}
+	});
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{msg:"시작!!(뷰와함께)"},
+			methods:{
+				callevent:function(param){
+					this.msg += ","+param;
+				}
+			}
+		});	
+	});
+</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron text-center">
+	  <h2 >{{msg}}</h2>
+	  <comp01 @chcolor="callevent"></comp01>
+	  <favor-comp></favor-comp>
+	</div>
+	<form id="frm01" class="form-inline"  method="post">
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	    <input class="form-control mr-sm-2" placeholder="제목" />
+	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <button class="btn btn-info" type="submit">Search</button>
+ 	</nav>
+	</form>
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+    
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    	<tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+	</table>       
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+# 주요학습범위
+1. 스프링 리뷰
+2. 데이터 베이스 설정과 활용 dao작성
+
+# 생각해봅시다.
+1. 스프링의 MVC에서 DB 연결 구조는 어떤 것인가?
+	controller
+		메서드별로 url 매핑
+		model ==> service ==> dao(인터페이스) ==> mybatis프레임워크(xml) ==> DB서버
+		view 
+			VUE
+2. 스프링의 mybatis DAO처리는 어떤 패턴으로 개발을 진행하는 것인가?
+	1) sql 작성
+		프로그래밍 ==> sql 실행(입력값) ==> 그 결과를 프로그래밍의 객체로 받아오는 처리
+	2) 입력/리턴값을 확인 및 객체화
+		1) 입력값 : where조건문, insert의 values, updata/delete의 조건 및 
+			set 컬럼=입력데이터
+		2) 리턴값 : select의 경우 변수/단일 VO객체/테이블형태의 데이터
+		3) 객체화 : 
+			public ArrayList<Emp> getEmpList(Emp sch){
+				- DB연결
+				- sql 처리
+				- 결과값 처리
+				- 자원해제
+				- 예외 처리..
+			}
+3) mybatis 프레임워크
+	1) body({})가 없는 추상메서드만 선언
+		public ArrayList<Emp> getEmpList(Emp sch);
+	2) xml에서 위 추상메서드와 연결되는 설정 처리 + sql
+		<select id="getEmpList" parameterType="emp" resultType="emp">
+			select *
+			from emp
+			where ename like '%'||#{ename}||'%'
+			and job like '%'||#{job}||'%'		
+	3) 위에서 선언한 추상메서드가 있는 인터페이스 + xml로 mybatis에
+		의해 자동으로 상속받은 실제객체를 내부적으로 만들어서 최종적으로 
+		결과값을 리턴한다.		

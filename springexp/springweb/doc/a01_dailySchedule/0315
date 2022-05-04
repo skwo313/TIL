@@ -1,0 +1,30 @@
+1. 스프링 boot vue의 기본 개발 환경 구성을 위한 설정을 기술하세요.
+1) a00_com 하위에 lib 파일 위치
+2) <script src="/a00_com/vue.js"></script>
+<script src="/a00_com/axios.js"></script>
+
+
+2. vue를  통해 backend 데이터 연동시 처리할 내용의 순서를 기술하세요.
+
+- mybatis
+		application.properties파일에 설정된 위치
+		src\main\resources\mybatis\mybatis.Spring.xml
+		src\main\resources\mybatis\mapper\boardMapper.xml
+	- 웹화면호출 경로 설정
+		MvcConfiguration.java 에서 설정된 위치
+		src\main\resources\templates
+		src\main\resources\static
+		templates, static 폴드 위치 지정 
+		template : controller호출 할 main html 파일 
+		static : 공통 정적인 자원(css, js, 공통 html, image, lib)..
+
+3. vue의 ajax를 통해 요청값을 전달하고, 특정 속성값(DB처리, 로직)을 처리하는 방식을 기술하세요.
+	controller단 선언
+	dao/mapper/service/controller
+	@RequestMapping("boardData")
+	public String boardData(BoardSch sch, Model d) {
+		d.addAttribute("blist", service.getBoardList(sch));
+		return "jsonView";
+	}	
+	
+	

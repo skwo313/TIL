@@ -1,0 +1,102 @@
+
+# 생각해봅시다.
+1. 계층형 sql이란 무엇인가?
+	emp 테이블의 empno와 mgr과의 관계와 같이 테이블내부에 컬럼간의 계층적인 관계를 가지고 잇을 때를 말한다.
+	board의 no/refno : 글과 답글 관계로 처리되어 있다
+	기본 메인 글 하위에 답글을 처리하여, 계층적으로 표현할 떄, 활용된다.
+	
+2. 페이징 처리를 위한 속성값은 어떤 것이 있는가?
+	한번에 보여줄 페이지를 지정하여 데이터를 처리하는 방식으로 DB서버의 부하를 줄여준다
+	최종적 sql로 고유번호인 rownum between 시작번호 and 마지막번호
+	cd) rownum : oracle에서 내장된 행단위 count를 말한다.
+   count : 전체데이터 총 건수
+   pageSize : 한페이지 당 보여줄 데이터 건수
+   pageCount : 총 페이지 수 
+   curPage : 현재 클릭한 페이지 번호 - 하단에 [1][2][3][4]
+   start : 해당 페이지를 클릭했을 때, 최상단의 번호
+   end : 해당 페이지를 클릭했을 때, 최하단의 번호
+   blockSize : 하단에 나타날 block의 갯수	<< [1] [2] [3] >> ==> 좌우로 클릭하는 화살표와 함께
+   		한번에 보이는 페이지 block의 갯수 이 경우 3개이다.
+   startBlock : 페이지 block에서 왼쪽에 나오는 시작 block 번호
+   		<< [4] [5] [6] >>
+   endBlock : 페이지 block에서 오른쪽에 나오는 마지막 block 번호
+	
+# 학습목표
+
+# 주요핵심 keyword
+start with 조건 : 계층적 sql의 최상위 root 조건 지정
+connect by prior 상위컬럼 = 하위컬럼
+order silblings by 컬럼명 : 계층적 sql의 정렬 기준
+
+	[전날 정리]
+1. 웹프로그래밍에서 세션을 활용하는 경우를 기술하세요.
+	1) 로그인 후, 회원 정보(아이디, 이름, 권한, 포인트)를 가지고, 각 페이지별/기능버튼별로
+		로그인 여부와 권한에 따른 접근 처리를 할 수 있다.
+	2) 임시로 장바구니나 쇼핑카트에 결재전에 특정한 데이터를 가지고 있다가 결재 후에는 DB로
+		처리하게 할 떄, 활용된다.
+	
+2. 스프링에서 세션 처리를 위한 핵심 선언을 기술하세요.
+	컨트롤단
+	선언: @SessionAttributes("세션명")
+	모델객체
+	@ModelAttribute("세션명")
+	public 객체 get객체(){
+		return new 객체();
+	}	
+	기능메서드
+	public String 메서드명(@MedelAttribute("세션명") 객체 참조){
+	
+	}
+			
+3. 로그인 인증/미인증 메세지와 세션여부를 확인하는 js 처리를 기술하세요.
+	contoller단에서 모델데이터로 선언
+		public String login(@ModelAttribute("member") member login, Model d){
+			Member mem = service.login(login); // DB를 통해 member가 있는지 여부를 확인, VO객체를 받음
+			if(mem!=null){ // 데이터가 있는 경우
+				d.addAttribute("msg", "로그인성공");
+				d.addAttribute("member", mem); // session 값 DB가져온 데이터로 재설정
+			}else {
+				d.addAttribute("msg", "로그인실패");
+			}
+		}
+		
+	view단에서 js로 선언	
+		var msg = "${msg}";
+		if(msg!=""){
+			alert(msg);
+		}
+	
+		var hsaSession = "${member.name}"
+		// id, pass는 기본적으로 login할떄 있으므로 DB에서 가져온 데이터를 기준으로 설정처리
+		// 세션값이 있는지 여부를 확인
+		if(hasSession==""){ // session값이 없을 때..
+			alert("로그인이 필요합니다.");	
+			$("#loginBtn").click();
+		}
+
+4. 세션 check부터 시작하는 session을 활용한 DB연동 로그인 및 권한 처리 코드를 개발순서와 핵심코드를 기술하세요ㅅㅎ 
+	- db 설계 및 sql 작성
+		member테이블 확인 및 작성
+		select * from member where id=${id} and pass=#{pass}
+	- vo작성
+		Member 
+			private String id;
+			private String pass;
+			private String name;
+			private String auth;
+			privat int point;
+	- dao/mapper 작성
+		1) dao
+			public Member login(Member login);
+		2) mapper
+			<select id="login" parameterType="member" resultType="member">
+				select * from member where id=${id} and pass=#{pass}
+			</select>
+	- service/controller 호출
+		public Member login(Member login){
+			return dao.login(login);
+		}
+	- controller에 모델 데이터 설정
+		m.addAttribute("member", service.login(member));
+		
+		

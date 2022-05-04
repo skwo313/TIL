@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show">
+		<h2 align="center">{{msg}}</h2>
+		<p v-html="pname"></p>
+		<h4 v-text="price"></h4>
+		<h4 v-text="cnt"></h4>
+		등록한사람수: <input type="text" v-model="pcnt" ><br>
+		좋아요 수: <input type="text" v-model="like" >
+		<h3>좋아요 정보</h3>
+		<h4>등록한사람수 : {{pcnt}}, 좋아요 수: {{like}}</h4>
+		<h4>좋아요 확률: {{like/pcnt*100}}%</h4>
+	</div>
+</body>
+<script>
+var vm = new Vue({
+	el: "#show",
+	data: {msg:"시작!!", pname:"<h4>사과</h4>", price: 4000, cnt:3,
+			pcnt: 3000, like:1450} 
+})
+</script>
+</html>
